@@ -19,3 +19,17 @@ UnidadCD* ICrearProductos::crearUnidadCD()
 
     return crearProducto<UnidadCD>(productos);
 }
+
+Tornamesa* ICrearProductos::crearTornamesa()
+{
+//Modelo:FF211	Caracteristica: Unidad basica 33 / 45 RPM	 Precio: 180.00
+//Modelo: HA401	Caracteristica: Soporte 78 RPM	 Precio: 230.00
+//Modelo: EG266	Caracteristica: Brazo automatico	 Precio: 320.00
+    std::vector<std::tuple<std::string, std::string, double>> productos = {
+        std::make_tuple("FF211", "Unidad basica 33 / 45 RPM", 180.00),
+        std::make_tuple("HA401", "Soporte 78 RPM", 230.00),
+        std::make_tuple("EG266", "Brazo automatico", 320.00)
+    };
+
+    return crearProducto<Tornamesa>(productos);
+}
