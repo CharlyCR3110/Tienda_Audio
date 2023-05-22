@@ -42,6 +42,7 @@ inline T* ICrearProductos::crearProducto(const std::vector<std::tuple<std::strin
 {
     while (true)
     {
+        // Mostrar las opciones de productos disponibles
         std::cout << "----------------------------------------------------------------------------" << std::endl;
         std::cout << "Seleccione una opcion:" << std::endl;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -49,6 +50,7 @@ inline T* ICrearProductos::crearProducto(const std::vector<std::tuple<std::strin
         int i = 1;
         for (const auto& producto : productos)
         {
+            // Mostrar detalles de cada producto: modelo, caracteristica y precio
             std::cout << i << ". Modelo: " << std::get<0>(producto) << ", Caracteristica: " << std::get<1>(producto)
                 << ", Precio: $" << std::get<2>(producto) << std::endl;
             i++;
@@ -60,16 +62,18 @@ inline T* ICrearProductos::crearProducto(const std::vector<std::tuple<std::strin
         std::cin >> opcion;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
 
-        // Validar entrada
+        // Validar la entrada del usuario
         if (opcion >= 1 && opcion <= productos.size())
         {
             const auto& producto = productos[opcion - 1];
+            // Crear un nuevo producto con los detalles del producto seleccionado
             return new T(std::get<0>(producto), std::get<1>(producto), std::get<2>(producto));
         }
         else
         {
+            // Mostrar mensaje de error
             std::cout << "Opcion invalida. Por favor, ingrese un numero de opcion valido." << std::endl;
-            clearInputBuffer();
+            clearInputBuffer(); // Limpiar los errores de entrada
         }
     }
 }
