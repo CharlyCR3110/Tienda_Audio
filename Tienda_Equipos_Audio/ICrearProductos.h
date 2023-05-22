@@ -23,12 +23,12 @@ public:
 	static UnidadCD* crearUnidadCD();
 	static Tornamesa* crearTornamesa();
     static Radio* crearRadio();
+    static UnidadBluetooth* crearUnidadBluetooth();
 
+
+    // METODO TEMPLATE
 	template<class T>
 	static T* crearProducto(const std::vector<std::tuple<std::string, std::string, double>>& productos);
-	/*
-	Nota: Podria hacer solamente un metodo y que este devuelva un Componente*. Y dependiendo del codigo(modelo) que introduzca el usuario devuelva el componente correspondiente.
-	*/
 };
 
 // Esta metodo es un template, por lo que se puede utilizar para crear cualquier tipo de producto.

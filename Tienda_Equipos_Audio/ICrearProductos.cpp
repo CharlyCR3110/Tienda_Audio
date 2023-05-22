@@ -4,6 +4,8 @@
 	se esta trabajando con los modelos que vienen en el PDF. Ademas, estoy asumiendo que la tienda unicamente vende los productos(modelo) que se encuentran en el PDF.
 */
 
+// EMPIEZAN LAS FUENTES DE AUDIO
+
 UnidadCD* ICrearProductos::crearUnidadCD()
 {
 //modelo:DF531 caracteristica: Unidad basica	 precio:100.00
@@ -61,3 +63,24 @@ Radio* ICrearProductos::crearRadio()
     // se llama a la funcion template para crear el producto
     return crearProducto<Radio>(productos);
 }
+
+UnidadBluetooth* ICrearProductos::crearUnidadBluetooth()
+{
+//Modelo: YM396	Caracteristica: Basico	 Precio: 70.00
+//Modelo: CE169	Caracteristica: Multicanal	 Precio: 100.00
+//Modelo: HN871	Caracteristica: Receptor FM	 Precio: 90.00
+
+    // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
+    std::vector<std::tuple<std::string, std::string, double>> productos =
+    {
+		std::make_tuple("YM396", "Basico", 70.00),
+		std::make_tuple("CE169", "Multicanal", 100.00),
+		std::make_tuple("HN871", "Receptor FM", 90.00)
+	};
+
+    // se llama a la funcion template para crear el producto
+	return crearProducto<UnidadBluetooth>(productos);
+}
+
+
+// TERMINAN LAS FUENTES DE AUDIO
