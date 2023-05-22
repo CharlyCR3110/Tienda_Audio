@@ -113,3 +113,20 @@ Mezclador* ICrearProductos::crearMezclador()
     // se llama a la funcion template para crear el producto
     return crearProducto<Mezclador>(productos);
 }
+
+Parlante* ICrearProductos::crearParlante()
+{
+    // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
+    std::vector<std::tuple<std::string, std::string, double>> productos =
+    {
+        std::make_tuple("MK537", "200W", 235.00),
+        std::make_tuple("WR390", "400W", 275.00),
+        std::make_tuple("SE772", "400W perfil plano", 315.00),
+        std::make_tuple("HT863", "400W inalambrico", 355.00),
+        std::make_tuple("SN791", "300W 4 canales", 395.00),
+        std::make_tuple("EA457", "280W subwoofer", 435.00)
+    };
+
+    // se llama a la funcion template para crear el producto
+    return crearProducto<Parlante>(productos);
+}

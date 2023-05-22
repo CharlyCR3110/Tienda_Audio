@@ -30,6 +30,9 @@ public:
     static Amplificador* crearAplificador();
     static Mezclador* crearMezclador();
 
+    // Parlantes
+    static Parlante* crearParlante();
+
     // METODO TEMPLATE
 	template<class T>
 	static T* crearProducto(const std::vector<std::tuple<std::string, std::string, double>>& productos);
