@@ -82,5 +82,24 @@ UnidadBluetooth* ICrearProductos::crearUnidadBluetooth()
 	return crearProducto<UnidadBluetooth>(productos);
 }
 
+Microfono* ICrearProductos::crearMicrofono()
+{
+//Modelo: GX610	Caracteristica : Alambrico	 Precio : 90.00
+//Modelo : HE601	Caracteristica : Alambrico omnidireccional	 Precio : 95.00
+//Modelo : EO222	Caracteristica : Inalambrico	 Precio : 120.00
+//Modelo : IS308	Caracteristica : Inalambrico rango ampliado	 Precio : 180.00
+//Modelo : UK405	Caracteristica : Inalambrico Bluetooth	 Precio : 100.00
+    std::vector<std::tuple<std::string, std::string, double>> productos =
+    {
+        std::make_tuple("GX610", "Alambrico", 90.00),
+        std::make_tuple("HE601", "Alambrico omnidireccional", 95.00),
+        std::make_tuple("EO222", "Inalambrico", 120.00),
+        std::make_tuple("IS308", "Inalambrico rango ampliado", 180.00),
+        std::make_tuple("UK405", "Inalambrico Bluetooth", 100.00)
+    };
+
+    return crearProducto<Microfono>(productos);
+}
+
 
 // TERMINAN LAS FUENTES DE AUDIO

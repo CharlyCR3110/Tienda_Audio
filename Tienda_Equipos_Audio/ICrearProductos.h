@@ -24,7 +24,7 @@ public:
 	static Tornamesa* crearTornamesa();
     static Radio* crearRadio();
     static UnidadBluetooth* crearUnidadBluetooth();
-
+    static Microfono* crearMicrofono();
 
     // METODO TEMPLATE
 	template<class T>
