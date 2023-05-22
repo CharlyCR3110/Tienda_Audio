@@ -19,6 +19,10 @@
 class ICrearProductos
 {
 public:
+	// fuentes de audio
+	static UnidadCD* crearUnidadCD();
+
+
 	template<class T>
 	static T* crearProducto(const std::vector<std::tuple<std::string, std::string, double>>& productos);
 	/*
