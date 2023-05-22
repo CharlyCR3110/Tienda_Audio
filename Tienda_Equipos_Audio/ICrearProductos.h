@@ -32,6 +32,7 @@ public:
 
     // Parlantes
     static Parlante* crearParlante();
+    static Audifono* crearAudifono();
 
     // METODO TEMPLATE
 	template<class T>

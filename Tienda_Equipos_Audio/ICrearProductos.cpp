@@ -130,3 +130,20 @@ Parlante* ICrearProductos::crearParlante()
     // se llama a la funcion template para crear el producto
     return crearProducto<Parlante>(productos);
 }
+
+Audifono* ICrearProductos::crearAudifono()
+{
+    // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
+    std::vector<std::tuple<std::string, std::string, double>> productos =
+    {
+        std::make_tuple("UK930", "Basico(intraural)", 20.00),
+        std::make_tuple("DV270", "Basico(supraural.diadema)", 40.00),
+        std::make_tuple("AA891", "Basico(circumaural)", 45.00),
+        std::make_tuple("SZ314", "Basico(inalambrico)", 60.00),
+        std::make_tuple("OC829", "Circumaural bajos profundos", 90.00),
+        std::make_tuple("YG838", "Inalambrico bajos profundos", 120.00)
+    };
+
+    // se llama a la funcion template para crear el producto
+    return crearProducto<Audifono>(productos);
+}
