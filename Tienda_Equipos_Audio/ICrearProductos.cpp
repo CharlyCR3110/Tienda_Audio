@@ -8,11 +8,6 @@
 
 UnidadCD* ICrearProductos::crearUnidadCD()
 {
-//modelo:DF531 caracteristica: Unidad basica	 precio:100.00
-//modelo: MT909	caracteristica: Proteccion de salto	 precio : 150.00
-//modelo: CE230	caracteristica: Multiples velocidades	 precio : 175.00
-//modelo: YF292	caracteristica: Soporte SACD	 precio : 200.00
-// 
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos = 
     {
@@ -28,10 +23,6 @@ UnidadCD* ICrearProductos::crearUnidadCD()
 
 Tornamesa* ICrearProductos::crearTornamesa()
 {
-//Modelo:FF211	Caracteristica: Unidad basica 33 / 45 RPM	 Precio: 180.00
-//Modelo: HA401	Caracteristica: Soporte 78 RPM	 Precio: 230.00
-//Modelo: EG266	Caracteristica: Brazo automatico	 Precio: 320.00
-
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos = 
     {
@@ -46,11 +37,6 @@ Tornamesa* ICrearProductos::crearTornamesa()
 
 Radio* ICrearProductos::crearRadio()
 {
-//Modelo: NW671	Caracteristica : Basico AM / FM	 Precio : 90.00
-//Modelo: JU272	Caracteristica : Onda corta	 Precio : 300.00
-//Modelo: OE214	Caracteristica : Sintonizador automatico	 Precio : 220.00
-//Modelo: LZ248	Caracteristica : Sintonizador programable	 Precio : 280.00
-
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =
     {
@@ -66,10 +52,6 @@ Radio* ICrearProductos::crearRadio()
 
 UnidadBluetooth* ICrearProductos::crearUnidadBluetooth()
 {
-//Modelo: YM396	Caracteristica: Basico	 Precio: 70.00
-//Modelo: CE169	Caracteristica: Multicanal	 Precio: 100.00
-//Modelo: HN871	Caracteristica: Receptor FM	 Precio: 90.00
-
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =
     {
@@ -84,11 +66,7 @@ UnidadBluetooth* ICrearProductos::crearUnidadBluetooth()
 
 Microfono* ICrearProductos::crearMicrofono()
 {
-//Modelo: GX610	Caracteristica : Alambrico	 Precio : 90.00
-//Modelo : HE601	Caracteristica : Alambrico omnidireccional	 Precio : 95.00
-//Modelo : EO222	Caracteristica : Inalambrico	 Precio : 120.00
-//Modelo : IS308	Caracteristica : Inalambrico rango ampliado	 Precio : 180.00
-//Modelo : UK405	Caracteristica : Inalambrico Bluetooth	 Precio : 100.00
+    // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =
     {
         std::make_tuple("GX610", "Alambrico", 90.00),
@@ -98,8 +76,24 @@ Microfono* ICrearProductos::crearMicrofono()
         std::make_tuple("UK405", "Inalambrico Bluetooth", 100.00)
     };
 
+    // se llama a la funcion template para crear el producto
     return crearProducto<Microfono>(productos);
 }
 
+// EMPIEZAN LOS PROCESADORES de SENAL
 
-// TERMINAN LAS FUENTES DE AUDIO
+Amplificador* ICrearProductos::crearAplificador()
+{
+    // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
+    std::vector<std::tuple<std::string, std::string, double>> productos =
+    {
+        std::make_tuple("CA188", "80W", 90.00),
+        std::make_tuple("SK956", "100W", 115.00),
+        std::make_tuple("JV322", "200W", 140.00),
+        std::make_tuple("UI569", "220W", 165.00),
+        std::make_tuple("YV439", "400W", 190.00)
+    };
+
+    // se llama a la funcion template para crear el producto
+    return crearProducto<Amplificador>(productos);
+}

@@ -6,8 +6,8 @@
 #include "UnidadBluetooth.h"
 #include "Microfono.h"
 //procesador de senal
-#include "Mezclador.h"
 #include "Amplificador.h"
+#include "Mezclador.h"
 // parlantes 
 #include "Parlante.h"
 #include "Audifono.h"
@@ -25,6 +25,9 @@ public:
     static Radio* crearRadio();
     static UnidadBluetooth* crearUnidadBluetooth();
     static Microfono* crearMicrofono();
+
+    // Procesador de senal
+    static Amplificador* crearAplificador();
 
     // METODO TEMPLATE
 	template<class T>
