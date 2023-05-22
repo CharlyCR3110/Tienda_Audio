@@ -97,3 +97,19 @@ Amplificador* ICrearProductos::crearAplificador()
     // se llama a la funcion template para crear el producto
     return crearProducto<Amplificador>(productos);
 }
+
+Mezclador* ICrearProductos::crearMezclador()
+{
+    // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
+    std::vector<std::tuple<std::string, std::string, double>> productos =
+    {
+        std::make_tuple("JC327", "2 canales analogicos", 70.00),
+        std::make_tuple("XJ941", "2 canales digitales", 85.00),
+        std::make_tuple("DB258", "4 canales analogicos", 130.00),
+        std::make_tuple("AN918", "4 canales digitales", 150.00),
+        std::make_tuple("AI821", "8 canales(digital / analogico)", 325.00)
+    };
+
+    // se llama a la funcion template para crear el producto
+    return crearProducto<Mezclador>(productos);
+}

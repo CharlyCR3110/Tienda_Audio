@@ -28,6 +28,7 @@ public:
 
     // Procesador de senal
     static Amplificador* crearAplificador();
+    static Mezclador* crearMezclador();
 
     // METODO TEMPLATE
 	template<class T>
