@@ -22,6 +22,7 @@ public:
 	// fuentes de audio
 	static UnidadCD* crearUnidadCD();
 	static Tornamesa* crearTornamesa();
+    static Radio* crearRadio();
 
 	template<class T>
 	static T* crearProducto(const std::vector<std::tuple<std::string, std::string, double>>& productos);
