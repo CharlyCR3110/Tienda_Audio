@@ -130,6 +130,15 @@ ProcesadorDeSenal* ICrearProductos::crearMezclador()
     return crearProducto<Mezclador>(productos);
 }
 
+ProcesadorDeSenal* ICrearProductos::crearProcesadorDeSenal()
+{
+    std::string mensaje = "Seleccione el tipo de procesador de senal que desea comprar:";
+    std::vector<std::string> opciones = { "Amplificador", "Mezclador" };
+    std::vector<ProcesadorDeSenal* (*)()> funciones = { crearAplificador, crearMezclador };
+
+    return crearCategoria<ProcesadorDeSenal>(mensaje, opciones, funciones);
+}
+
 Parlante* ICrearProductos::crearParlante()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto

@@ -33,6 +33,7 @@ public:
     static ProcesadorDeSenal* crearAplificador();
     static ProcesadorDeSenal* crearMezclador();
 
+    static ProcesadorDeSenal* crearProcesadorDeSenal();
     // Parlantes
     static Parlante* crearParlante();
     static Audifono* crearAudifono();
