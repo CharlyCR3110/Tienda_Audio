@@ -35,8 +35,8 @@ public:
 
     static ProcesadorDeSenal* crearProcesadorDeSenal();
     // Parlantes
-    static Parlante* crearParlante();
-    static Audifono* crearAudifono();
+    static ParlanteCat* crearParlante();
+    static ParlanteCat* crearAudifono();
 
     // METODO TEMPLATE
 	template<class T>
