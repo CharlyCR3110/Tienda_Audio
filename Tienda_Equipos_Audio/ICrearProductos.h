@@ -27,6 +27,8 @@ public:
     static FuenteDeAudio* crearUnidadBluetooth();
     static FuenteDeAudio* crearMicrofono();
 
+    static FuenteDeAudio* crearFuenteDeAudio();
+
     // Procesador de senal
     static Amplificador* crearAplificador();
     static Mezclador* crearMezclador();

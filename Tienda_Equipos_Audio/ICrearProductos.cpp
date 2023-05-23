@@ -80,6 +80,15 @@ FuenteDeAudio* ICrearProductos::crearMicrofono()
     return crearProducto<Microfono>(productos);
 }
 
+FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
+{
+    std::string mensaje = "Seleccione el tipo de fuente de audio que desea comprar:";
+    std::vector<std::string> opciones = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micrófono" };
+    std::vector<FuenteDeAudio* (*)()> funciones = { crearUnidadCD, crearTornamesa, crearRadio, crearUnidadBluetooth, crearMicrofono };  
+
+    return crearCategoria<FuenteDeAudio>(mensaje, opciones, funciones);
+}
+
 // EMPIEZAN LOS PROCESADORES de SENAL
 
 Amplificador* ICrearProductos::crearAplificador()
