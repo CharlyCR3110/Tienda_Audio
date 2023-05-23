@@ -139,6 +139,8 @@ ProcesadorDeSenal* ICrearProductos::crearProcesadorDeSenal()
     return crearCategoria<ProcesadorDeSenal>(mensaje, opciones, funciones);
 }
 
+// EMPIEZAN LOS PARLANTES
+
 ParlanteCat* ICrearProductos::crearParlante()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
