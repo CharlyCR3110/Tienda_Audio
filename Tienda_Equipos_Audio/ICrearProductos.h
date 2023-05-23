@@ -38,6 +38,8 @@ public:
     static ParlanteCat* crearParlante();
     static ParlanteCat* crearAudifono();
 
+    static ParlanteCat* crearParlanteCat();
+
     // METODO TEMPLATE
 	template<class T>
 	static T* crearProducto(const std::vector<std::tuple<std::string, std::string, double>>& productos);
@@ -48,6 +50,7 @@ public:
     // mensaje representa el mensaje que se muestra al usuario
     // opciones representa las opciones que se muestran al usuario
     // funciones representa las funciones que se llaman para crear el producto
+
     /*
     const std::vector<T* (*)()>& funciones es una declaracion de parametro de funcion que indica que se espera un vector de punteros a funciones que no tienen parametros y devuelven un puntero a un objeto de tipo T
     */

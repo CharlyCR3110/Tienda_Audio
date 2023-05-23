@@ -172,3 +172,12 @@ ParlanteCat* ICrearProductos::crearAudifono()
     // se llama a la funcion template para crear el producto
     return crearProducto<Audifono>(productos);
 }
+
+ParlanteCat* ICrearProductos::crearParlanteCat()
+{
+    std::string mensaje = "Seleccione el tipo de parlante que desea comprar:";
+    std::vector<std::string> opciones = { "Parlante", "Audifono" };
+    std::vector<ParlanteCat* (*)()> funciones = { crearParlante, crearAudifono };
+
+    return crearCategoria<ParlanteCat>(mensaje, opciones, funciones);
+}
