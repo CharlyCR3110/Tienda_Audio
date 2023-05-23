@@ -4,6 +4,13 @@
 	se esta trabajando con los modelos que vienen en el PDF. Ademas, estoy asumiendo que la tienda unicamente vende los productos(modelo) que se encuentran en el PDF.
 */
 
+/*
+    La firma de algunos metodos dice que retorna un puntero a X, pero en el cuerpo de la funcion se retorna un puntero a Y, Z, etc. Por ejemplo, algunos metodos dicen retornar un puntero a FuenteDeAudio, pero en el cuerpo de la funcion se retorna un puntero a Tornamesa, UnidadCD, etc.
+    Esto se debe a que estas clases heredan de FuenteDeAudio, por lo que se puede retornar un puntero a cualquiera de estas clases. Ademas, no se puede retornar un puntero a FuenteDeAudio porque es una clase abstracta. (tiene metodos virtuales puros).
+    
+    Hablo de FuenteDeAudio, pero esto aplica para las demas clases (Parlante y ProcesadorDeSenal) y sus respectivas hijas. 
+*/
+
 // EMPIEZAN LAS FUENTES DE AUDIO
 
 FuenteDeAudio* ICrearProductos::crearUnidadCD()
@@ -18,8 +25,8 @@ FuenteDeAudio* ICrearProductos::crearUnidadCD()
     };
 
     // se llama a la funcion template para crear el producto
-    return crearProducto<UnidadCD>(productos);
-}
+    return crearProducto<UnidadCD>(productos);  
+} 
 
 FuenteDeAudio* ICrearProductos::crearTornamesa()
 {
@@ -83,7 +90,7 @@ FuenteDeAudio* ICrearProductos::crearMicrofono()
 FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 {
     std::string mensaje = "Seleccione el tipo de fuente de audio que desea comprar:";
-    std::vector<std::string> opciones = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micrófono" };
+    std::vector<std::string> opciones = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micrï¿½fono" };
     std::vector<FuenteDeAudio* (*)()> funciones = { crearUnidadCD, crearTornamesa, crearRadio, crearUnidadBluetooth, crearMicrofono };  
 
     return crearCategoria<FuenteDeAudio>(mensaje, opciones, funciones);
@@ -91,7 +98,7 @@ FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 
 // EMPIEZAN LOS PROCESADORES de SENAL
 
-Amplificador* ICrearProductos::crearAplificador()
+ProcesadorDeSenal* ICrearProductos::crearAplificador()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =
@@ -107,7 +114,7 @@ Amplificador* ICrearProductos::crearAplificador()
     return crearProducto<Amplificador>(productos);
 }
 
-Mezclador* ICrearProductos::crearMezclador()
+ProcesadorDeSenal* ICrearProductos::crearMezclador()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =

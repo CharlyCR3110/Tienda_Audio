@@ -30,8 +30,8 @@ public:
     static FuenteDeAudio* crearFuenteDeAudio();
 
     // Procesador de senal
-    static Amplificador* crearAplificador();
-    static Mezclador* crearMezclador();
+    static ProcesadorDeSenal* crearAplificador();
+    static ProcesadorDeSenal* crearMezclador();
 
     // Parlantes
     static Parlante* crearParlante();
