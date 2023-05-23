@@ -37,6 +37,16 @@ public:
     // METODO TEMPLATE
 	template<class T>
 	static T* crearProducto(const std::vector<std::tuple<std::string, std::string, double>>& productos);
+
+    // recibe un vector con el nombre de las categorias, luego se utilizan los metodos que ya existen para crear los productos
+    template<class T>
+    static T* crearCategoria(const std::string& mensaje, const std::vector<std::string>& opciones, const std::vector<T* (*)()>& funciones);
+    // mensaje representa el mensaje que se muestra al usuario
+    // opciones representa las opciones que se muestran al usuario
+    // funciones representa las funciones que se llaman para crear el producto
+    /*
+    const std::vector<T* (*)()>& funciones es una declaracion de parametro de funcion que indica que se espera un vector de punteros a funciones que no tienen parametros y devuelven un puntero a un objeto de tipo T
+    */
 };
 
 // Esta metodo es un template, por lo que se puede utilizar para crear cualquier tipo de producto.
@@ -76,7 +86,43 @@ inline T* ICrearProductos::crearProducto(const std::vector<std::tuple<std::strin
         else
         {
             // Mostrar mensaje de error
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
             std::cout << "Opcion invalida. Por favor, ingrese un numero de opcion valido." << std::endl;
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
+            clearInputBuffer(); // Limpiar los errores de entrada
+        }
+    }
+}
+
+template<class T>
+inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std::vector<std::string>& opciones, const std::vector<T* (*)()>& funciones)
+{
+    while (true)
+    {
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+        std::cout << mensaje << std::endl;
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+        for (size_t i = 0; i < opciones.size(); i++)
+        {
+            std::cout << i + 1 << ". " << opciones[i] << std::endl;
+        }
+
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+        std::cout << "Ingrese el numero de la opcion que desea: ";
+        int opcion;
+        std::cin >> opcion;
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+        if (opcion >= 1 && opcion <= opciones.size())
+        {
+            return funciones[opcion - 1]();
+        }
+        else
+        {
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
+            std::cout << "Opcion invalida. Por favor, ingrese un numero de opcion valido." << std::endl;
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
             clearInputBuffer(); // Limpiar los errores de entrada
         }
     }
