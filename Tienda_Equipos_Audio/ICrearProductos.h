@@ -20,11 +20,12 @@ class ICrearProductos
 {
 public:
 	// fuentes de audio
-	static UnidadCD* crearUnidadCD();
-	static Tornamesa* crearTornamesa();
-    static Radio* crearRadio();
-    static UnidadBluetooth* crearUnidadBluetooth();
-    static Microfono* crearMicrofono();
+    // podria haber un metodo para cada tipo de fuente de audio, pero eso implicaria hacer cast en otras partes del codigo
+	static FuenteDeAudio* crearUnidadCD();
+	static FuenteDeAudio* crearTornamesa();
+    static FuenteDeAudio* crearRadio();
+    static FuenteDeAudio* crearUnidadBluetooth();
+    static FuenteDeAudio* crearMicrofono();
 
     // Procesador de senal
     static Amplificador* crearAplificador();

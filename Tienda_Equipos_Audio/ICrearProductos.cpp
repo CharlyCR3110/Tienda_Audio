@@ -6,7 +6,7 @@
 
 // EMPIEZAN LAS FUENTES DE AUDIO
 
-UnidadCD* ICrearProductos::crearUnidadCD()
+FuenteDeAudio* ICrearProductos::crearUnidadCD()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos = 
@@ -21,7 +21,7 @@ UnidadCD* ICrearProductos::crearUnidadCD()
     return crearProducto<UnidadCD>(productos);
 }
 
-Tornamesa* ICrearProductos::crearTornamesa()
+FuenteDeAudio* ICrearProductos::crearTornamesa()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos = 
@@ -35,7 +35,7 @@ Tornamesa* ICrearProductos::crearTornamesa()
     return crearProducto<Tornamesa>(productos);
 }
 
-Radio* ICrearProductos::crearRadio()
+FuenteDeAudio* ICrearProductos::crearRadio()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =
@@ -50,7 +50,7 @@ Radio* ICrearProductos::crearRadio()
     return crearProducto<Radio>(productos);
 }
 
-UnidadBluetooth* ICrearProductos::crearUnidadBluetooth()
+FuenteDeAudio* ICrearProductos::crearUnidadBluetooth()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =
@@ -64,7 +64,7 @@ UnidadBluetooth* ICrearProductos::crearUnidadBluetooth()
 	return crearProducto<UnidadBluetooth>(productos);
 }
 
-Microfono* ICrearProductos::crearMicrofono()
+FuenteDeAudio* ICrearProductos::crearMicrofono()
 {
     // vector de tuplas que contiene el modelo, caracteristica y precio de cada producto
     std::vector<std::tuple<std::string, std::string, double>> productos =
