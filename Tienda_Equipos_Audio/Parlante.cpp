@@ -26,6 +26,27 @@ std::string Parlante::toString() const
 	return ss.str();
 }
 
+void Parlante::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Parlante::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Parlante::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Parlante::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 Parlante& Parlante::operator=(const Parlante& other)
 {
 	if (this != &other)

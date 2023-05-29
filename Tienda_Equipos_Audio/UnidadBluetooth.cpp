@@ -26,6 +26,27 @@ std::string UnidadBluetooth::toString() const
 	return ss.str();
 }
 
+void UnidadBluetooth::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void UnidadBluetooth::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* UnidadBluetooth::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void UnidadBluetooth::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 UnidadBluetooth& UnidadBluetooth::operator=(const UnidadBluetooth& other)
 {
 	if (this != &other)

@@ -26,6 +26,27 @@ std::string Radio::toString() const
 	return ss.str();
 }
 
+void Radio::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Radio::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Radio::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Radio::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 Radio& Radio::operator=(const Radio& other)
 {
 	if (this != &other)

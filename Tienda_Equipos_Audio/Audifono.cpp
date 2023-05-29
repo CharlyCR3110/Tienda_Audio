@@ -26,6 +26,27 @@ std::string Audifono::toString() const
 	return ss.str();
 }
 
+void Audifono::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Audifono::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Audifono::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Audifono::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 Audifono& Audifono::operator=(const Audifono& other)
 {
 	if (this != &other)

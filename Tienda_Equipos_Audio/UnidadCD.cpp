@@ -26,6 +26,27 @@ std::string UnidadCD::toString() const
 	return ss.str();
 }
 
+void UnidadCD::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void UnidadCD::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* UnidadCD::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void UnidadCD::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 UnidadCD& UnidadCD::operator=(const UnidadCD& other)
 {
 	if (this != &other)

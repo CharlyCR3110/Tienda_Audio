@@ -26,6 +26,27 @@ std::string Microfono::toString() const
 	return ss.str();
 }
 
+void Microfono::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Microfono::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Microfono::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Microfono::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 Microfono& Microfono::operator=(const Microfono& other)
 {
 	if (this != &other)

@@ -18,6 +18,12 @@ public:
 	virtual void setCaracteristicas(std::string caracteristicas);
 	virtual void setPrecio(double precio);
 	virtual std::string toString() const = 0;
+	// metodos de composite
+	virtual void add(Componente* componente) = 0;
+	virtual void remove(Componente* componente) = 0;
+	virtual Componente* getChild(int i) const = 0;
+	virtual void clear() = 0;
+	// sobrecarga de operadores
 	Componente& operator=(const Componente& other);
 	friend std::ostream& operator<<(std::ostream& out, const Componente& other);
 protected:

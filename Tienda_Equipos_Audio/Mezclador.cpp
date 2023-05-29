@@ -26,6 +26,27 @@ std::string Mezclador::toString() const
 	return ss.str();
 }
 
+void Mezclador::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Mezclador::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Mezclador::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Mezclador::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 Mezclador& Mezclador::operator=(const Mezclador& other)
 {
 	if (this != &other)

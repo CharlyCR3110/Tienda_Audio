@@ -26,6 +26,27 @@ std::string Amplificador::toString() const
 	return ss.str();
 }
 
+void Amplificador::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Amplificador::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Amplificador::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Amplificador::clear()
+{
+	// Es una leaf, no tiene hijos
+}
+
 Amplificador& Amplificador::operator=(const Amplificador& other)
 {
 	if (this != &other)
