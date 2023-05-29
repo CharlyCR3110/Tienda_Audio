@@ -26,6 +26,11 @@ std::string Tornamesa::toString() const
 	return ss.str();
 }
 
+Componente* Tornamesa::clonar() const
+{
+	return new Tornamesa(*this);
+}
+
 void Tornamesa::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

@@ -26,6 +26,11 @@ std::string Amplificador::toString() const
 	return ss.str();
 }
 
+Componente* Amplificador::clonar() const
+{
+	return new Amplificador(*this);
+}
+
 void Amplificador::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

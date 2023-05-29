@@ -26,6 +26,11 @@ std::string Radio::toString() const
 	return ss.str();
 }
 
+Componente* Radio::clonar() const
+{
+	return new Radio(*this);
+}
+
 void Radio::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

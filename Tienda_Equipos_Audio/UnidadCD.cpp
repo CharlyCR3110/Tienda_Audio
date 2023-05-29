@@ -26,6 +26,11 @@ std::string UnidadCD::toString() const
 	return ss.str();
 }
 
+Componente* UnidadCD::clonar() const
+{
+	return new UnidadCD(*this);
+}
+
 void UnidadCD::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

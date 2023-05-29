@@ -26,6 +26,11 @@ std::string Microfono::toString() const
 	return ss.str();
 }
 
+Componente* Microfono::clonar() const
+{
+	return new Microfono(*this);
+}
+
 void Microfono::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

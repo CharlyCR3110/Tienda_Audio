@@ -26,6 +26,11 @@ std::string Audifono::toString() const
 	return ss.str();
 }
 
+Componente* Audifono::clonar() const
+{
+	return new Audifono(*this);
+}
+
 void Audifono::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

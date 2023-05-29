@@ -18,6 +18,8 @@ public:
 	virtual void setCaracteristicas(std::string caracteristicas);
 	virtual void setPrecio(double precio);
 	virtual std::string toString() const = 0;
+	// metodo clonar
+	virtual Componente* clonar() const = 0;
 	// metodos de composite
 	virtual void add(Componente* componente) = 0;
 	virtual void remove(Componente* componente) = 0;

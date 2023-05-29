@@ -26,6 +26,11 @@ std::string UnidadBluetooth::toString() const
 	return ss.str();
 }
 
+Componente* UnidadBluetooth::clonar() const
+{
+	return new UnidadBluetooth(*this);
+}
+
 void UnidadBluetooth::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

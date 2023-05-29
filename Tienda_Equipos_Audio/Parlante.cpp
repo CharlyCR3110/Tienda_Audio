@@ -26,6 +26,11 @@ std::string Parlante::toString() const
 	return ss.str();
 }
 
+Componente* Parlante::clonar() const
+{
+	return new Parlante(*this);
+}
+
 void Parlante::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada

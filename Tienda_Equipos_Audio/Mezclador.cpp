@@ -26,6 +26,11 @@ std::string Mezclador::toString() const
 	return ss.str();
 }
 
+Componente* Mezclador::clonar() const
+{
+	return new Mezclador(*this);
+}
+
 void Mezclador::add(Componente* componente)
 {
 	// Es una leaf, no se puede agregar nada
