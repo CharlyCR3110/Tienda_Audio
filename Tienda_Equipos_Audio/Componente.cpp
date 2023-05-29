@@ -67,6 +67,11 @@ Componente& Componente::operator=(const Componente& other)
 	return *this;
 }
 
+bool Componente::operator==(const Componente& other) const
+{
+	return this->_modelo == other._modelo && this->_caracteristicas == other._caracteristicas && this->_precio == other._precio;
+}
+
 // no es necesario implementar el operaedor de salida en las clases hijas, ya que se puede implementar aqui
 std::ostream& operator<<(std::ostream& out, const Componente& other)
 {

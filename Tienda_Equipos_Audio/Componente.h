@@ -28,6 +28,7 @@ public:
 	// sobrecarga de operadores
 	Componente& operator=(const Componente& other);
 	friend std::ostream& operator<<(std::ostream& out, const Componente& other);
+	bool operator==(const Componente& other) const;
 protected:
 	std::string _modelo;
 	std::string _caracteristicas;
