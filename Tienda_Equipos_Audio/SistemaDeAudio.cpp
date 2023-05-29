@@ -73,35 +73,19 @@ void SistemaDeAudio::add(Componente* componente)
 
 void SistemaDeAudio::remove(Componente* componente)
 {
-	bool encontrado = false;
-	int i = 0;
-	while (!encontrado && i < _cantidad)
+	for (int i = 0; i < _cantidad; i++)
 	{
-		if (_componentes[i] == componente)
+		if (*_componentes[i] == *componente)
 		{
-			encontrado = true;
-		}
-		else
-		{
-			i++;
+			std::cout << "Se ha eliminado el componente " << componente->getNombre() << " del sistema de audio" << std::endl;
+			delete _componentes[i];
+			_componentes[i] = _componentes[--_cantidad];
+			_componentes[_cantidad] = nullptr;
+			return;
 		}
 	}
-	if (encontrado)
-	{
-		// se elimina el componente
-		delete _componentes[i];
-		// se rellena el espacio
-		for (int j = i; j < _cantidad - 1; j++)
-		{
-			_componentes[j] = _componentes[j + 1];
-		}
-		_cantidad--;
-	}
-	else
-	{
-		// TO-DO cambiar por excepcion
-		std::cout << "No se puede eliminar el componente " << componente->getNombre() << " porque no esta en el sistema de audio" << std::endl;
-	}
+	// TO-DO cambiar por excepcion
+	std::cout << "No se puede eliminar el componente " << componente->getNombre() << " porque no esta en el sistema de audio" << std::endl;
 }
 
 Componente* SistemaDeAudio::getChild(int i) const
