@@ -8,6 +8,7 @@ public:
 	SistemaDeAudio(int capacidad);
 	SistemaDeAudio(const SistemaDeAudio& other);
 	virtual ~SistemaDeAudio();
+	virtual double getPrecio() const override;
 	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;

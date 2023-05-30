@@ -42,6 +42,16 @@ SistemaDeAudio::~SistemaDeAudio()
 	_capacidad = 0;
 }
 
+double SistemaDeAudio::getPrecio() const
+{
+	double precio = 0;
+	for (int i = 0; i < _cantidad; i++)
+	{
+		precio += _componentes[i]->getPrecio();
+	}
+	return precio;
+}
+
 std::string SistemaDeAudio::toString() const
 {
 	std::stringstream ss;
