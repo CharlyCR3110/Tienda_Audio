@@ -1,5 +1,17 @@
 #include "ICrearProductos.h"
 
+// fuentes de audio
+
+// metodo para crear una fuente de audio de cualquier tipo
+FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
+{
+	const std::string mensaje = "Seleccione el tipo de fuente de audio que desea comprar:";
+	const std::string opciones[] = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micrófono" };
+	FuenteDeAudio* (*funciones[])() = { crearUnidadCD, crearTornamesa, crearRadio, crearUnidadBluetooth, crearMicrofono };
+
+	return crearCategoria<FuenteDeAudio>(mensaje, opciones, funciones, sizeof(opciones) / sizeof(opciones[0]));
+}
+
 FuenteDeAudio* ICrearProductos::crearUnidadCD()
 {
 	// Arreglo que contiene el modelo, característica y precio de cada producto
@@ -71,6 +83,17 @@ FuenteDeAudio* ICrearProductos::crearMicrofono()
 
 // PROCESADORES DE SENAL
 
+// metodo para crear un procesador de señal de cualquier tipo
+ProcesadorDeSenal* ICrearProductos::crearProcesadorDeSenal()
+{
+	const std::string mensaje = "Seleccione el tipo de procesador de señal que desea comprar:";
+	const std::string opciones[] = { "Amplificador", "Mezclador" };
+	ProcesadorDeSenal* (*funciones[])() = { crearAmplificador, crearMezclador };
+
+	return crearCategoria<ProcesadorDeSenal>(mensaje, opciones, funciones, sizeof(opciones) / sizeof(opciones[0]));
+}
+
+
 ProcesadorDeSenal* ICrearProductos::crearAmplificador()
 {
 	// Arreglo que contiene el modelo, característica y precio de cada producto
@@ -102,6 +125,17 @@ ProcesadorDeSenal* ICrearProductos::crearMezclador()
 }
 
 // PARLANTES CAT
+
+// metodo para crear un parlante de cualquier tipo
+ParlanteCat* ICrearProductos::crearParlanteCat()
+{
+	const std::string mensaje = "Seleccione el tipo de parlante que desea comprar:";
+	const std::string opciones[] = { "Parlante", "Audifono" };
+	ParlanteCat* (*funciones[])() = { crearParlante, crearAudifono };
+
+	return crearCategoria<ParlanteCat>(mensaje, opciones, funciones, sizeof(opciones) / sizeof(opciones[0]));
+}
+
 
 ParlanteCat* ICrearProductos::crearParlante()
 {

@@ -17,20 +17,29 @@ class ICrearProductos
 {
 	public:
 	// fuentes de audio
+	static FuenteDeAudio* crearFuenteDeAudio();
+
 	static FuenteDeAudio* crearUnidadCD();
 	static FuenteDeAudio* crearTornamesa();
 	static FuenteDeAudio* crearRadio();
 	static FuenteDeAudio* crearUnidadBluetooth();
 	static FuenteDeAudio* crearMicrofono();
 	//procesador de senal
+    static ProcesadorDeSenal* crearProcesadorDeSenal();
+
 	static ProcesadorDeSenal* crearAmplificador();
 	static ProcesadorDeSenal* crearMezclador();
 	// parlantes 
+    static ParlanteCat* crearParlanteCat();
+
 	static ParlanteCat* crearParlante();
 	static ParlanteCat* crearAudifono();
-	// METODO TEMPLATE
+	// METODOS TEMPLATE
 	template<class T>
 	static T* crearProducto(const std::string productos[][3], int numProductos);
+    // 
+	template<class T>
+    static T* crearCategoria(const std::string& mensaje, const std::string* opciones, T* (*funciones[])(), int numOpciones);
 };
 
 
@@ -46,7 +55,7 @@ inline T* ICrearProductos::crearProducto(const std::string productos[][3], int n
 
         for (int i = 0; i < numProductos; i++)
         {
-            // Mostrar detalles de cada producto: modelo, caracter�stica y precio
+            // Mostrar detalles de cada producto: modelo, caracter�stica y precio
             std::cout << i + 1 << ". Modelo: " << productos[i][0] << ", Caracteristica: " << productos[i][1]
                 << ", Precio: $" << productos[i][2] << std::endl;
         }
@@ -72,6 +81,40 @@ inline T* ICrearProductos::crearProducto(const std::string productos[][3], int n
             // Mostrar mensaje de error
             std::cout << "----------------------------------------------------------------------------" << std::endl;
             std::cout << "Opcion invalida. Por favor, ingrese un numero de opcion valido." << std::endl;
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
+            clearInputBuffer(); // Limpiar los errores de entrada
+        }
+    }
+}
+
+template<class T>
+inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std::string* opciones, T* (*funciones[])(), int numOpciones)
+{
+    while (true)
+    {
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+        std::cout << mensaje << std::endl;
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+        for (size_t i = 0; i < numOpciones; i++)
+        {
+            std::cout << i + 1 << ". " << opciones[i] << std::endl;
+        }
+
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+        std::cout << "Ingrese el número de la opción que desea: ";
+        int opcion;
+        std::cin >> opcion;
+        std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+        if (opcion >= 1 && opcion <= numOpciones)
+        {
+            return funciones[opcion - 1]();
+        }
+        else
+        {
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
+            std::cout << "Opción inválida. Por favor, ingrese un número de opción válido." << std::endl;
             std::cout << "----------------------------------------------------------------------------" << std::endl;
             clearInputBuffer(); // Limpiar los errores de entrada
         }
