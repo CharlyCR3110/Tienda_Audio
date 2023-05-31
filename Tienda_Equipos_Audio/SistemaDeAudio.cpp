@@ -112,8 +112,8 @@ void SistemaDeAudio::add(Componente* componente)
 	}
 	else
 	{
-		// TO-DO cambiar por excepcion
-		std::cout << "No se puede agregar el componente " << componente->getCodigo() << " porque el sistema de audio esta lleno" << std::endl;
+		std::string mensaje = "No se puede agregar el componente " + componente->getCodigo() + " porque el sistema de audio está lleno";
+		throw SistemaDeAudioLlenoException(mensaje);
 	}
 }
 
@@ -130,8 +130,8 @@ void SistemaDeAudio::remove(Componente* componente)
 			return;
 		}
 	}
-	// TO-DO cambiar por excepcion
-	std::cout << "No se puede eliminar el componente " << componente->getCodigo() << " porque no esta en el sistema de audio" << std::endl;
+	std::string mensaje = "No se puede eliminar el componente " + componente->getCodigo() + " porque no está en el sistema de audio";
+	throw ComponenteNoEncontradoException(mensaje);
 }
 
 Componente* SistemaDeAudio::getChild(int i) const
@@ -142,7 +142,8 @@ Componente* SistemaDeAudio::getChild(int i) const
 	}
 	else
 	{
-		return nullptr;
+		std::string mensaje = "No se puede obtener el componente " + std::to_string(i) + " porque no está en el sistema de audio";
+		throw ComponenteNoEncontradoException(mensaje);
 	}
 }
 

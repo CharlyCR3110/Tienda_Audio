@@ -1,5 +1,8 @@
 #pragma once
 #include "Componente.h"
+// excepciones
+#include "SistemaDeAudioLlenoException.h"
+#include "ComponenteNoEncontradoException.h"
 class SistemaDeAudio :
     public Componente
 {
