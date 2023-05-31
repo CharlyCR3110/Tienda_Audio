@@ -5,8 +5,8 @@ Parlante::Parlante() :
 {
 }
 
-Parlante::Parlante(std::string modelo, std::string caracteristicas, double precio) :
-	ParlanteCat(modelo, caracteristicas, precio)
+Parlante::Parlante(std::string codigo, std::string caracteristicas, double precio) :
+	ParlanteCat(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,8 +22,34 @@ Parlante::~Parlante()
 std::string Parlante::toString() const
 {
 	std::stringstream ss;
-	ss << "Parlante: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Parlante: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
+}
+
+Componente* Parlante::clonar() const
+{
+	return new Parlante(*this);
+}
+
+void Parlante::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Parlante::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Parlante::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Parlante::clear()
+{
+	// Es una leaf, no tiene hijos
 }
 
 Parlante& Parlante::operator=(const Parlante& other)

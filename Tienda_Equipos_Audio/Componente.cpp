@@ -1,21 +1,21 @@
 #include "Componente.h"
 
 Componente::Componente() :
-	_modelo(""),
+	_codigo(""),
 	_caracteristicas(""),
 	_precio(0.0)
 {
 }
 
-Componente::Componente(std::string modelo, std::string caracteristicas, double precio) :
-	_modelo(modelo), 
+Componente::Componente(std::string codigo, std::string caracteristicas, double precio) :
+	_codigo(codigo),
 	_caracteristicas(caracteristicas), 
 	_precio(precio)
 {
 }
 
 Componente::Componente(const Componente& other):
-	_modelo(other._modelo),
+	_codigo(other._codigo),
 	_caracteristicas(other._caracteristicas),
 	_precio(other._precio)
 {
@@ -26,9 +26,9 @@ Componente::~Componente()
 }
 
 // getters y setters. No cambian en las clases hijas, por lo que se pueden implementar aqui
-std::string Componente::getNombre() const
+std::string Componente::getCodigo() const
 {
-	return _modelo;
+	return _codigo;
 }
 
 std::string Componente::getCaracteristicas() const
@@ -41,9 +41,15 @@ double Componente::getPrecio() const
 	return _precio;
 }
 
-void Componente::setNombre(std::string modelo)
+std::string Componente::getNombre() const
 {
-	_modelo = modelo;
+	return std::string();
+}
+
+
+void Componente::setCodigo(std::string codigo)
+{
+	_codigo = codigo;
 }
 
 void Componente::setCaracteristicas(std::string caracteristicas)
@@ -60,11 +66,16 @@ Componente& Componente::operator=(const Componente& other)
 {
 	if (this != &other)
 	{
-		this->_modelo = other._modelo;
+		this->_codigo = other._codigo;
 		this->_caracteristicas = other._caracteristicas;
 		this->_precio = other._precio;
 	}
 	return *this;
+}
+
+bool Componente::operator==(const Componente& other) const
+{
+	return this->_codigo == other._codigo && this->_caracteristicas == other._caracteristicas && this->_precio == other._precio;
 }
 
 // no es necesario implementar el operaedor de salida en las clases hijas, ya que se puede implementar aqui

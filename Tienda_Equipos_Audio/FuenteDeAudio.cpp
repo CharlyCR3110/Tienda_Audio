@@ -5,8 +5,8 @@ FuenteDeAudio::FuenteDeAudio() :
 {
 }
 
-FuenteDeAudio::FuenteDeAudio(std::string modelo, std::string caracteristicas, double precio) :
-	Componente(modelo, caracteristicas, precio)
+FuenteDeAudio::FuenteDeAudio(std::string codigo, std::string caracteristicas, double precio) :
+	Componente(codigo, caracteristicas, precio)
 {
 }
 

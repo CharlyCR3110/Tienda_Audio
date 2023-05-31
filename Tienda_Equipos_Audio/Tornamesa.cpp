@@ -5,8 +5,8 @@ Tornamesa::Tornamesa() :
 {
 }
 
-Tornamesa::Tornamesa(std::string modelo, std::string caracteristicas, double precio):
-	FuenteDeAudio(modelo, caracteristicas, precio)
+Tornamesa::Tornamesa(std::string codigo, std::string caracteristicas, double precio):
+	FuenteDeAudio(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,8 +22,34 @@ Tornamesa::~Tornamesa()
 std::string Tornamesa::toString() const
 {
 	std::stringstream ss;
-	ss << "Tornamesa: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Tornamesa: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
+}
+
+Componente* Tornamesa::clonar() const
+{
+	return new Tornamesa(*this);
+}
+
+void Tornamesa::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Tornamesa::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Tornamesa::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Tornamesa::clear()
+{
+	// Es una leaf, no tiene hijos
 }
 
 Tornamesa& Tornamesa::operator=(const Tornamesa& other)

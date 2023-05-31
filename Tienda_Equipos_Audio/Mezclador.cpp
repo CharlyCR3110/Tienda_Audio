@@ -5,8 +5,8 @@ Mezclador::Mezclador() :
 {
 }
 
-Mezclador::Mezclador(std::string modelo, std::string caracteristicas, double precio) :
-	ProcesadorDeSenal(modelo, caracteristicas, precio)
+Mezclador::Mezclador(std::string codigo, std::string caracteristicas, double precio) :
+	ProcesadorDeSenal(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,8 +22,34 @@ Mezclador::~Mezclador()
 std::string Mezclador::toString() const
 {
 	std::stringstream ss;
-	ss << "Mezclador: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Mezclador: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
+}
+
+Componente* Mezclador::clonar() const
+{
+	return new Mezclador(*this);
+}
+
+void Mezclador::add(Componente* componente)
+{
+	// Es una leaf, no se puede agregar nada
+}
+
+void Mezclador::remove(Componente* componente)
+{
+	// Es una leaf, no se puede remover nada
+}
+
+Componente* Mezclador::getChild(int i) const
+{
+	// Es una leaf, no tiene hijos
+	return nullptr;
+}
+
+void Mezclador::clear()
+{
+	// Es una leaf, no tiene hijos
 }
 
 Mezclador& Mezclador::operator=(const Mezclador& other)
