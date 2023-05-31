@@ -26,7 +26,7 @@ Componente::~Componente()
 }
 
 // getters y setters. No cambian en las clases hijas, por lo que se pueden implementar aqui
-std::string Componente::getNombre() const
+std::string Componente::getModelo() const
 {
 	return _modelo;
 }

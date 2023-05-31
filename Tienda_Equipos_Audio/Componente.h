@@ -11,7 +11,7 @@ public:
 	Componente(std::string modelo, std::string caracteristicas, double precio);
 	Componente(const Componente& other);
 	virtual ~Componente();
-	virtual std::string getNombre() const;
+	virtual std::string getModelo() const;
 	virtual std::string getCaracteristicas() const;
 	virtual double getPrecio() const;
 	virtual void setNombre(std::string modelo);
