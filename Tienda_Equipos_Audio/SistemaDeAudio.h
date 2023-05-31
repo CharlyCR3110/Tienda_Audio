@@ -5,10 +5,12 @@ class SistemaDeAudio :
 {
 public:
 	SistemaDeAudio();
+	SistemaDeAudio(std::string codigo, std::string nombre);	// codigo se almacenara en _codigo(de la clase Componente) y nombre en _nombre de la esta clase
 	SistemaDeAudio(int capacidad);
 	SistemaDeAudio(const SistemaDeAudio& other);
 	virtual ~SistemaDeAudio();
 	virtual double getPrecio() const override;
+	virtual std::string getNombre() const override;
 	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;
@@ -24,4 +26,5 @@ private:
 	int _cantidad;
 	Componente** _componentes;
 	//void resize(int n);
+	std::string _nombre;
 };

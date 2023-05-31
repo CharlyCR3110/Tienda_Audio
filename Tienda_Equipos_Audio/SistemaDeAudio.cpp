@@ -13,6 +13,19 @@ SistemaDeAudio::SistemaDeAudio():
 	}
 }
 
+SistemaDeAudio::SistemaDeAudio(std::string codigo, std::string nombre):
+	Componente(codigo, "", 0.0),
+	_capacidad(3),
+	_cantidad(0),
+	_componentes(new Componente* [3])
+{
+	this->_nombre = nombre;
+	for (int i = 0; i < 3; i++)
+	{
+		_componentes[i] = nullptr;	// inicializar el arreglo
+	}
+}
+
 SistemaDeAudio::SistemaDeAudio(int capacidad) :
 	Componente(),
 	_capacidad(capacidad),
@@ -52,9 +65,15 @@ double SistemaDeAudio::getPrecio() const
 	return precio;
 }
 
+std::string SistemaDeAudio::getNombre() const
+{
+	return std::string();
+}
+
 std::string SistemaDeAudio::toString() const
 {
 	std::stringstream ss;
+	ss << "Codigo: " << _codigo << "\tNombre: " << _nombre << "\tPrecio: " << getPrecio() << std::endl;
 	ss << "Sistema de Audio: " << _cantidad << " de " << _capacidad << " componentes" << std::endl;
 	for (int i = 0; i < _cantidad; i++)
 	{
@@ -77,7 +96,7 @@ void SistemaDeAudio::add(Componente* componente)
 	else
 	{
 		// TO-DO cambiar por excepcion
-		std::cout << "No se puede agregar el componente " << componente->getModelo() << " porque el sistema de audio esta lleno" << std::endl;
+		std::cout << "No se puede agregar el componente " << componente->getCodigo() << " porque el sistema de audio esta lleno" << std::endl;
 	}
 }
 
@@ -87,7 +106,7 @@ void SistemaDeAudio::remove(Componente* componente)
 	{
 		if (*_componentes[i] == *componente)
 		{
-			std::cout << "Se ha eliminado el componente " << componente->getModelo() << " del sistema de audio" << std::endl;
+			std::cout << "Se ha eliminado el componente " << componente->getCodigo() << " del sistema de audio" << std::endl;
 			delete _componentes[i];
 			_componentes[i] = _componentes[--_cantidad];
 			_componentes[_cantidad] = nullptr;
@@ -95,7 +114,7 @@ void SistemaDeAudio::remove(Componente* componente)
 		}
 	}
 	// TO-DO cambiar por excepcion
-	std::cout << "No se puede eliminar el componente " << componente->getModelo() << " porque no esta en el sistema de audio" << std::endl;
+	std::cout << "No se puede eliminar el componente " << componente->getCodigo() << " porque no esta en el sistema de audio" << std::endl;
 }
 
 Componente* SistemaDeAudio::getChild(int i) const
