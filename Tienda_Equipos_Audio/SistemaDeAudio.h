@@ -8,7 +8,7 @@ class SistemaDeAudio :
 {
 public:
 	SistemaDeAudio();
-	SistemaDeAudio(std::string codigo, std::string nombre);	// codigo se almacenara en _codigo(de la clase Componente) y nombre en _nombre de la esta clase
+	SistemaDeAudio(std::string codigo, std::string nombre, std::string categoria);	// codigo se almacenara en _codigo(de la clase Componente) y nombre en _nombre de la esta clase
 	SistemaDeAudio(int capacidad);
 	SistemaDeAudio(const SistemaDeAudio& other);
 	virtual ~SistemaDeAudio();
