@@ -38,10 +38,21 @@ SistemaDeAudio::SistemaDeAudio(int capacidad) :
 	}
 }
 
-SistemaDeAudio::SistemaDeAudio(const SistemaDeAudio& other)
+SistemaDeAudio::SistemaDeAudio(const SistemaDeAudio& other) : Componente(other)
 {
-	*this = other;
+	_capacidad = other._capacidad;
+	_cantidad = other._cantidad;
+	_componentes = new Componente * [_capacidad];
+
+	if (_capacidad > _cantidad)	// para evitar desbordamiento
+	{
+		for (int i = 0; i < _cantidad; i++) {
+
+			_componentes[i] = other._componentes[i]->clonar();
+		}
+	}
 }
+
 
 SistemaDeAudio::~SistemaDeAudio()
 {
@@ -60,14 +71,17 @@ double SistemaDeAudio::getPrecio() const
 	double precio = 0;
 	for (int i = 0; i < _cantidad; i++)
 	{
-		precio += _componentes[i]->getPrecio();
+		if (_componentes[i] != nullptr)	// para evitar problemas
+		{
+			precio += _componentes[i]->getPrecio();
+		}
 	}
 	return precio;
 }
 
 std::string SistemaDeAudio::getNombre() const
 {
-	return std::string();
+	return _nombre;
 }
 
 std::string SistemaDeAudio::toString() const
@@ -77,7 +91,10 @@ std::string SistemaDeAudio::toString() const
 	ss << "Sistema de Audio: " << _cantidad << " de " << _capacidad << " componentes" << std::endl;
 	for (int i = 0; i < _cantidad; i++)
 	{
-		ss << "\t" << _componentes[i]->toString() << std::endl;
+		if (_componentes[i] != nullptr)	// para evitar problemas
+		{
+			ss << "\t" << _componentes[i]->toString() << std::endl;
+		}
 	}
 	return ss.str();
 }
@@ -152,6 +169,10 @@ SistemaDeAudio& SistemaDeAudio::operator=(const SistemaDeAudio& other)
 		_capacidad = other._capacidad;
 		_cantidad = other._cantidad;
 
+		_codigo = other._codigo;
+		_nombre = other._nombre;
+		_caracteristicas = other._caracteristicas;
+		_precio = other._precio;
 		// se crea un nuevo arreglo de componentes
 		_componentes = new Componente* [_capacidad];
 
