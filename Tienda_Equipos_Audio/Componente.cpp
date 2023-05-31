@@ -41,6 +41,12 @@ double Componente::getPrecio() const
 	return _precio;
 }
 
+std::string Componente::getNombre() const
+{
+	return "";
+	// lo implemento aqui para unicamente tener que implementarlo en las clases hijas que lo necesiten
+}
+
 void Componente::setCodigo(std::string codigo)
 {
 	_codigo = codigo;

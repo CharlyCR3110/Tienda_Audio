@@ -15,6 +15,8 @@ public:
 	virtual std::string getCodigo() const;
 	virtual std::string getCaracteristicas() const;
 	virtual double getPrecio() const;
+	// nombre del paquete de componentes
+	virtual std::string getNombre() const;
 	//setters
 	virtual void setCodigo(std::string codigo);
 	virtual void setCaracteristicas(std::string caracteristicas);
@@ -34,6 +36,6 @@ public:
 	bool operator==(const Componente& other) const;
 protected:
 	std::string _codigo;	// este atributo funciona como el modelo del producto y como el codigo del sistema de audio
-	std::string _caracteristicas;	// este atributo funciona como las caracteristicas del producto y como el nombre del sistema de audio
+	std::string _caracteristicas;	// caracteristicas del producto
 	double _precio;	// este atributo funciona como el precio del producto y como el precio total del sistema de audio
 };
