@@ -19,7 +19,7 @@ SistemaDeAudio::SistemaDeAudio(std::string codigo, std::string nombre):
 	_cantidad(0),
 	_componentes(new Componente* [3])
 {
-	this->_nombre = nombre;
+	this->_nombreComponente = nombre;
 	for (int i = 0; i < 3; i++)
 	{
 		_componentes[i] = nullptr;	// inicializar el arreglo
@@ -79,15 +79,10 @@ double SistemaDeAudio::getPrecio() const
 	return precio;
 }
 
-std::string SistemaDeAudio::getNombre() const
-{
-	return _nombre;
-}
-
 std::string SistemaDeAudio::toString() const
 {
 	std::stringstream ss;
-	ss << "Codigo: " << _codigo << "\tNombre: " << _nombre << "\tPrecio: " << getPrecio() << std::endl;
+	ss << "Codigo: " << _codigo << "\tNombre: " << _nombreComponente << "\tPrecio: " << getPrecio() << std::endl;
 	ss << "Sistema de Audio: " << _cantidad << " de " << _capacidad << " componentes" << std::endl;
 	for (int i = 0; i < _cantidad; i++)
 	{
@@ -171,9 +166,14 @@ SistemaDeAudio& SistemaDeAudio::operator=(const SistemaDeAudio& other)
 		_cantidad = other._cantidad;
 
 		_codigo = other._codigo;
-		_nombre = other._nombre;
-		_caracteristicas = other._caracteristicas;
+		_nombreComponente = other._nombreComponente;
 		_precio = other._precio;
+		
+		// estos atributos son heredados, pero no son utilizados en esta clase
+		_caracteristicas = other._caracteristicas;
+		_categoria = other._categoria;
+		//
+		
 		// se crea un nuevo arreglo de componentes
 		_componentes = new Componente* [_capacidad];
 

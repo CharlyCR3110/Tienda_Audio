@@ -3,11 +3,13 @@
 Amplificador::Amplificador() :
 	ProcesadorDeSenal()
 {
+	this->_nombreComponente = "Amplificador";
 }
 
 Amplificador::Amplificador(std::string codigo, std::string caracteristicas, double precio) :
 	ProcesadorDeSenal(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Amplificador";
 }
 
 Amplificador::Amplificador(const Amplificador& other) :

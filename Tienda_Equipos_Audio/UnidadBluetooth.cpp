@@ -3,11 +3,13 @@
 UnidadBluetooth::UnidadBluetooth() :
 	FuenteDeAudio()
 {
+	this->_nombreComponente = "Unidad Bluetooth";
 }
 
 UnidadBluetooth::UnidadBluetooth(std::string codigo, std::string caracteristicas, double precio) :
 	FuenteDeAudio(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Unidad Bluetooth";
 }
 
 UnidadBluetooth::UnidadBluetooth(const UnidadBluetooth& other) :

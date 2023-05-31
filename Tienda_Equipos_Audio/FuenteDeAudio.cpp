@@ -3,11 +3,13 @@
 FuenteDeAudio::FuenteDeAudio() :
 	Componente()
 {
+	this->_categoria = "Fuente de Audio";
 }
 
 FuenteDeAudio::FuenteDeAudio(std::string codigo, std::string caracteristicas, double precio) :
 	Componente(codigo, caracteristicas, precio)
 {
+	this->_categoria = "Fuente de Audio";
 }
 
 FuenteDeAudio::FuenteDeAudio(const FuenteDeAudio& other) :

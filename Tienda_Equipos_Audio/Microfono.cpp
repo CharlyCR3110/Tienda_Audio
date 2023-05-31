@@ -3,11 +3,13 @@
 Microfono::Microfono() :
 	FuenteDeAudio()
 {
+	this->_nombreComponente = "Microfono";
 }
 
 Microfono::Microfono(std::string codigo, std::string caracteristicas, double precio) :
 	FuenteDeAudio(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Microfono";
 }
 
 Microfono::Microfono(const Microfono& other) :

@@ -3,11 +3,13 @@
 Parlante::Parlante() :
 	ParlanteCat()
 {
+	this->_nombreComponente = "Parlante";
 }
 
 Parlante::Parlante(std::string codigo, std::string caracteristicas, double precio) :
 	ParlanteCat(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Parlante";
 }
 
 Parlante::Parlante(const Parlante& other) :

@@ -3,11 +3,13 @@
 ProcesadorDeSenal::ProcesadorDeSenal() :
 	Componente()
 {
+	this->_categoria = "Procesador de senal";
 }
 
 ProcesadorDeSenal::ProcesadorDeSenal(std::string codigo, std::string caracteristicas, double precio) :
 	Componente(codigo, caracteristicas, precio)
 {
+	this->_categoria = "Procesador de senal";
 }
 
 ProcesadorDeSenal::ProcesadorDeSenal(const ProcesadorDeSenal& other) :

@@ -3,11 +3,13 @@
 Tornamesa::Tornamesa() :
 	FuenteDeAudio()
 {
+	this->_nombreComponente = "Tornamesa";
 }
 
 Tornamesa::Tornamesa(std::string codigo, std::string caracteristicas, double precio):
 	FuenteDeAudio(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Tornamesa";
 }
 
 Tornamesa::Tornamesa(const Tornamesa& other) :

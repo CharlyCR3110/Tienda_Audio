@@ -3,11 +3,13 @@
 Radio::Radio() :
 	FuenteDeAudio()
 {
+	this->_nombreComponente = "Radio";
 }
 
 Radio::Radio(std::string codigo, std::string caracteristicas, double precio) :
 	FuenteDeAudio(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Radio";
 }
 
 Radio::Radio(const Radio& other) :

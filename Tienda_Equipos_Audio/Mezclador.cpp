@@ -3,11 +3,13 @@
 Mezclador::Mezclador() :
 	ProcesadorDeSenal()
 {
+	this->_nombreComponente = "Mezclador";
 }
 
 Mezclador::Mezclador(std::string codigo, std::string caracteristicas, double precio) :
 	ProcesadorDeSenal(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Mezclador";
 }
 
 Mezclador::Mezclador(const Mezclador& other) :
