@@ -15,12 +15,21 @@ public:
 	virtual std::string getCodigo() const;
 	virtual std::string getCaracteristicas() const;
 	virtual double getPrecio() const;
+	// categoria del producto
+	virtual std::string getCategoria() const;
+	// nombre del componente
+	virtual std::string getNombreComponente() const;
+
 	// nombre del paquete de componentes
-	virtual std::string getNombre() const;
+	virtual std::string getNombre() const;	// cambiar por getNombreComponente
 	//setters
 	virtual void setCodigo(std::string codigo);
 	virtual void setCaracteristicas(std::string caracteristicas);
 	virtual void setPrecio(double precio);
+	// categoria del producto
+	virtual void setCategoria(std::string categoria);
+	// nombre del componente
+	virtual void setNombreComponente(std::string nombre);
 	// nombre del paquete de componentes
 	virtual void setNombre(std::string nombreDelPaquete);
 	// mostrar informacion
@@ -40,4 +49,7 @@ protected:
 	std::string _codigo;	// este atributo funciona como el modelo del producto y como el codigo del sistema de audio
 	std::string _caracteristicas;	// caracteristicas del producto
 	double _precio;	// este atributo funciona como el precio del producto y como el precio total del sistema de audio
+
+	std::string _categoria;	// categoria del producto
+	std::string _nombreComponente;	// nombre del componente
 };

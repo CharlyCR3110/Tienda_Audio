@@ -1,9 +1,11 @@
 #include "Componente.h"
 
-Componente::Componente() :
+Componente::Componente() :	// constructor por defecto
 	_codigo(""),
 	_caracteristicas(""),
-	_precio(0.0)
+	_precio(0.0),
+	_categoria(""),
+	_nombreComponente("")
 {
 }
 
@@ -17,7 +19,9 @@ Componente::Componente(std::string codigo, std::string caracteristicas, double p
 Componente::Componente(const Componente& other):
 	_codigo(other._codigo),
 	_caracteristicas(other._caracteristicas),
-	_precio(other._precio)
+	_precio(other._precio),
+	_categoria(other._categoria),
+	_nombreComponente(other._nombreComponente)
 {
 }
 
@@ -41,6 +45,16 @@ double Componente::getPrecio() const
 	return _precio;
 }
 
+std::string Componente::getCategoria() const
+{
+	return _categoria;
+}
+
+std::string Componente::getNombreComponente() const
+{
+	return _nombreComponente;
+}
+
 std::string Componente::getNombre() const
 {
 	return std::string();
@@ -62,6 +76,18 @@ void Componente::setPrecio(double precio)
 	_precio = precio;
 }
 
+// estos 2 metodos no deberian de utilizarse
+void Componente::setCategoria(std::string categoria)
+{
+	_categoria = categoria;
+}
+
+void Componente::setNombreComponente(std::string nombre)
+{
+	_nombreComponente = nombre;
+}
+//
+
 void Componente::setNombre(std::string nombreDelPaquete)
 {
 	// aqui no se hace nada
@@ -74,13 +100,15 @@ Componente& Componente::operator=(const Componente& other)
 		this->_codigo = other._codigo;
 		this->_caracteristicas = other._caracteristicas;
 		this->_precio = other._precio;
+		this->_categoria = other._categoria;
+		this->_nombreComponente = other._nombreComponente;
 	}
 	return *this;
 }
 
 bool Componente::operator==(const Componente& other) const
 {
-	return this->_codigo == other._codigo && this->_caracteristicas == other._caracteristicas && this->_precio == other._precio;
+	return this->_codigo == other._codigo && this->_caracteristicas == other._caracteristicas && this->_precio == other._precio && this->_categoria == other._categoria && this->_nombreComponente == other._nombreComponente;
 }
 
 // no es necesario implementar el operaedor de salida en las clases hijas, ya que se puede implementar aqui
