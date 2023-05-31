@@ -1,16 +1,4 @@
 #pragma once
-// fuentes de audio
-#include "UnidadCD.h"
-#include "Tornamesa.h"
-#include "Radio.h"
-#include "UnidadBluetooth.h"
-#include "Microfono.h"
-//procesador de senal
-#include "Amplificador.h"
-#include "Mezclador.h"
-// parlantes 
-#include "Parlante.h"
-#include "Audifono.h"
 
 // sistema de audio
 #include "SistemaDeAudio.h"
