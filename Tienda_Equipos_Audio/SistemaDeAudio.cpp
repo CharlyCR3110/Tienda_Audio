@@ -77,7 +77,7 @@ void SistemaDeAudio::add(Componente* componente)
 	else
 	{
 		// TO-DO cambiar por excepcion
-		std::cout << "No se puede agregar el componente " << componente->getNombre() << " porque el sistema de audio esta lleno" << std::endl;
+		std::cout << "No se puede agregar el componente " << componente->getModelo() << " porque el sistema de audio esta lleno" << std::endl;
 	}
 }
 
@@ -87,7 +87,7 @@ void SistemaDeAudio::remove(Componente* componente)
 	{
 		if (*_componentes[i] == *componente)
 		{
-			std::cout << "Se ha eliminado el componente " << componente->getNombre() << " del sistema de audio" << std::endl;
+			std::cout << "Se ha eliminado el componente " << componente->getModelo() << " del sistema de audio" << std::endl;
 			delete _componentes[i];
 			_componentes[i] = _componentes[--_cantidad];
 			_componentes[_cantidad] = nullptr;
@@ -95,7 +95,7 @@ void SistemaDeAudio::remove(Componente* componente)
 		}
 	}
 	// TO-DO cambiar por excepcion
-	std::cout << "No se puede eliminar el componente " << componente->getNombre() << " porque no esta en el sistema de audio" << std::endl;
+	std::cout << "No se puede eliminar el componente " << componente->getModelo() << " porque no esta en el sistema de audio" << std::endl;
 }
 
 Componente* SistemaDeAudio::getChild(int i) const
