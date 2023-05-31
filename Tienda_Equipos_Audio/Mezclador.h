@@ -5,7 +5,7 @@ class Mezclador :
 {
 public:
 	Mezclador();
-	Mezclador(std::string modelo, std::string caracteristicas, double precio);
+	Mezclador(std::string codigo, std::string caracteristicas, double precio);
 	Mezclador(const Mezclador& other);
 	virtual ~Mezclador();
 	virtual std::string toString() const override;

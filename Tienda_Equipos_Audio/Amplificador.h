@@ -6,7 +6,7 @@ class Amplificador :
 {
 public:
 	Amplificador();
-	Amplificador(std::string modelo, std::string caracteristicas, double precio);
+	Amplificador(std::string codigo, std::string caracteristicas, double precio);
 	Amplificador(const Amplificador& other);
 	virtual ~Amplificador();
 	virtual std::string toString() const override;

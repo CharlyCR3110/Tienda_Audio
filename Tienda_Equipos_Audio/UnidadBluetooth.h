@@ -5,7 +5,7 @@ class UnidadBluetooth :
 {
 public:
 	UnidadBluetooth();
-	UnidadBluetooth(std::string modelo, std::string caracteristicas, double precio);
+	UnidadBluetooth(std::string codigo, std::string caracteristicas, double precio);
 	UnidadBluetooth(const UnidadBluetooth& other);
 	virtual ~UnidadBluetooth();
 	virtual std::string toString() const override;

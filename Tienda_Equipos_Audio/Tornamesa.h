@@ -6,7 +6,7 @@ class Tornamesa :
 {
 public:
 	Tornamesa();
-    Tornamesa(std::string modelo, std::string caracteristicas, double precio);
+    Tornamesa(std::string codigo, std::string caracteristicas, double precio);
 	Tornamesa(const Tornamesa& other);
 	virtual ~Tornamesa();
 	virtual std::string toString() const override; 

@@ -5,7 +5,7 @@ class UnidadCD :
 {
 public:
 	UnidadCD();
-	UnidadCD(std::string modelo, std::string caracteristicas, double precio);
+	UnidadCD(std::string codigo, std::string caracteristicas, double precio);
 	UnidadCD(const UnidadCD& other);
 	virtual ~UnidadCD();
 	virtual std::string toString() const override;

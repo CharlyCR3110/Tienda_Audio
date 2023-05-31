@@ -5,8 +5,8 @@ Radio::Radio() :
 {
 }
 
-Radio::Radio(std::string modelo, std::string caracteristicas, double precio) :
-	FuenteDeAudio(modelo, caracteristicas, precio)
+Radio::Radio(std::string codigo, std::string caracteristicas, double precio) :
+	FuenteDeAudio(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,7 +22,7 @@ Radio::~Radio()
 std::string Radio::toString() const
 {
 	std::stringstream ss;
-	ss << "Radio: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Radio: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
 }
 

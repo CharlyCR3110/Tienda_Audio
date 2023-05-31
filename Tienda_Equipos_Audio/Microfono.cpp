@@ -5,8 +5,8 @@ Microfono::Microfono() :
 {
 }
 
-Microfono::Microfono(std::string modelo, std::string caracteristicas, double precio) :
-	FuenteDeAudio(modelo, caracteristicas, precio)
+Microfono::Microfono(std::string codigo, std::string caracteristicas, double precio) :
+	FuenteDeAudio(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,7 +22,7 @@ Microfono::~Microfono()
 std::string Microfono::toString() const
 {
 	std::stringstream ss;
-	ss << "Microfono: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Microfono: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
 }
 

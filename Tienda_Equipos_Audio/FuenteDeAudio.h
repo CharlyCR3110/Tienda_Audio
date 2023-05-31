@@ -5,7 +5,7 @@ class FuenteDeAudio :
 {
 public:
 	FuenteDeAudio();
-	FuenteDeAudio(std::string modelo, std::string caracteristicas, double precio);
+	FuenteDeAudio(std::string codigo, std::string caracteristicas, double precio);
 	FuenteDeAudio(const FuenteDeAudio& other);
 	virtual ~FuenteDeAudio();
 	virtual std::string toString() const = 0;

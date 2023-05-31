@@ -5,8 +5,8 @@ Mezclador::Mezclador() :
 {
 }
 
-Mezclador::Mezclador(std::string modelo, std::string caracteristicas, double precio) :
-	ProcesadorDeSenal(modelo, caracteristicas, precio)
+Mezclador::Mezclador(std::string codigo, std::string caracteristicas, double precio) :
+	ProcesadorDeSenal(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,7 +22,7 @@ Mezclador::~Mezclador()
 std::string Mezclador::toString() const
 {
 	std::stringstream ss;
-	ss << "Mezclador: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Mezclador: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
 }
 

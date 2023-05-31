@@ -6,7 +6,7 @@ class Radio :
 {
 public:
 	Radio();
-	Radio(std::string modelo, std::string caracteristicas, double precio);
+	Radio(std::string codigo, std::string caracteristicas, double precio);
 	Radio(const Radio& other);
 	virtual ~Radio();
 	virtual std::string toString() const override;

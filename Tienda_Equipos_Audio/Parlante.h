@@ -6,7 +6,7 @@ class Parlante :
 {
 public:
 	Parlante();
-	Parlante(std::string modelo, std::string caracteristicas, double precio);
+	Parlante(std::string codigo, std::string caracteristicas, double precio);
 	Parlante(const Parlante& other);
 	virtual ~Parlante();
 	virtual std::string toString() const override;

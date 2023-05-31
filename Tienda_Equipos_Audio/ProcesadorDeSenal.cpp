@@ -5,8 +5,8 @@ ProcesadorDeSenal::ProcesadorDeSenal() :
 {
 }
 
-ProcesadorDeSenal::ProcesadorDeSenal(std::string modelo, std::string caracteristicas, double precio) :
-	Componente(modelo, caracteristicas, precio)
+ProcesadorDeSenal::ProcesadorDeSenal(std::string codigo, std::string caracteristicas, double precio) :
+	Componente(codigo, caracteristicas, precio)
 {
 }
 

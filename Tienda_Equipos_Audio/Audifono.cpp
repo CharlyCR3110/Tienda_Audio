@@ -5,8 +5,8 @@ Audifono::Audifono() :
 {
 }
 
-Audifono::Audifono(std::string modelo, std::string caracteristicas, double precio) :
-	ParlanteCat(modelo, caracteristicas, precio)
+Audifono::Audifono(std::string codigo, std::string caracteristicas, double precio) :
+	ParlanteCat(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,7 +22,7 @@ Audifono::~Audifono()
 std::string Audifono::toString() const
 {
 	std::stringstream ss;
-	ss << "Audifono: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Audifono: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
 }
 

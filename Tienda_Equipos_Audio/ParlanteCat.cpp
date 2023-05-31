@@ -5,8 +5,8 @@ ParlanteCat::ParlanteCat() :
 {
 }
 
-ParlanteCat::ParlanteCat(std::string modelo, std::string caracteristicas, double precio) :
-	Componente(modelo, caracteristicas, precio)
+ParlanteCat::ParlanteCat(std::string codigo, std::string caracteristicas, double precio) :
+	Componente(codigo, caracteristicas, precio)
 {
 }
 

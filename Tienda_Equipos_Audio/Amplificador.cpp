@@ -5,8 +5,8 @@ Amplificador::Amplificador() :
 {
 }
 
-Amplificador::Amplificador(std::string modelo, std::string caracteristicas, double precio) :
-	ProcesadorDeSenal(modelo, caracteristicas, precio)
+Amplificador::Amplificador(std::string codigo, std::string caracteristicas, double precio) :
+	ProcesadorDeSenal(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,7 +22,7 @@ Amplificador::~Amplificador()
 std::string Amplificador::toString() const
 {
 	std::stringstream ss;
-	ss << "Amplificador: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Amplificador: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
 }
 

@@ -5,8 +5,8 @@ UnidadCD::UnidadCD() :
 {
 }
 
-UnidadCD::UnidadCD(std::string modelo, std::string caracteristicas, double precio) :
-	FuenteDeAudio(modelo, caracteristicas, precio)
+UnidadCD::UnidadCD(std::string codigo, std::string caracteristicas, double precio) :
+	FuenteDeAudio(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,7 +22,7 @@ UnidadCD::~UnidadCD()
 std::string UnidadCD::toString() const
 {
 	std::stringstream ss;
-	ss << "UnidadCD: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "UnidadCD: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
 }
 

@@ -5,8 +5,8 @@ UnidadBluetooth::UnidadBluetooth() :
 {
 }
 
-UnidadBluetooth::UnidadBluetooth(std::string modelo, std::string caracteristicas, double precio) :
-	FuenteDeAudio(modelo, caracteristicas, precio)
+UnidadBluetooth::UnidadBluetooth(std::string codigo, std::string caracteristicas, double precio) :
+	FuenteDeAudio(codigo, caracteristicas, precio)
 {
 }
 
@@ -22,7 +22,7 @@ UnidadBluetooth::~UnidadBluetooth()
 std::string UnidadBluetooth::toString() const
 {
 	std::stringstream ss;
-	ss << "Unidad Bluetooth: " << _modelo << " " << _caracteristicas << " " << _precio;
+	ss << "Unidad Bluetooth: " << _codigo << " " << _caracteristicas << " " << _precio;
 	return ss.str();
 }
 

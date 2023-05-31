@@ -5,7 +5,7 @@ class Microfono :
 {
 public:
 	Microfono();
-	Microfono(std::string modelo, std::string caracteristicas, double precio);
+	Microfono(std::string codigo, std::string caracteristicas, double precio);
 	Microfono(const Microfono& other);
 	virtual ~Microfono();
 	virtual std::string toString() const override;

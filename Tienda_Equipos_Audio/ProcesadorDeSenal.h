@@ -5,7 +5,7 @@ class ProcesadorDeSenal :
 {
 public:
 	ProcesadorDeSenal();
-	ProcesadorDeSenal(std::string modelo, std::string caracteristicas, double precio);
+	ProcesadorDeSenal(std::string codigo, std::string caracteristicas, double precio);
 	ProcesadorDeSenal(const ProcesadorDeSenal& other);
 	virtual ~ProcesadorDeSenal();
 	virtual std::string toString() const = 0;
