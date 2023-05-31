@@ -3,11 +3,13 @@
 UnidadCD::UnidadCD() :
 	FuenteDeAudio()
 {
+	this->_nombreComponente = "UnidadCD";
 }
 
 UnidadCD::UnidadCD(std::string codigo, std::string caracteristicas, double precio) :
 	FuenteDeAudio(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "UnidadCD";
 }
 
 UnidadCD::UnidadCD(const UnidadCD& other) :

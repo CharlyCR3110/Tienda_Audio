@@ -3,11 +3,13 @@
 Audifono::Audifono() :
 	ParlanteCat()
 {
+	this->_nombreComponente = "Audifono";
 }
 
 Audifono::Audifono(std::string codigo, std::string caracteristicas, double precio) :
 	ParlanteCat(codigo, caracteristicas, precio)
 {
+	this->_nombreComponente = "Audifono";
 }
 
 Audifono::Audifono(const Audifono& other) :
