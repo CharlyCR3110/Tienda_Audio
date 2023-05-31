@@ -62,6 +62,11 @@ void Componente::setPrecio(double precio)
 	_precio = precio;
 }
 
+void Componente::setNombre(std::string nombreDelPaquete)
+{
+	// aqui no se hace nada
+}
+
 Componente& Componente::operator=(const Componente& other)
 {
 	if (this != &other)

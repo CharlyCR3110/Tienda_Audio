@@ -14,6 +14,7 @@ public:
 	virtual ~SistemaDeAudio();
 	virtual double getPrecio() const override;
 	virtual std::string getNombre() const override;
+	virtual void setNombre(std::string nombre);
 	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;

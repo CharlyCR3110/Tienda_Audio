@@ -21,6 +21,8 @@ public:
 	virtual void setCodigo(std::string codigo);
 	virtual void setCaracteristicas(std::string caracteristicas);
 	virtual void setPrecio(double precio);
+	// nombre del paquete de componentes
+	virtual void setNombre(std::string nombreDelPaquete);
 	// mostrar informacion
 	virtual std::string toString() const = 0;
 	// metodo clonar

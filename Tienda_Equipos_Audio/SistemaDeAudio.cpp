@@ -84,6 +84,11 @@ std::string SistemaDeAudio::getNombre() const
 	return _nombre;
 }
 
+void SistemaDeAudio::setNombre(std::string nombre)
+{
+	_nombre = nombre;
+}
+
 std::string SistemaDeAudio::toString() const
 {
 	std::stringstream ss;
