@@ -1,6 +1,6 @@
 #pragma once
 #include "AbstractFactory.h"
-class TiendaEnLineaFactory :
+class SistemaPreConfiguradoFactory :
     public AbstractFactory
 {
 public:
