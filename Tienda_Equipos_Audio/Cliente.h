@@ -1,12 +1,16 @@
 #pragma once
+#include "IObserver.h"
 #include <iostream>
-class Cliente
+class Cliente :
+	public IObserver
 {
 public:
 	Cliente();
 	Cliente(std::string nombre, std::string cedula, std::string pais, std::string ciudad);
 	Cliente(const Cliente& cliente);
 	~Cliente() = default;
+	// metodos de IObserver
+	virtual void Update() = 0;
 	// getters
 	virtual std::string getNombre() const;
 	virtual std::string getCedula() const;
