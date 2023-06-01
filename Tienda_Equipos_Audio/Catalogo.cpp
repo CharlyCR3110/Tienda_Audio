@@ -14,7 +14,7 @@ void Catalogo::agregarComponente(Componente* componente)
 {
 	try
 	{
-		componentes->insertar(componente);
+		componentes->insertarDato(componente);
 	}
 	catch (const std::exception& e)
 	{
