@@ -18,6 +18,11 @@ ClienteEmpresa::ClienteEmpresa(const ClienteEmpresa& empresa):
 {
 }
 
+void ClienteEmpresa::Update()
+{
+	std::cout << "Cliente Empresa: " << _nombre << " ha sido notificado." << std::endl;
+}
+
 std::string ClienteEmpresa::getRazonSocial() const
 {
 	return _razonSocial;

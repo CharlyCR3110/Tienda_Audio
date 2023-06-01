@@ -18,8 +18,8 @@ public:
 	int getCantidad() const;
 	// utiles
 	const bool estaVacia() const;
-	// metodos para insertar
-	void insertar(T* dato);	// inserta al final
+	// metodos para insertarDato
+	void insertarDato(T* dato);	// inserta al final
 	void insertarAlInicio(T* dato);	// inserta al inicio
 	// metodos para eliminar
 	void eliminar(int posicion);	// elimina por posicion
@@ -34,6 +34,8 @@ public:
 	bool existeDatoPorCodigo(std::string codigo);	// busca el dato por codigo y devuelve true si lo encuentra
 	Nodo<T>* buscarNodo(T* dato);	// busca el nodo y devuelve el nodo si lo encuentra
 	T* buscarPorCodigo(std::string codigo);	// busca el dato por codigo y devuelve el dato si lo encuentra
+	// get por posicion
+	T* get(int posicion) const;
 	// mostrar datos
 	std::string toString() const;
 	std::string mostrarPorCategoria(std::string categoria) const;
@@ -91,7 +93,7 @@ inline const bool ListaEnlazada<T>::estaVacia() const
 }
 
 template<class T>
-inline void ListaEnlazada<T>::insertar(T* dato)
+inline void ListaEnlazada<T>::insertarDato(T* dato)
 {
 	if (dato == nullptr)
 	{
@@ -387,6 +389,30 @@ inline T* ListaEnlazada<T>::buscarPorCodigo(std::string codigo)
 	if (actual == nullptr)
 	{
 		throw ElementoNoEncontradoException<T>();
+	}
+
+	return actual->getDato();
+}
+
+template<class T>
+inline T* ListaEnlazada<T>::get(int posicion) const
+{
+	if (estaVacia())
+	{
+		throw ListaVaciaException();
+	}
+
+	if (posicion < 0 || posicion >= _cantidad)
+	{
+		throw ListaEnlazadasExceptions("Posicion invalida");
+	}
+
+	Nodo<T>* actual = _primero;
+	int contador = 0;
+	while (contador < posicion)
+	{
+		actual = actual->getSiguiente();
+		contador++;
 	}
 
 	return actual->getDato();

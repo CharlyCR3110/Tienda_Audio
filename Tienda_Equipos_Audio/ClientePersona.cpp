@@ -21,6 +21,11 @@ ClientePersona::ClientePersona(const ClientePersona& persona) :
 {
 }
 
+void ClientePersona::Update()
+{
+    std::cout << "Cliente Persona: " << _nombre << " ha sido notificado." << std::endl;
+}
+
 std::string ClientePersona::getCorreo() const
 {
     return _correo;

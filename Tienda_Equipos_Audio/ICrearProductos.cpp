@@ -48,7 +48,7 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 	while (!esCodigoValido)
 	{
 		clearInputBuffer();
-		std::cout << "Digite el codigo del curso: ";
+		std::cout << "Digite el codigo del sistema: ";
 		std::getline(std::cin, codigo);
 		if (codigo.empty())
 		{
