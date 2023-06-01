@@ -11,19 +11,22 @@ SistemaDeAudio::SistemaDeAudio():
 	{
 		_componentes[i] = nullptr;	// inicializar el arreglo
 	}
+
+	this->_categoria = "Sistema de Audio";
 }
 
-SistemaDeAudio::SistemaDeAudio(std::string codigo, std::string nombre):
+SistemaDeAudio::SistemaDeAudio(std::string codigo, std::string nombre, std::string categoria):
 	Componente(codigo, "", 0.0),
 	_capacidad(3),
 	_cantidad(0),
 	_componentes(new Componente* [3])
 {
-	this->_nombreComponente = nombre;
 	for (int i = 0; i < 3; i++)
 	{
 		_componentes[i] = nullptr;	// inicializar el arreglo
 	}
+	this->_nombreComponente = nombre;
+	this->_categoria = categoria;	// la categoria puede ser "Sistema Preconfigurado" o "Sistema Personalizado", siendo el primero el sistema creado por la tienda y el segundo el sistema creado por el usuario
 }
 
 SistemaDeAudio::SistemaDeAudio(int capacidad) :
@@ -36,9 +39,11 @@ SistemaDeAudio::SistemaDeAudio(int capacidad) :
 	{
 		_componentes[i] = nullptr;	// inicializar el arreglo
 	}
+	this->_categoria = "Sistema de Audio";
 }
 
-SistemaDeAudio::SistemaDeAudio(const SistemaDeAudio& other) : Componente(other)
+SistemaDeAudio::SistemaDeAudio(const SistemaDeAudio& other) :
+	Componente(other)
 {
 	_capacidad = other._capacidad;
 	_cantidad = other._cantidad;
