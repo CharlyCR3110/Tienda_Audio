@@ -2,6 +2,75 @@
 
 // fuentes de audio
 
+std::string ICrearProductos::mensajeNombreSistemaDeAudio()
+{
+	std::string nombre;
+	bool esNombreValido = false;
+
+	while (!esNombreValido)
+	{
+		std::cout << "Digite el nombre que tendra sus sistema de audio: ";
+		std::getline(std::cin, nombre);
+
+		if (nombre.empty())
+		{
+			std::cerr << "Error: El nombre del sistema no puede estar vacio." << std::endl;
+			clearInputBuffer();
+			continue;
+		}
+
+		bool esCadenaValida = true;
+		for (char c : nombre)
+		{
+			if (!isalpha(c) && c != ' ')
+			{
+				esCadenaValida = false;
+				break;
+			}
+		}
+
+		if (!esCadenaValida)
+		{
+			std::cerr << "Error: El nombre del sistema solo puede contener letras y espacios." << std::endl;
+			clearInputBuffer();
+			continue;
+		}
+		esNombreValido = true;
+	}
+	return nombre;
+}
+
+std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
+{
+	//validar que no exista otro curso con el mismo codigo
+	std::string codigo;
+	bool esCodigoValido = false;
+	while (!esCodigoValido)
+	{
+		clearInputBuffer();
+		std::cout << "Digite el codigo del curso: ";
+		std::getline(std::cin, codigo);
+		if (codigo.empty())
+		{
+			std::cerr << "Error: El codigo del sistema no puede estar vacio." << std::endl;
+			clearInputBuffer();
+			continue;
+		}
+
+		//TO-DO validar que no exista otro curso con el mismo codigo
+		//if (catalogo->existeCursoConCodigo(codigo))
+		//{
+		//	std::cerr << "Error: Ya existe un curso con ese codigo." << std::endl;
+		//	clearInputBuffer();
+		//	continue;
+		//}
+
+		esCodigoValido = true;
+	}
+
+	return codigo;
+}
+
 // metodo para crear una fuente de audio de cualquier tipo
 FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 {
