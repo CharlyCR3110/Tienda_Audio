@@ -9,6 +9,8 @@ public:
 	ClienteEmpresa(std::string nombre, std::string cedula, std::string pais, std::string ciudad, std::string razonSocial);
 	ClienteEmpresa(const ClienteEmpresa& empresa);
 	~ClienteEmpresa() = default;
+	// metodos de IObserver
+	virtual void Update() override;
 	// getters
 	virtual std::string getRazonSocial() const;
 	// setters

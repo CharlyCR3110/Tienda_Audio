@@ -11,6 +11,8 @@ public:
     ClientePersona(std::string nombre, std::string cedula, std::string pais, std::string ciudad, std::string correo, std::string nacionalidad);
     ClientePersona(const ClientePersona& persona);
     ~ClientePersona() = default;
+    // metodos de IObserver
+    virtual void Update() override;
     // getters
     virtual std::string getCorreo() const;
     virtual std::string getNacionalidad() const;
