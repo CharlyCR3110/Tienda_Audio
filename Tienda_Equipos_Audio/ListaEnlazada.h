@@ -330,7 +330,7 @@ inline bool ListaEnlazada<T>::existeDatoPorCodigo(std::string codigo)
 {
 	if (estaVacia())
 	{
-		return false;
+		throw ListaVaciaException();
 	}
 
 	Nodo<T>* actual = _primero;
