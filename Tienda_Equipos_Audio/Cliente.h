@@ -16,6 +16,8 @@ public:
 	virtual std::string getCedula() const;
 	virtual std::string getPais() const;
 	virtual std::string getCiudad() const;
+
+	virtual std::string getCodigo() const;
 	// setters
 	virtual void setNombre(std::string nombre);
 	virtual void setCedula(std::string cedula);

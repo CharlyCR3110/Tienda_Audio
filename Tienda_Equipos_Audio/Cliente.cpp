@@ -44,6 +44,11 @@ std::string Cliente::getCiudad() const
 	return _ciudad;
 }
 
+std::string Cliente::getCodigo() const
+{
+	return _cedula;
+}
+
 void Cliente::setNombre(std::string nombre)
 {
 	_nombre = nombre;
