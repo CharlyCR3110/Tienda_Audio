@@ -23,6 +23,7 @@ public:
 	void desuscribirCliente(Cliente* cliente);
 	void notificarClientes();
 
+	bool existeUsuarioRegistrado(std::string codigo);
 private:
 	Catalogo* catalogo;	// Catalogo de productos de la tienda
 	ListaEnlazada<Cliente>* clientes;

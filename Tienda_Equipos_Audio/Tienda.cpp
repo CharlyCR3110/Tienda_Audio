@@ -56,3 +56,15 @@ void Tienda::notificarClientes()
 		clientes->get(i)->Update();
 	}
 }
+
+bool Tienda::existeUsuarioRegistrado(std::string codigo)
+{
+	try
+	{
+		return clientes->existeDatoPorCodigo(codigo);	// si la lista esta vacia, lanza una excepcion
+	}
+	catch (std::exception& e)
+	{
+		throw new std::exception(e.what());
+	}
+}
