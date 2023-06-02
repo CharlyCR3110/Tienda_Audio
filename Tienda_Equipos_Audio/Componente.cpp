@@ -5,14 +5,16 @@ Componente::Componente() :	// constructor por defecto
 	_caracteristicas(""),
 	_precio(0.0),
 	_categoria(""),
-	_nombreComponente("")
+	_nombreComponente(""),
+	_cantidad(0)
 {
 }
 
 Componente::Componente(std::string codigo, std::string caracteristicas, double precio) :
 	_codigo(codigo),
 	_caracteristicas(caracteristicas), 
-	_precio(precio)
+	_precio(precio),
+	_cantidad(0)
 {
 }
 
@@ -21,7 +23,8 @@ Componente::Componente(const Componente& other):
 	_caracteristicas(other._caracteristicas),
 	_precio(other._precio),
 	_categoria(other._categoria),
-	_nombreComponente(other._nombreComponente)
+	_nombreComponente(other._nombreComponente),
+	_cantidad(other._cantidad)
 {
 }
 
@@ -61,6 +64,11 @@ std::string Componente::getNombre() const
 }
 
 
+int Componente::getCantidad() const
+{
+	return _cantidad;
+}
+
 void Componente::setCodigo(std::string codigo)
 {
 	_codigo = codigo;
@@ -91,6 +99,11 @@ void Componente::setNombreComponente(std::string nombre)
 void Componente::setNombre(std::string nombreDelPaquete)
 {
 	// aqui no se hace nada
+}
+
+void Componente::setCantidad(int cantidad)
+{
+	_cantidad = cantidad;
 }
 
 Componente& Componente::operator=(const Componente& other)
