@@ -54,6 +54,20 @@ inline ListaEnlazada<T>::ListaEnlazada()
 }
 
 template<class T>
+inline ListaEnlazada<T>::ListaEnlazada(const ListaEnlazada<T>& lista_)
+{
+	_primero = nullptr;
+	_ultimo = nullptr;
+	_cantidad = 0;
+	Nodo<T>* actual = lista_.getPrimero();
+	while (actual != nullptr)
+	{
+		insertarDato(actual->getDato());
+		actual = actual->getSiguiente();
+	}
+}
+
+template<class T>
 inline ListaEnlazada<T>::~ListaEnlazada()
 {
 	Nodo<T>* actual = _primero;
