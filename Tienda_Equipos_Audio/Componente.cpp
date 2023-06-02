@@ -45,7 +45,7 @@ std::string Componente::getCaracteristicas() const
 
 double Componente::getPrecio() const
 {
-	return _precio;
+	return _precio * _cantidad;
 }
 
 std::string Componente::getCategoria() const
