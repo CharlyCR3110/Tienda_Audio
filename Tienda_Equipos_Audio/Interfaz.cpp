@@ -590,6 +590,22 @@ void Interfaz::solicitarDatosPersona(std::string& correo, std::string& nacionali
 	} while (!esStringValido(nacionalidad, false, false, false, "nacionalidad"));
 }
 
+void Interfaz::menuMantenimientoVerCatalogoComponentes()	// unicamente muestra el catalogo y mensajito bonito
+{
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Catalogo de componentes" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	try
+	{
+		std::cout << tienda->mostrarCatalogo() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+}
+
 Cliente* Interfaz::buscarCliente()
 {
 	std::string codigo;

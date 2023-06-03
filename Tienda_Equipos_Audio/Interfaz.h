@@ -26,7 +26,7 @@ public:
 	// MENU DE MANTENIMIENTO
 	static int menuMantenimiento();
 
-	//submenus de mantenimiento
+	//submenus de mantenimiento	// estas opciones se controlan desde Controlador MVC
 	// 1. Ver lista de clientes registrados
 	static void menuMantenimientoVerListaClientes();
 	// 2. Ingresar nuevo cliente
