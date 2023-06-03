@@ -26,6 +26,26 @@ public:
 	// MENU DE MANTENIMIENTO
 	static int menuMantenimiento();
 
+	//submenus de mantenimiento
+	// 1. Ver lista de clientes registrados
+	static void menuMantenimientoVerListaClientes();
+	// 2. Ingresar nuevo cliente
+	static void menuMantenimientoIngresarNuevoCliente();
+
+	// submenus de mantenimiento de clientes
+	static void solicitarDatosComportidos(std::string& nombre, std::string& codigo, std::string& pais, std::string& ciudad);
+
+	static void solicitarDatosEmpresa(std::string& razonSocial);
+
+	static void solicitarDatosPersona(std::string& correo, std::string& nacionalidad);
+
+	// 3. Ver catalogo de componentes
+	static void menuMantenimientoVerCatalogoComponentes();
+	// 4. Ingresar nuevo componente
+	static void menuMantenimientoIngresarNuevoComponente();
+	// 5. Eliminar componente del catalogo
+	static void menuMantenimientoEliminarComponenteCatalogo();
+
 	// MENU REPORTES
 	static int menuReportes();
 
