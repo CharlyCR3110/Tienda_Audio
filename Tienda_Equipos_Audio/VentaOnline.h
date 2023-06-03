@@ -7,7 +7,7 @@ class VentaOnline :
 {
 public:
 	VentaOnline();
-	VentaOnline(Cliente* cliente, Fecha* fecha, Catalogo* catalogo, std::string codigoLugarEntrega);
+	VentaOnline(Cliente* cliente, Fecha* fecha, std::string codigoLugarEntrega);
 	VentaOnline(const VentaOnline& venta);
 	~VentaOnline();
 	virtual void calcularTotal() override;

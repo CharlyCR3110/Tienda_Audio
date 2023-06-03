@@ -5,8 +5,8 @@ VentaDirecta::VentaDirecta():
 {
 }
 
-VentaDirecta::VentaDirecta(Cliente* cliente, Fecha* fecha, Catalogo* catalogo):
-	Venta(cliente, fecha, catalogo)
+VentaDirecta::VentaDirecta(Cliente* cliente, Fecha* fecha):
+	Venta(cliente, fecha)
 {
 }
 

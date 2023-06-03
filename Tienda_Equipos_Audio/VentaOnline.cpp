@@ -6,8 +6,8 @@ VentaOnline::VentaOnline() :
 {
 }
 
-VentaOnline::VentaOnline(Cliente* cliente, Fecha* fecha, Catalogo* catalogo, std::string codigoLugarEntrega)
-	: Venta(cliente, fecha, catalogo),
+VentaOnline::VentaOnline(Cliente* cliente, Fecha* fecha, std::string codigoLugarEntrega)
+	: Venta(cliente, fecha),
 	_codigoLugarEntrega(codigoLugarEntrega)
 {
 	_total = MontoTranslado::getMonto(_codigoLugarEntrega);

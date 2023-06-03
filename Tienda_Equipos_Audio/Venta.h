@@ -7,17 +7,15 @@ class Venta
 {
 public:
 	Venta();
-	Venta(Cliente* cliente, Fecha* fecha, Catalogo* catalogo);
+	Venta(Cliente* cliente, Fecha* fecha);
 	Venta(const Venta& venta);
 	virtual ~Venta();
 	// getters
 	virtual Cliente* getCliente() const;
 	virtual Fecha* getFecha() const;
-	virtual Catalogo* getCatalogo() const;
 	// setters
 	virtual void setCliente(Cliente* cliente);
 	virtual void setFecha(Fecha* fecha);
-	virtual void setCatalogo(Catalogo* catalogo);
 	// mostrar
 	virtual std::string toString() const = 0;
 	// metodos para la venta
@@ -38,7 +36,6 @@ public:
 protected:
 	Cliente* _cliente;	// cliente que realiza la venta
 	Fecha* _fecha;	// fecha de la venta
-	Catalogo* _catalogo;	// catalogo de productos preconfigurado
 	ListaEnlazada<Componente>* _carritoDeCompras;	// lista de componentes comprados
 
 	double _total;

@@ -6,7 +6,7 @@ class VentaDirecta :
 {
 public:
 	VentaDirecta();
-	VentaDirecta(Cliente* cliente, Fecha* fecha, Catalogo* catalogo);
+	VentaDirecta(Cliente* cliente, Fecha* fecha);
 	VentaDirecta(const VentaDirecta& venta);
 	~VentaDirecta();
 	virtual void calcularTotal() override;
