@@ -16,4 +16,6 @@ public:
 	void eliminarComponentePorCodigo(std::string codigo);
 	std::string mostrarCatalogo();
 	std::string mostrarCategoriaDelCatalogo(std::string categoria);
+
+	Componente* buscarComponentePorCodigo(std::string codigo);
 };

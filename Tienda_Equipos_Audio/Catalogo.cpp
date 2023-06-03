@@ -95,3 +95,15 @@ std::string Catalogo::mostrarCategoriaDelCatalogo(std::string categoria)
 		throw e;
 	}
 }
+
+Componente* Catalogo::buscarComponentePorCodigo(std::string codigo)
+{
+	try
+	{
+		return componentes->buscarPorCodigo(codigo)->clonar();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
