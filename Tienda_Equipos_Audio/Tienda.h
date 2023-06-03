@@ -35,6 +35,9 @@ public:
 
 	// getters
 	Fecha* getFechaActual() const;
+	
+	// Utilizados en menu mantenimiento
+	std::string mostrarListaClientes();
 private:
 	Catalogo* _catalogo;	// Catalogo de productos de la tienda
 	ListaEnlazada<Cliente>* _clientes;

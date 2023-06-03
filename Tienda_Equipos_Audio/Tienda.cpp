@@ -112,3 +112,15 @@ Fecha* Tienda::getFechaActual() const
 {
 	return _fechaActual;
 }
+
+std::string Tienda::mostrarListaClientes()
+{
+	try
+	{
+		return _clientes->toString();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
