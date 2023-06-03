@@ -28,3 +28,53 @@ bool esCodigoValido(std::string codigo)
 	}
 	return true;
 }
+
+bool esNombreValido(std::string nombre)
+{
+	if (nombre.empty())
+	{
+		std::cout << "El nombre no puede estar vacio" << std::endl;
+		return false;
+	}
+	for (int i = 0; i < nombre.length(); i++)
+	{
+		if (!isalpha(nombre[i]) && !isspace(nombre[i]))	// si no es alfanumerico ni espacio
+		{
+			std::cout << "El nombre no puede contener caracteres especiales" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
+bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros, bool permitirCaracteresEspeciales, std::string tipo) {
+    // Validar si el campo es vacío (opcional)
+    if (str.empty()) {
+        std::cout << "El campo \"" << tipo << "\" no puede estar vacío." << std::endl;
+        return false;
+    }
+
+    // Validar caracteres uno por uno
+    for (char c : str) {
+        // Validar espacios
+        if (!permitirEspacios && c == ' ') {
+            std::cout << "El campo \"" << tipo << "\" no puede contener espacios." << std::endl;
+            return false;
+        }
+
+        // Validar números
+        if (!permitirNumeros && std::isdigit(c)) {
+            std::cout << "El campo \"" << tipo << "\" no puede contener números." << std::endl;
+            return false;
+        }
+
+        // Validar caracteres especiales
+        if (!permitirCaracteresEspeciales && !std::isalnum(static_cast<unsigned char>(c))) {
+            std::cout << "El campo \"" << tipo << "\" no puede contener caracteres especiales." << std::endl;
+            return false;
+        }
+    }
+
+    // El string es válido
+    return true;
+}

@@ -5,5 +5,6 @@
 void clearInputBuffer();
 // funcion para limpiar la pantalla
 void clearScreen();
-// funcion para verificar que un codigo sea valido (solo puede aceptar letras y numeros, no puede ser vacio ni tener espacios)
-bool esCodigoValido(std::string codigo);
+
+// funcion mas general para verificar que un string sea valido
+bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros, bool permitirCaracteresEspeciales, std::string tipo); // tipo es el nombre del campo que se esta validando (ej: "codigo", "nombre", etc)
