@@ -18,7 +18,6 @@ int Interfaz::menuPrincipal()
 
 void Interfaz::menuVentaDirecta()
 {
-	tienda->suscribirCliente(new ClienteEmpresa("Empresa1", "333", "Costa Rica", "San Jose", "Empresa1"));	// eliminar
 	// se verifica que el usuario este registrado
 	std::cout << "\t\tMenu Venta Directa" << std::endl;
 	Cliente* cliente = nullptr;
@@ -167,7 +166,6 @@ Componente* Interfaz::menuVentaDirectaComprar()
 
 void Interfaz::menuVentaEnLinea()
 {
-	tienda->suscribirCliente(new ClienteEmpresa("Empresa1", "333", "Costa Rica", "San Jose", "Empresa1"));	// eliminar
 	// se verifica que el usuario este registrado
 	std::cout << "\t\tMenu Venta Online" << std::endl;
 	Cliente* cliente = nullptr;
@@ -225,7 +223,6 @@ void Interfaz::menuVentaEnLinea()
 	int unidades = 0;
 	Componente* componenteActual = nullptr;
 	char seguirComprando = 's'; // acepta 's' 'S' 'n' 'N'
-	// se deben de agregar cosas a 
 	do
 	{
 		try
@@ -336,6 +333,24 @@ Componente* Interfaz::menuVentaEnLineaComprar()
 	return componente;
 }
 
+int Interfaz::menuMantenimiento()
+{
+	int opcion;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "\t\tMantenimiento" << std::endl;
+	std::cout << "1. Ver Lista de clientes" << std::endl;
+	std::cout << "2. Ingreso de nuevos clientes" << std::endl;
+	std::cout << "3. Ver lista del catalogo" << std::endl;
+	std::cout << "4. Ingresar productos al catalogo" << std::endl;
+	std::cout << "5. Eliminar productos del catálogo" << std::endl;
+	std::cout << "6. Salir" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Digite una opcion del menu: ";
+	std::cin >> opcion;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	return opcion;
+}
+
 void Interfaz::menuMantenimientoVerListaClientes()
 {
 	clearScreen();
@@ -354,11 +369,7 @@ void Interfaz::menuMantenimientoVerListaClientes()
 }
 
 void Interfaz::menuMantenimientoIngresarNuevoCliente()
-{
-	// hay 2 tipos de clientes 	ClienteEmpresa y ClientePersona
-	// se debe de preguntar que tipo de cliente se desea ingresar
-	// se debe de preguntar por los datos del cliente
-	
+{	
 	Cliente* cliente = nullptr;
 	int opcionTipoCliente = 0;
 	// datos compartidos
@@ -554,7 +565,6 @@ void Interfaz::solicitarDatosPersona(std::string& correo, std::string& nacionali
 {
 	int numeroDeIntento = 0;
 
-	// correo
 	do
 	{
 		if (numeroDeIntento != 0)
@@ -604,6 +614,61 @@ void Interfaz::menuMantenimientoVerCatalogoComponentes()	// unicamente muestra e
 		std::cerr << e.what() << std::endl;
 	}
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
+}
+
+void Interfaz::menuMantenimientoIngresarNuevoComponente()
+{
+	AbstractFactory* fabrica = new SistemaPreConfiguradoFactory();
+	Componente* componentePreConfigurador = nullptr;
+	componentePreConfigurador = fabrica->crearSistemaDeAudio();
+
+	try
+	{
+		tienda->agregarComponente(componentePreConfigurador);
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	delete fabrica;
+	delete componentePreConfigurador;
+}
+
+void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
+{
+	std::string codigo;
+	int numeroDeIntento = 0;
+	
+	// Se muestra el catalogo
+	menuMantenimientoVerCatalogoComponentes();
+
+	// solicitar y comprobar que sea valida (no puede ser vacia ni tener caracteres especiales, solo letras y numeros)
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un codigo valido" << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el codigo del componente que desea eliminar: ";
+		std::getline(std::cin, codigo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(codigo, false, true, false, "codigo"));	// se permite que el codigo tenga numeros
+
+	try
+	{
+		tienda->eliminarComponetePorCodigo(codigo);
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
 }
 
 Cliente* Interfaz::buscarCliente()
