@@ -21,7 +21,6 @@ VentaOnline::VentaOnline(const VentaOnline& other) :
 
 VentaOnline::~VentaOnline()
 {
-	Venta::~Venta();
 }
 
 void VentaOnline::calcularTotal()
