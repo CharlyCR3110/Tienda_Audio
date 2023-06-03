@@ -70,20 +70,23 @@ void Venta::setCatalogo(Catalogo* catalogo)
 
 void Venta::agregarComponente(Componente* componente, int cantidad)
 {
+	// se clona el componente y luego se agrega
+	Componente* componenteClonado = componente->clonar();
+	componenteClonado->setCantidadEnCarrito(cantidad);
+
 	try
 	{
-		componente->setCantidadEnCarrito(cantidad);
-		_carritoDeCompras->insertarDato(componente);
-		std::cout << "Componente precio: " << componente->getPrecioUnitario() << std::endl;	// "debug
+		_carritoDeCompras->insertarDato(componenteClonado);
+		std::cout << "Componente precio: " << componenteClonado->getPrecioUnitario() << std::endl;	// "debug
 		std::cout << "cantidad: " << cantidad << std::endl;	// "debug
-		_subtotal += componente->getPrecioUnitario() * cantidad;
+		_subtotal += componenteClonado->getPrecioUnitario() * cantidad;
 		std::cout << "subtotal: " << _subtotal << std::endl;	// "debug
 		_total = _subtotal;
 		std::cout << "Componente agregado al carrito de compras" << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		throw new std::exception(e.what());
+		throw std::exception(e.what());
 	}
 }
 
@@ -96,7 +99,7 @@ void Venta::eliminarComponente(Componente* componente)
 	}
 	catch (std::exception& e)
 	{
-		throw new std::exception(e.what());
+		throw std::exception(e.what());
 	}
 }
 
