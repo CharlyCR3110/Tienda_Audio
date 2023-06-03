@@ -70,6 +70,7 @@ bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros
 
         // Validar caracteres especiales
         if (!permitirCaracteresEspeciales && !std::isalnum(static_cast<unsigned char>(c))) {
+			if (c == ' ') continue;	// Permitir espacios
             std::cout << "El campo \"" << tipo << "\" no puede contener caracteres especiales." << std::endl;
             return false;
         }
