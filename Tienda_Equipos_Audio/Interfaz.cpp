@@ -33,7 +33,10 @@ void Interfaz::menuVentaDirecta()
 		std::stringstream mensajeDeError;
 		mensajeDeError << "Error. El cliente parece no estar subscrito. Motivo: " << e.what() << std::endl;
 		mensajeDeError << "Por favor, registre al cliente antes de continuar." << std::endl;
-		throw std::exception(mensajeDeError.str().c_str());
+		std::cerr << mensajeDeError.str() << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
 	}
 	
 	// unidades de un un producto
@@ -133,7 +136,7 @@ Componente* Interfaz::menuVentaDirectaComprar()
 		{
 			std::cout << "Categorias de componentes disponibles" << std::endl;
 			std::cout << "1. Fuentes de Audio" << std::endl;
-			std::cout << "2. Procesadores de Señal" << std::endl;
+			std::cout << "2. Procesadores de Seï¿½al" << std::endl;
 			std::cout << "3. Parlantes (Reproductores de Sonido)" << std::endl;
 			std::cout << "Seleccione una categoria: ";
 			std::cin >> categoriaComponente;
@@ -181,7 +184,10 @@ void Interfaz::menuVentaEnLinea()
 		std::stringstream mensajeDeError;
 		mensajeDeError << "Error. El cliente parece no estar subscrito. Motivo: " << e.what() << std::endl;
 		mensajeDeError << "Por favor, registre al cliente antes de continuar." << std::endl;
-		throw std::exception(mensajeDeError.str().c_str());
+		std::cerr << mensajeDeError.str() << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
 	}
 
 	std::string codigoDeEnvio;
@@ -303,7 +309,7 @@ Componente* Interfaz::menuVentaEnLineaComprar()
 		{
 			std::cout << "Categorias de componentes disponibles" << std::endl;
 			std::cout << "1. Fuentes de Audio" << std::endl;
-			std::cout << "2. Procesadores de Señal" << std::endl;
+			std::cout << "2. Procesadores de Seï¿½al" << std::endl;
 			std::cout << "3. Parlantes (Reproductores de Sonido)" << std::endl;
 			std::cout << "Seleccione una categoria: ";
 			std::cin >> categoriaComponente;
@@ -342,7 +348,7 @@ int Interfaz::menuMantenimiento()
 	std::cout << "2. Ingreso de nuevos clientes" << std::endl;
 	std::cout << "3. Ver lista del catalogo" << std::endl;
 	std::cout << "4. Ingresar productos al catalogo" << std::endl;
-	std::cout << "5. Eliminar productos del catálogo" << std::endl;
+	std::cout << "5. Eliminar productos del catï¿½logo" << std::endl;
 	std::cout << "6. Salir" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
@@ -701,4 +707,31 @@ Cliente* Interfaz::buscarCliente()
 		throw std::exception(e.what());
 	}
 
+}
+
+void Interfaz::regresar()
+{
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Regresando al menu principal" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::system("pause");
+	clearScreen();
+}
+
+void Interfaz::salir()
+{
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Saliendo del programa" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::system("pause");
+	clearScreen();
+}
+
+void Interfaz::opcionInvalida()
+{
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Opcion invalida" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::system("pause");
+	clearScreen();
 }

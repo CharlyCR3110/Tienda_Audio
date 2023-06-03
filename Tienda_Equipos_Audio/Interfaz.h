@@ -47,11 +47,18 @@ public:
 	static void menuMantenimientoEliminarComponenteCatalogo();
 
 	// MENU REPORTES
-	static int menuReportes();
+	//static int menuReportes();
 
 	// UTILES
 	// metodo para buscar un usuario
 	static Cliente* buscarCliente();
+
+
+	static void regresar();
+
+	static void salir();
+
+	static void opcionInvalida();
 };
 
 
