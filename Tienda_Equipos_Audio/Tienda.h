@@ -9,6 +9,9 @@
 #include "ClienteEmpresa.h"
 #include "Venta.h"
 
+#include "VentaDirecta.h"
+#include "VentaOnline.h"
+
 // Cliente hereda de IObserver
 // De Cliente heredan ClientePersona y ClienteEmpresa
 
@@ -24,9 +27,17 @@ public:
 	void desuscribirCliente(Cliente* cliente);
 	void notificarClientes();
 
+	std::string mostrarCatalogo();
+	Componente* escogerComponenteDelCatalogo(std::string codigo);
+
 	bool existeUsuarioRegistrado(std::string codigo);
+	Cliente* buscarCliente(std::string codigo);
+
+	// getters
+	Fecha* getFechaActual() const;
 private:
-	Catalogo* catalogo;	// Catalogo de productos de la tienda
-	ListaEnlazada<Cliente>* clientes;
-	ListaEnlazada<Venta>* ventas;	// lista de ventas realizadas
+	Catalogo* _catalogo;	// Catalogo de productos de la tienda
+	ListaEnlazada<Cliente>* _clientes;
+	ListaEnlazada<Venta>* _ventas;	// lista de ventas realizadas
+	Fecha* _fechaActual;	// fecha actual de la tienda
 };

@@ -1,29 +1,30 @@
 #include "Tienda.h"
 
 Tienda::Tienda() :
-	catalogo(new Catalogo()),
-	clientes(new ListaEnlazada<Cliente>()),
-	ventas(new ListaEnlazada<Venta>())
+	_catalogo(new Catalogo()),
+	_clientes(new ListaEnlazada<Cliente>()),
+	_ventas(new ListaEnlazada<Venta>()),
+	_fechaActual(new Fecha())
 {
 }
 
 Tienda::~Tienda()
 {
-	delete catalogo;
-	delete clientes;
-	delete ventas;
+	delete _catalogo;
+	delete _clientes;
+	delete _ventas;
 }
 
 void Tienda::agregarComponente(Componente* producto)
 {
-	catalogo->agregarComponente(producto);
+	_catalogo->agregarComponente(producto);
 	notificarClientes();
 
 }
 
 void Tienda::eliminarComponente(Componente* producto)
 {
-	catalogo->eliminarComponente(producto);
+	_catalogo->eliminarComponente(producto);
 	notificarClientes();
 }
 
@@ -31,11 +32,11 @@ void Tienda::suscribirCliente(Cliente* cliente)
 {
 	try
 	{
-		clientes->insertarDato(cliente);
+		_clientes->insertarDato(cliente);
 	}
 	catch (std::exception& e)
 	{
-		throw new std::exception(e.what());
+		throw std::exception(e.what());
 	}
 }
 
@@ -43,19 +44,43 @@ void Tienda::desuscribirCliente(Cliente* cliente)
 {
 	try
 	{
-		clientes->eliminarDato(cliente);
+		_clientes->eliminarDato(cliente);
 	}
 	catch (std::exception& e)
 	{
-		throw new std::exception(e.what());
+		throw std::exception(e.what());
 	}
 }
 
 void Tienda::notificarClientes()
 {
-	for (int i = 0; i < clientes->getCantidad(); i++)
+	for (int i = 0; i < _clientes->getCantidad(); i++)
 	{
-		clientes->get(i)->Update();
+		_clientes->get(i)->Update();
+	}
+}
+
+std::string Tienda::mostrarCatalogo()
+{
+	try
+	{
+		return _catalogo->mostrarCatalogo();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+Componente* Tienda::escogerComponenteDelCatalogo(std::string codigo)
+{
+	try
+	{
+		return _catalogo->buscarComponentePorCodigo(codigo);	// el componente se clona en buscarComponentePorCodigo para evitar que se modifique el original
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
 	}
 }
 
@@ -63,10 +88,27 @@ bool Tienda::existeUsuarioRegistrado(std::string codigo)
 {
 	try
 	{
-		return clientes->existeDatoPorCodigo(codigo);	// si la lista esta vacia, lanza una excepcion
+		return _clientes->existeDatoPorCodigo(codigo);	// si la lista esta vacia, lanza una excepcion
 	}
 	catch (std::exception& e)
 	{
-		throw new std::exception(e.what());
+		throw std::exception(e.what());
 	}
+}
+
+Cliente* Tienda::buscarCliente(std::string codigo)
+{
+	try
+	{
+		return _clientes->buscarPorCodigo(codigo);	// si la lista esta vacia, lanza una excepcion
+	}
+	catch (std::exception& e)	// si no encuentra el cliente o la lista esta vacia
+	{
+		throw std::exception(e.what());
+	}
+}
+
+Fecha* Tienda::getFechaActual() const
+{
+	return _fechaActual;
 }
