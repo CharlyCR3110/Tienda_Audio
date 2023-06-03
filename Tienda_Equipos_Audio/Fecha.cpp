@@ -1,11 +1,19 @@
 #include "Fecha.h"
 
-Fecha::Fecha() :
-	_dia(0),
-	_mes(0),
-	_anio(0)
+#include <ctime>
+
+Fecha::Fecha()
 {
+	// Fecha actual
+	time_t now = time(0);
+	tm ltm;
+	localtime_s(&ltm, &now);
+
+	_dia = ltm.tm_mday;
+	_mes = 1 + ltm.tm_mon;
+	_anio = 1900 + ltm.tm_year;
 }
+
 
 Fecha::Fecha(int dia, int mes, int anio) :
 	_dia(dia),
