@@ -5,9 +5,30 @@ Catalogo::Catalogo()
 	componentes = new ListaEnlazada<Componente>();
 }
 
+Catalogo::Catalogo(const Catalogo& other)
+{
+	// se copian los componentes uno a uno
+	if (componentes != nullptr)
+	{
+		componentes->~ListaEnlazada();
+		delete componentes;
+	}
+	componentes = new ListaEnlazada<Componente>();
+	for (int i = 0; i < other.componentes->getCantidad(); i++)
+	{
+		componentes->insertarDato(other.componentes->get(i));
+	}
+	std::cout << "Catalogo copiado" << std::endl;	// borrame
+}
+
 Catalogo::~Catalogo()
 {
 	delete componentes;
+}
+
+Catalogo* Catalogo::clonar() const
+{
+	return new Catalogo(*this);
 }
 
 void Catalogo::agregarComponente(Componente* componente)
@@ -58,7 +79,7 @@ std::string Catalogo::mostrarCatalogo()
 	catch (ListaVaciaException& e)
 	{
 		std::cerr << "Mostrar Catalogo Error: " << e.what() << std::endl;	// borrame
-		throw e;
+		throw std::exception(e.what());
 	}
 }
 
