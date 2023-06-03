@@ -400,7 +400,6 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 		std::cout << "Digite una opcion del menu: ";
 		std::cin >> opcionTipoCliente;
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
-
 		if (opcionTipoCliente < 1 || opcionTipoCliente > 2)
 		{
 			std::cout << "Opcion invalida" << std::endl;
@@ -411,6 +410,9 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 
 	} while (opcionTipoCliente < 1 || opcionTipoCliente > 2);
 
+	std::cout << "Ha seleccionado " << (opcionTipoCliente == 1 ? "Cliente Empresa" : "Cliente Persona") << std::endl;
+
+	clearInputBuffer();
 	// solicitar datos compartidoss
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Por favor digite los siguientes datos" << std::endl;
@@ -510,12 +512,14 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 	} while (!esStringValido(cedula, false, true, false, "numero de cedula"));	// se permite que la cedula tenga numeros
 
 	// pais
+	numeroDeIntento = 0;	// se reinicia el numero de intentos
+
 	do
 	{
 		if (numeroDeIntento != 0)
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
-			std::cout << "Por favor digite un nombre valido" << std::endl;
+			std::cout << "Por favor digite un pais valido" << std::endl;
 			std::system("pause");
 			clearScreen();
 		}
@@ -527,6 +531,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 	} while (!esStringValido(pais, true, false, false, "pais"));	// se permite que el pais tenga espacios
 
 	// ciudad
+	numeroDeIntento = 0;	// se reinicia el numero de intentos
 	do
 	{
 		if (numeroDeIntento != 0)
