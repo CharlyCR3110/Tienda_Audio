@@ -24,7 +24,7 @@ UnidadCD::~UnidadCD()
 std::string UnidadCD::toString() const
 {
 	std::stringstream ss;
-	ss << "UnidadCD: " << _codigo << " " << _caracteristicas << " " << _precio;
+	ss << _codigo << '\t' << _categoria << '\t' << _nombreComponente << '\t' << _caracteristicas << '\t' << _precio;
 	return ss.str();
 }
 

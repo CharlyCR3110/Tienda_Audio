@@ -24,7 +24,7 @@ UnidadBluetooth::~UnidadBluetooth()
 std::string UnidadBluetooth::toString() const
 {
 	std::stringstream ss;
-	ss << "Unidad Bluetooth: " << _codigo << " " << _caracteristicas << " " << _precio;
+	ss << _codigo << '\t' << _categoria << '\t' << _nombreComponente << '\t' << _caracteristicas << '\t' << _precio;
 	return ss.str();
 }
 

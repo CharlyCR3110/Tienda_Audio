@@ -24,7 +24,7 @@ Radio::~Radio()
 std::string Radio::toString() const
 {
 	std::stringstream ss;
-	ss << "Radio: " << _codigo << " " << _caracteristicas << " " << _precio;
+	ss << _codigo << '\t' << _categoria << '\t' << _nombreComponente << '\t' << _caracteristicas << '\t' << _precio;
 	return ss.str();
 }
 

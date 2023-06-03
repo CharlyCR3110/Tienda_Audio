@@ -87,13 +87,19 @@ double SistemaDeAudio::getPrecio() const
 std::string SistemaDeAudio::toString() const
 {
 	std::stringstream ss;
-	ss << "Codigo: " << _codigo << "\tNombre: " << _nombreComponente << "\tPrecio: " << getPrecio() << std::endl;
+	ss << _categoria << std::endl
+		<< "Codigo: " << _codigo << std::endl
+		<< "Nombre: " << _nombreComponente << std::endl
+		<< "Precio Unitario: " << getPrecioUnitario() << std::endl
+		<< "Cantidad: " << _cantidadEnElCarrito << std::endl;
+
 	ss << "Sistema de Audio: " << _cantidad << " de " << _capacidad << " componentes" << std::endl;
+	ss << "Codigo" << '\t' << "Categoria" << '\t' << "Nombre" << '\t' << "Caracteristicas" << '\t' << "Precio Unitario" << std::endl;
 	for (int i = 0; i < _cantidad; i++)
 	{
 		if (_componentes[i] != nullptr)	// para evitar problemas
 		{
-			ss << "\t" << _componentes[i]->toString() << std::endl;
+			ss << _componentes[i]->toString() << std::endl;
 		}
 	}
 	return ss.str();
@@ -109,6 +115,7 @@ void SistemaDeAudio::add(Componente* componente)
 	if (_cantidad < _capacidad)
 	{
 		_componentes[_cantidad++] = componente->clonar();
+		_precio += componente->getPrecio();
 	}
 	else
 	{
@@ -124,6 +131,7 @@ void SistemaDeAudio::remove(Componente* componente)
 		if (*_componentes[i] == *componente)
 		{
 			std::cout << "Se ha eliminado el componente " << componente->getCodigo() << " del sistema de audio" << std::endl;
+			_precio -= componente->getPrecio();
 			delete _componentes[i];
 			_componentes[i] = _componentes[--_cantidad];
 			_componentes[_cantidad] = nullptr;

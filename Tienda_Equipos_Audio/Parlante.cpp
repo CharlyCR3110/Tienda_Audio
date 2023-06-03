@@ -24,7 +24,7 @@ Parlante::~Parlante()
 std::string Parlante::toString() const
 {
 	std::stringstream ss;
-	ss << "Parlante: " << _codigo << " " << _caracteristicas << " " << _precio;
+	ss << _codigo << '\t' << _categoria << '\t' << _nombreComponente << '\t' << _caracteristicas << '\t' << _precio;
 	return ss.str();
 }
 

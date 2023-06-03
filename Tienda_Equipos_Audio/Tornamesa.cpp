@@ -24,7 +24,7 @@ Tornamesa::~Tornamesa()
 std::string Tornamesa::toString() const
 {
 	std::stringstream ss;
-	ss << "Tornamesa: " << _codigo << " " << _caracteristicas << " " << _precio;
+	ss << _codigo << '\t' << _categoria << '\t' << _nombreComponente << '\t' << _caracteristicas << '\t' << _precio;
 	return ss.str();
 }
 
