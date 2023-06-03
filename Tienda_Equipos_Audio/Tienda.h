@@ -7,6 +7,7 @@
 #include "Cliente.h"
 #include "ClientePersona.h"
 #include "ClienteEmpresa.h"
+#include "Venta.h"
 
 // Cliente hereda de IObserver
 // De Cliente heredan ClientePersona y ClienteEmpresa
@@ -27,4 +28,5 @@ public:
 private:
 	Catalogo* catalogo;	// Catalogo de productos de la tienda
 	ListaEnlazada<Cliente>* clientes;
+	ListaEnlazada<Venta>* ventas;	// lista de ventas realizadas
 };

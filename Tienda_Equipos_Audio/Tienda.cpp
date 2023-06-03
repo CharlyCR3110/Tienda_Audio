@@ -2,7 +2,8 @@
 
 Tienda::Tienda() :
 	catalogo(new Catalogo()),
-	clientes(new ListaEnlazada<Cliente>())
+	clientes(new ListaEnlazada<Cliente>()),
+	ventas(new ListaEnlazada<Venta>())
 {
 }
 
@@ -10,6 +11,7 @@ Tienda::~Tienda()
 {
 	delete catalogo;
 	delete clientes;
+	delete ventas;
 }
 
 void Tienda::agregarComponente(Componente* producto)
