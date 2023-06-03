@@ -49,12 +49,9 @@ SistemaDeAudio::SistemaDeAudio(const SistemaDeAudio& other) :
 	_cantidad = other._cantidad;
 	_componentes = new Componente * [_capacidad];
 
-	if (_capacidad > _cantidad)	// para evitar desbordamiento
+	for (int i = 0; i < _cantidad; i++)
 	{
-		for (int i = 0; i < _cantidad; i++) {
-
-			_componentes[i] = other._componentes[i]->clonar();
-		}
+		_componentes[i] = other._componentes[i]->clonar();
 	}
 }
 
