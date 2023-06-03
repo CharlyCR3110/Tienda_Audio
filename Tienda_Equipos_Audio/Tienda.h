@@ -23,6 +23,8 @@ public:
 	virtual ~Tienda();
 	void agregarComponente(Componente* producto);
 	void eliminarComponente (Componente* producto);
+	void eliminarComponetePorCodigo(std::string codigo);
+
 	void suscribirCliente(Cliente* cliente);
 	void desuscribirCliente(Cliente* cliente);
 	void notificarClientes();

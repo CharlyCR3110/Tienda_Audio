@@ -17,15 +17,27 @@ Tienda::~Tienda()
 
 void Tienda::agregarComponente(Componente* producto)
 {
-	_catalogo->agregarComponente(producto);
+	_catalogo->agregarComponente(producto->clonar());
 	notificarClientes();
-
 }
 
 void Tienda::eliminarComponente(Componente* producto)
 {
 	_catalogo->eliminarComponente(producto);
 	notificarClientes();
+}
+
+void Tienda::eliminarComponetePorCodigo(std::string codigo)
+{
+	try
+	{
+		_catalogo->eliminarComponentePorCodigo(codigo);
+		notificarClientes();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
 }
 
 void Tienda::suscribirCliente(Cliente* cliente)
