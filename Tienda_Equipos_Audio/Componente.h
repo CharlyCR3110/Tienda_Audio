@@ -15,6 +15,7 @@ public:
 	virtual std::string getCodigo() const;
 	virtual std::string getCaracteristicas() const;
 	virtual double getPrecio() const;
+	virtual double getPrecioUnitario() const;
 	// categoria del producto
 	virtual std::string getCategoria() const;
 	// nombre del componente
@@ -24,7 +25,7 @@ public:
 	virtual std::string getNombre() const;	// cambiar por getNombreComponente
 
 	// cantidad de componentes que se van a comprar
-	virtual int getCantidad() const;
+	virtual int getCantidadEnCarrito() const;
 	//setters
 	virtual void setCodigo(std::string codigo);
 	virtual void setCaracteristicas(std::string caracteristicas);
@@ -36,7 +37,7 @@ public:
 	// nombre del paquete de componentes
 	virtual void setNombre(std::string nombreDelPaquete);
 	// cantidad de componentes que se van a comprar
-	virtual void setCantidad(int cantidad);
+	virtual void setCantidadEnCarrito(int cantidad);
 	// mostrar informacion
 	virtual std::string toString() const = 0;
 	// metodo clonar
@@ -58,5 +59,5 @@ protected:
 	std::string _categoria;	// categoria del producto
 	std::string _nombreComponente;	// nombre del componente
 
-	int _cantidad;	// cantidad de componentes que se van a comprar
+	int _cantidadEnElCarrito;	// cantidad de componentes que se van a comprar
 };

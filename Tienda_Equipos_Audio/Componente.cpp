@@ -6,7 +6,7 @@ Componente::Componente() :	// constructor por defecto
 	_precio(0.0),
 	_categoria(""),
 	_nombreComponente(""),
-	_cantidad(0)
+	_cantidadEnElCarrito(1)
 {
 }
 
@@ -14,7 +14,7 @@ Componente::Componente(std::string codigo, std::string caracteristicas, double p
 	_codigo(codigo),
 	_caracteristicas(caracteristicas), 
 	_precio(precio),
-	_cantidad(0)
+	_cantidadEnElCarrito(1)
 {
 }
 
@@ -24,7 +24,7 @@ Componente::Componente(const Componente& other):
 	_precio(other._precio),
 	_categoria(other._categoria),
 	_nombreComponente(other._nombreComponente),
-	_cantidad(other._cantidad)
+	_cantidadEnElCarrito(other._cantidadEnElCarrito)
 {
 }
 
@@ -45,7 +45,12 @@ std::string Componente::getCaracteristicas() const
 
 double Componente::getPrecio() const
 {
-	return _precio * _cantidad;
+	return _precio * _cantidadEnElCarrito;
+}
+
+double Componente::getPrecioUnitario() const
+{
+	return _precio;
 }
 
 std::string Componente::getCategoria() const
@@ -64,9 +69,9 @@ std::string Componente::getNombre() const
 }
 
 
-int Componente::getCantidad() const
+int Componente::getCantidadEnCarrito() const
 {
-	return _cantidad;
+	return _cantidadEnElCarrito;
 }
 
 void Componente::setCodigo(std::string codigo)
@@ -101,9 +106,9 @@ void Componente::setNombre(std::string nombreDelPaquete)
 	// aqui no se hace nada
 }
 
-void Componente::setCantidad(int cantidad)
+void Componente::setCantidadEnCarrito(int cantidad)
 {
-	_cantidad = cantidad;
+	_cantidadEnElCarrito = cantidad;
 }
 
 Componente& Componente::operator=(const Componente& other)
