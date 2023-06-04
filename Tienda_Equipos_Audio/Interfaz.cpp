@@ -645,7 +645,7 @@ void Interfaz::menuMantenimientoVerCatalogoComponentes()	// unicamente muestra e
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 }
 
-void Interfaz::menuMantenimientoIngresarNuevoComponente()
+void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear los sistemas preconfigurados
 {
 	AbstractFactory* fabrica = new SistemaPreConfiguradoFactory();
 	Componente* componentePreConfigurador = nullptr;
@@ -653,6 +653,7 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()
 
 	try
 	{
+		componentePreConfigurador->setPrecio(componentePreConfigurador->getPrecio() * 0.35 + componentePreConfigurador->getPrecio() * 0.35);	// se le agrega el 35% de ganancia
 		tienda->agregarComponente(componentePreConfigurador);
 	}
 	catch (std::exception& e)
