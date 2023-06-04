@@ -120,29 +120,34 @@ Cliente* Tienda::buscarCliente(std::string codigo)
 	}
 }
 
-#include <map>
+#include "Mapa.h"
 std::string Tienda::mostrarComponenteMasVendido()
 {
-	if (_ventas->estaVacia()) {
+	if (_ventas->estaVacia()) 
+	{
 		return "No se han realizado ventas.";
 	}
 
 	// Crear un mapa para realizar el conteo de componentes vendidos
-	std::map<Componente*, int> conteoComponentes;
+	Mapa<Componente*, int> conteoComponentes;
 
 	// Iterar sobre la lista de ventas y contar los componentes vendidos
 	Nodo<Venta>* nodoVenta = _ventas->getPrimero();
-	while (nodoVenta != nullptr) {
+	while (nodoVenta != nullptr) 
+	{
 		Nodo<Componente>* nodoComponente = nodoVenta->getDato()->getCarritoDeCompras()->getPrimero();
-		while (nodoComponente != nullptr) {
+		while (nodoComponente != nullptr) 
+		{
 			Componente* componente = nodoComponente->getDato();
-			if (conteoComponentes.find(componente) != conteoComponentes.end()) {
+			if (conteoComponentes.encontrar(componente)) 
+			{
 				// El componente ya está en el mapa, incrementar su conteo
 				conteoComponentes[componente] += componente->getCantidadEnCarrito();
 			}
-			else {
+			else
+			{
 				// El componente no está en el mapa, agregarlo normalmente
-				conteoComponentes[componente] = componente->getCantidadEnCarrito();
+				conteoComponentes.insertar(componente, componente->getCantidadEnCarrito());
 			}
 			nodoComponente = nodoComponente->getSiguiente();
 		}
@@ -152,20 +157,25 @@ std::string Tienda::mostrarComponenteMasVendido()
 	// Encontrar el componente más vendido
 	Componente* componenteMasVendido = nullptr;
 	int cantidadMasVendida = 0;
-	for (const auto& pair : conteoComponentes) {
-		if (pair.second > cantidadMasVendida) {
-			componenteMasVendido = pair.first;
-			cantidadMasVendida = pair.second;
+	for (Mapa<Componente*, int>::Nodo* it = conteoComponentes.begin(); it != conteoComponentes.end(); it = it->siguiente) 
+	{
+		if (it->valor > cantidadMasVendida) 
+		{
+			componenteMasVendido = it->clave;
+			cantidadMasVendida = it->valor;
 		}
 	}
 
+
 	// Construir el mensaje de resultado utilizando stringstream
 	std::stringstream ss;
-	if (componenteMasVendido != nullptr) {
+	if (componenteMasVendido != nullptr) 
+	{
 		ss << "El componente más vendido es: " << componenteMasVendido->toString() << std::endl;
 		ss << "Cantidad vendida: " << cantidadMasVendida << " unidades.";
 	}
-	else {
+	else 
+	{
 		ss << "No se han vendido componentes aún.";
 	}
 
