@@ -10,7 +10,7 @@ public:
 
 	void controladorMantenimiento();
 
-	//void controladorReportes(); // en construccion
+	void controladorReportes(); // en construccion
 
 };
 

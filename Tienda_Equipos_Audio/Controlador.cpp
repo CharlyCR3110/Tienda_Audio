@@ -19,6 +19,7 @@ void Controlador::controladorPrincipal(int opcion)
 	{
 	case 1:
 		Interfaz::menuVentaDirecta();
+		std::system("pause");
 		break;
 	case 2:
 		Interfaz::menuVentaEnLinea();
@@ -27,7 +28,7 @@ void Controlador::controladorPrincipal(int opcion)
 		controladorMantenimiento();
 		break;
 	case 4:
-		std::cout << "En construccion" << std::endl;
+		controladorReportes();
 		std::system("pause");
 		break;
 	case 5:
@@ -70,4 +71,27 @@ void Controlador::controladorMantenimiento()
 		}
 		system("pause");
 	} while (opcion != 6);
+}
+
+void Controlador::controladorReportes()
+{
+	int opcion;
+	do
+	{
+		clearScreen();
+		opcion = Interfaz::menuReportes();
+		clearScreen();
+		switch (opcion)
+		{
+		case 1:
+			Interfaz::menuReportesComponenteMasVendido();
+			break;
+		case 2:
+			Interfaz::menuReportesTotalVentas();
+			break;
+		case 3:
+			Interfaz::regresar();
+		}
+		system("pause");
+	} while (opcion != 3);
 }
