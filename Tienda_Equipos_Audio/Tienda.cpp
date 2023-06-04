@@ -120,6 +120,58 @@ Cliente* Tienda::buscarCliente(std::string codigo)
 	}
 }
 
+#include <map>
+std::string Tienda::mostrarComponenteMasVendido()
+{
+	if (_ventas->estaVacia()) {
+		return "No se han realizado ventas.";
+	}
+
+	// Crear un mapa para realizar el conteo de componentes vendidos
+	std::map<Componente*, int> conteoComponentes;
+
+	// Iterar sobre la lista de ventas y contar los componentes vendidos
+	Nodo<Venta>* nodoVenta = _ventas->getPrimero();
+	while (nodoVenta != nullptr) {
+		Nodo<Componente>* nodoComponente = nodoVenta->getDato()->getCarritoDeCompras()->getPrimero();
+		while (nodoComponente != nullptr) {
+			Componente* componente = nodoComponente->getDato();
+			if (conteoComponentes.find(componente) != conteoComponentes.end()) {
+				// El componente ya está en el mapa, incrementar su conteo
+				conteoComponentes[componente]++;
+			}
+			else {
+				// El componente no está en el mapa, inicializar su conteo en 1
+				conteoComponentes[componente] = 1;
+			}
+			nodoComponente = nodoComponente->getSiguiente();
+		}
+		nodoVenta = nodoVenta->getSiguiente();
+	}
+
+	// Encontrar el componente más vendido
+	Componente* componenteMasVendido = nullptr;
+	int cantidadMasVendida = 0;
+	for (const auto& pair : conteoComponentes) {
+		if (pair.second > cantidadMasVendida) {
+			componenteMasVendido = pair.first;
+			cantidadMasVendida = pair.second;
+		}
+	}
+
+	// Construir el mensaje de resultado utilizando stringstream
+	std::stringstream ss;
+	if (componenteMasVendido != nullptr) {
+		ss << "El componente más vendido es: " << componenteMasVendido->toString() << std::endl;
+		ss << "Cantidad vendida: " << cantidadMasVendida << " unidades.";
+	}
+	else {
+		ss << "No se han vendido componentes aún.";
+	}
+
+	return ss.str();
+}
+
 std::string Tienda::mostrarTotalVentas()
 {
 	try
