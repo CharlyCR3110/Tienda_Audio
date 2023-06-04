@@ -17,88 +17,11 @@ int Interfaz::menuPrincipal()
 	return opcion;
 }
 
-void Interfaz::menuVentaDirecta()
-{
-	// se verifica que el usuario este registrado
-	std::cout << "\t\tMenu Venta Directa" << std::endl;
-	Cliente* cliente = nullptr;
-	try
-	{
-		cliente = buscarCliente();
-		std::cout << "Bienvenido " << cliente->getNombre() << std::endl;
-		std::system("pause");	// esto muestra "Presione cualquier tecla para continuar..."
-		clearScreen();
-	}
-	catch (std::exception& e)
-	{
-		std::stringstream mensajeDeError;
-		mensajeDeError << "Error. El cliente parece no estar subscrito. Motivo: " << e.what() << std::endl;
-		mensajeDeError << "Por favor, registre al cliente antes de continuar." << std::endl;
-		std::cerr << mensajeDeError.str() << std::endl;
-		std::system("pause");
-		clearScreen();
-		return;
-	}
-	
-	// unidades de un un producto
-	int unidades = 0;
-	Componente* componenteActual = nullptr;
-	char seguirComprando = 's'; // acepta 's' 'S' 'n' 'N'
-	Venta* venta = new VentaDirecta(cliente, tienda->getFechaActual());
-	// se deben de agregar cosas a 
-	do
-	{
-		try 
-		{
-			componenteActual = menuVentaDirectaComprar();
-			do
-			{
-				std::cout << "Cuantas unidades desea" << std::endl;
-				std::cin >> unidades;
-			} while (unidades < 0);
-			venta->agregarComponente(componenteActual, unidades);
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << e.what() << std::endl;
-			std::system("pause");
-		}
-
-		// preguntar si desea seguir comprando y obligarlo a introducir s o n
-		do
-		{
-			std::cout << "Desea seguir comprando? (s/n): ";
-			std::cin >> seguirComprando;
-		} while (seguirComprando != 's' && seguirComprando != 'S' && seguirComprando != 'n' && seguirComprando != 'N');
-	} while (seguirComprando == 's' || seguirComprando == 'S');;
-	
-	clearScreen();
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	try
-	{
-		std::cout << venta->generarFactura() << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-		std::system("pause");
-	}
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	try
-	{
-		tienda->agregarVenta(venta);	// se agrega la venta a la tienda
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-		std::system("pause");
-	}
-}
-
-Componente* Interfaz::menuVentaDirectaComprar()
+// separando
+int Interfaz::obtenerOpcionMenuVentaDirecta()
 {
 	int opcionMenuVentaDirecta = 0;
-	Componente* componente = nullptr;
+
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "\tQue desea agregar al carrito" << std::endl;
 	std::cout << "1. Sistema Personalizado" << std::endl;
@@ -109,80 +32,88 @@ Componente* Interfaz::menuVentaDirectaComprar()
 	std::cin >> opcionMenuVentaDirecta;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 
-	switch (opcionMenuVentaDirecta)
+	return opcionMenuVentaDirecta;
+}
+
+Componente* Interfaz::crearSistemaPersonalizado()
+{
+	AbstractFactory* factory = new SistemaPersonalizadoFactory();
+	std::cout << "-----------------------CREANDO SISTEMA PERSONALIZADO------------------------" << std::endl;
+	Componente* componente = factory->crearSistemaDeAudio();
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	delete factory;
+
+	return componente;
+}
+
+Componente* Interfaz::escogerSistemaPreconfigurado()
+{
+	std::string codigo;
+	try
+	{
+		std::cout << "-------------------------------CATALOGO-------------------------------------" << std::endl;
+		tienda->mostrarCatalogo();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << "Error. " << e.what() << std::endl;
+		throw std::exception(e.what());    // se tira el en caso de que el catalogo este vacio
+	}
+
+	std::cout << "Digite el codigo del sistema preconfigurado: ";
+	std::cin >> codigo;
+
+	try
+	{
+		return tienda->escogerComponenteDelCatalogo(codigo);
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << "Error. " << e.what() << std::endl;
+		throw std::exception(e.what());    // se tira el en caso de que el codigo no exista
+	}
+}
+
+Componente* Interfaz::escogerComponenteSeparado()
+{
+	int categoriaComponente = obtenerCategoriaComponente();
+
+	Componente* componente = nullptr;
+	switch (categoriaComponente)
 	{
 	case 1:
-	{
-		AbstractFactory* factory = new SistemaPersonalizadoFactory();
-		std::cout << "-----------------------CREANDO SISTEMA PERSONALIZADO------------------------" << std::endl;
-		componente = factory->crearSistemaDeAudio();
-		std::cout << "----------------------------------------------------------------------------" << std::endl;
-		delete factory;
+		componente = ICrearProductos::crearFuenteDeAudio();
 		break;
-	}
 	case 2:
-	{
-		std::string codigo;
-		try
-		{
-			std::cout << "-------------------------------CATALOGO-------------------------------------" << std::endl;
-			tienda->mostrarCatalogo();
-			std::cout << "----------------------------------------------------------------------------" << std::endl;
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << "Error. " << e.what() << std::endl;
-			throw std::exception(e.what());	// se tira el en caso de que el catalogo este vacio
-		}
-		std::cout << "Digite el codigo del sistema preconfigurado: ";
-		std::cin >> codigo;
-		try
-		{
-			componente = tienda->escogerComponenteDelCatalogo(codigo);
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << "Error. " << e.what() << std::endl;
-			throw std::exception(e.what());	// se tira el en caso de que el codigo no exista
-		}
+		componente = ICrearProductos::crearProcesadorDeSenal();
 		break;
-	}
 	case 3:
-	{
-		int categoriaComponente = 0;
-		do
-		{
-			std::cout << "Categorias de componentes disponibles" << std::endl;
-			std::cout << "1. Fuentes de Audio" << std::endl;
-			std::cout << "2. Procesadores de Se�al" << std::endl;
-			std::cout << "3. Parlantes (Reproductores de Sonido)" << std::endl;
-			std::cout << "Seleccione una categoria: ";
-			std::cin >> categoriaComponente;
-
-			switch (categoriaComponente)
-			{
-			case 1:
-				componente = ICrearProductos::crearFuenteDeAudio();
-				break;
-			case 2:
-				componente = ICrearProductos::crearProcesadorDeSenal();
-				break;
-			case 3:
-				componente = ICrearProductos::crearParlante();
-				break;
-			default:
-				std::cout << "Opcion invalida" << std::endl;
-				break;
-			}
-		} while (categoriaComponente < 1 || categoriaComponente > 3);
+		componente = ICrearProductos::crearParlante();
 		break;
-	}
 	default:
-		throw std::exception("Menu Venta Directa: Opcion invalida");
+		std::cout << "Opcion invalida" << std::endl;
 		break;
 	}
 
 	return componente;
+}
+
+int Interfaz::obtenerCategoriaComponente()
+{
+	int categoriaComponente = 0;
+
+	do
+	{
+		std::cout << "Categorias de componentes disponibles" << std::endl;
+		std::cout << "1. Fuentes de Audio" << std::endl;
+		std::cout << "2. Procesadores de Señal" << std::endl;
+		std::cout << "3. Parlantes (Reproductores de Sonido)" << std::endl;
+		std::cout << "Seleccione una categoria: ";
+		std::cin >> categoriaComponente;
+	} while (categoriaComponente < 1 || categoriaComponente > 3);
+
+	return categoriaComponente;
 }
 
 void Interfaz::menuVentaEnLinea()

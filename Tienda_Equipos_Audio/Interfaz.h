@@ -12,10 +12,16 @@ public:
 	// MENU PRINCIPAL DE LA TIENDA
 	static int menuPrincipal();
 
-	// MENU DE VENTA DIRECTA DE SISTEMAS (PERSONALIZADOS, PRECONFIGURADOS Y COMPONENTES SEPARADOS)
-	static void menuVentaDirecta();
+	//// MENU DE VENTA DIRECTA DE SISTEMAS (PERSONALIZADOS, PRECONFIGURADOS Y COMPONENTES SEPARADOS)
+	static int obtenerOpcionMenuVentaDirecta();
 
-	static Componente* menuVentaDirectaComprar();	// aqui se puede comprar PERSONALIZADOS, PRECONFIGURADOS Y COMPONENTES SEPARADOS
+	static Componente* crearSistemaPersonalizado();
+
+	static Componente* escogerSistemaPreconfigurado();
+
+	static Componente* escogerComponenteSeparado();
+
+	static int obtenerCategoriaComponente();
 
 	// MENU DE VENTA EN LINEA (PRECONFIGURADOS Y COMPONENTES SEPARADOS)
 	static void menuVentaEnLinea();
