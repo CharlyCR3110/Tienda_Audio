@@ -4,6 +4,7 @@ Tienda* Interfaz::tienda = new Tienda();	// Inicializacion de variable estatica
 
 int Interfaz::menuPrincipal()
 {
+	tienda->suscribirCliente(new ClientePersona("Carlos", "604", "Costa Rica", "Miramar", "Correo", "Tico"));
 	int opcion = 0;
 	std::cout << "\t\tMenu Principal" << std::endl;
 	std::cout << "1. Venta Directa" << std::endl;
@@ -60,6 +61,7 @@ void Interfaz::menuVentaDirecta()
 		catch (std::exception& e)
 		{
 			std::cerr << e.what() << std::endl;
+			std::system("pause");
 		}
 
 		// preguntar si desea seguir comprando y obligarlo a introducir s o n
@@ -72,9 +74,25 @@ void Interfaz::menuVentaDirecta()
 	
 	clearScreen();
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << venta->generarFactura() << std::endl;
+	try
+	{
+		std::cout << venta->generarFactura() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		std::system("pause");
+	}
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-
+	try
+	{
+		tienda->agregarVenta(venta);	// se agrega la venta a la tienda
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		std::system("pause");
+	}
 }
 
 Componente* Interfaz::menuVentaDirectaComprar()
@@ -681,6 +699,55 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 	}
 
 }
+
+int Interfaz::menuReportes()
+{
+	// En la opción 1, muestre el producto que mas se ha vendido (sea componente o sistema)
+	//En la opción 2, muestre el total de ventas según todos los productos vendidos, especifique cuantos fueron componente y cuantos fueron sistemas
+	int opcion;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "\t\tReportes" << std::endl;
+	std::cout << "1. Reporte equipos mas vendidos" << std::endl;
+	std::cout << "2. Reporte ventas" << std::endl;
+	std::cout << "3. Salir" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Digite una opcion del menu: ";
+	std::cin >> opcion;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	return opcion;
+}
+
+ void Interfaz::menuReportesComponenteMasVendido()
+ {
+ 	//1, muestre el producto que mas se ha vendido(sea componente o sistema)
+ 	std::cout << "----------------------------------------------------------------------------" << std::endl;
+ 	std::cout << "El componente mas vendido es: " << std::endl;
+ 	std::cout << "----------------------------------------------------------------------------" << std::endl;
+ 	try
+ 	{
+ 		std::cout << tienda->mostrarComponenteMasVendido() << std::endl;
+ 	}
+ 	catch (std::exception& e)
+ 	{
+ 		std::cerr << e.what() << std::endl;
+ 	}
+ }
+
+ void Interfaz::menuReportesTotalVentas()
+ {
+	 std::cout << "----------------------------------------------------------------------------" << std::endl;
+	 std::cout << "El total de ventas es: " << std::endl;
+	 std::cout << "----------------------------------------------------------------------------" << std::endl;
+	 try
+	 {
+		 std::cout << tienda->mostrarTotalVentas() << std::endl;
+		 std::system("Pause");
+	 }
+	 catch (std::exception& e)
+	 {
+		 std::cerr << e.what() << std::endl;
+	 }
+ }
 
 Cliente* Interfaz::buscarCliente()
 {

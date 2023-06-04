@@ -47,7 +47,12 @@ public:
 	static void menuMantenimientoEliminarComponenteCatalogo();
 
 	// MENU REPORTES
-	//static int menuReportes();
+	static int menuReportes();
+
+	// submenus de reportes
+	static void menuReportesComponenteMasVendido();
+
+	static void menuReportesTotalVentas();
 
 	// UTILES
 	// metodo para buscar un usuario
