@@ -68,13 +68,29 @@ void Venta::agregarComponente(Componente* componente, int cantidad)
 
 	try
 	{
-		_carritoDeCompras->insertarDato(componenteClonado);
 		std::cout << "Componente precio: " << componenteClonado->getPrecioUnitario() << std::endl;	// "debug
 		std::cout << "cantidad: " << cantidad << std::endl;	// "debug
 		_subtotal += componenteClonado->getPrecioUnitario() * cantidad;
 		std::cout << "subtotal: " << _subtotal << std::endl;	// "debug
 		_total = _subtotal;
 		std::cout << "Componente agregado al carrito de compras" << std::endl;
+
+		// comprobar que el componente no se encuentre en la lista de componentes
+		// si se encuentra, se aumenta la cantidad
+		// si no se encuentra, se agrega a la lista
+		for (int i = 0; i < _carritoDeCompras->getCantidad(); i++)
+		{
+			Componente* componenteEnLista = _carritoDeCompras->get(i);
+
+			if (componenteEnLista->getCodigo() == componenteClonado->getCodigo())
+			{
+				// se aumenta la cantidad
+				componenteEnLista->setCantidadEnCarrito(componenteEnLista->getCantidadEnCarrito() + cantidad);
+				return;
+			}
+		}
+		// si no se encuentra, se agrega a la lista
+		_carritoDeCompras->insertarDato(componenteClonado);
 	}
 	catch (std::exception& e)
 	{
