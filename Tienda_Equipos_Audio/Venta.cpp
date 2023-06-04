@@ -44,6 +44,11 @@ Fecha* Venta::getFecha() const
 	return _fecha;
 }
 
+ListaEnlazada<Componente>* Venta::getCarritoDeCompras()
+{
+	return _carritoDeCompras;	// tal vez se deba retornar una copia
+}
+
 
 void Venta::setCliente(Cliente* cliente)
 {

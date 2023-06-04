@@ -13,6 +13,7 @@ public:
 	// getters
 	virtual Cliente* getCliente() const;
 	virtual Fecha* getFecha() const;
+	virtual ListaEnlazada<Componente>* getCarritoDeCompras();
 	// setters
 	virtual void setCliente(Cliente* cliente);
 	virtual void setFecha(Fecha* fecha);
