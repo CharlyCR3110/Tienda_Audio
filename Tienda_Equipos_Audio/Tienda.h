@@ -12,6 +12,7 @@
 #include "VentaDirecta.h"
 #include "VentaOnline.h"
 
+
 // Cliente hereda de IObserver
 // De Cliente heredan ClientePersona y ClienteEmpresa
 
@@ -34,6 +35,12 @@ public:
 
 	bool existeUsuarioRegistrado(std::string codigo);
 	Cliente* buscarCliente(std::string codigo);
+
+	std::string mostrarComponenteMasVendido();
+
+	std::string mostrarTotalVentas();
+
+	void agregarVenta(Venta* venta);
 
 	// getters
 	Fecha* getFechaActual() const;

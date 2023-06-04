@@ -120,6 +120,31 @@ Cliente* Tienda::buscarCliente(std::string codigo)
 	}
 }
 
+std::string Tienda::mostrarTotalVentas()
+{
+	try
+	{
+		return _ventas->toString();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+void Tienda::agregarVenta(Venta* venta)
+{
+	try
+	{
+		_ventas->insertarDato(venta);
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+
 Fecha* Tienda::getFechaActual() const
 {
 	return _fechaActual;
