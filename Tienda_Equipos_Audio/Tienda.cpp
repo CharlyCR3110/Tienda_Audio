@@ -138,11 +138,11 @@ std::string Tienda::mostrarComponenteMasVendido()
 			Componente* componente = nodoComponente->getDato();
 			if (conteoComponentes.find(componente) != conteoComponentes.end()) {
 				// El componente ya está en el mapa, incrementar su conteo
-				conteoComponentes[componente]++;
+				conteoComponentes[componente] += componente->getCantidadEnCarrito();
 			}
 			else {
-				// El componente no está en el mapa, inicializar su conteo en 1
-				conteoComponentes[componente] = 1;
+				// El componente no está en el mapa, agregarlo normalmente
+				conteoComponentes[componente] = componente->getCantidadEnCarrito();
 			}
 			nodoComponente = nodoComponente->getSiguiente();
 		}
