@@ -669,6 +669,7 @@ void Interfaz::salir()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::system("pause");
 	clearScreen();
+	tienda->guardarClientes();
 }
 
 void Interfaz::opcionInvalida()
