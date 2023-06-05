@@ -12,6 +12,7 @@
 #include "VentaDirecta.h"
 #include "VentaOnline.h"
 
+#include "GestorArchivos.h"
 
 // Cliente hereda de IObserver
 // De Cliente heredan ClientePersona y ClienteEmpresa
@@ -49,6 +50,11 @@ public:
 	
 	// Utilizados en menu mantenimiento
 	std::string mostrarListaClientes();
+
+	// archivos
+
+	void guardarClientes();
+
 private:
 	Catalogo* _catalogo;	// Catalogo de productos de la tienda
 	ListaEnlazada<Cliente>* _clientes;
