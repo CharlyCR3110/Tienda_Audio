@@ -442,11 +442,15 @@ inline std::string ListaEnlazada<T>::toString() const
 
 	std::stringstream ss;
 	Nodo<T>* actual = _primero;
+	int contador = 1;
 	while (actual != nullptr)
 	{
 		//ss << *actual->getDato() << std::endl;
+		ss << "----------------------------------------------------------------------------" << std::endl;
+		ss << "(" << contador++ << ")" << std::endl;
 		ss << actual->getDato()->toString() << std::endl;
 		actual = actual->getSiguiente();
+		ss << "----------------------------------------------------------------------------" << std::endl;
 
 	}
 	return ss.str();
