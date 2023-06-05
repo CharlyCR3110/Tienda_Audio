@@ -52,6 +52,11 @@ std::string Cliente::getCodigo() const
 	return _cedula;
 }
 
+char Cliente::getTipo() const
+{
+	return _tipo;
+}
+
 void Cliente::setNombre(std::string nombre)
 {
 	_nombre = nombre;

@@ -18,6 +18,8 @@ public:
 	virtual std::string getCiudad() const;
 
 	virtual std::string getCodigo() const;
+
+	virtual char getTipo() const;
 	// setters
 	virtual void setNombre(std::string nombre);
 	virtual void setCedula(std::string cedula);
@@ -37,6 +39,6 @@ protected:
 	std::string _pais;
 	std::string _ciudad;
 
-	char _tipo;	// Cliente Fisico o Persona = 'F', Cliente Empresa = 'E'
+	char _tipo;	// Cliente Fisico o Persona = 'P', Cliente Empresa = 'E'
 };
 
