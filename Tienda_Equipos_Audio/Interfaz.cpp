@@ -4,9 +4,6 @@ Tienda* Interfaz::tienda = new Tienda();	// Inicializacion de variable estatica
 
 int Interfaz::menuPrincipal()
 {
-	tienda->suscribirCliente(new ClientePersona("Carlos", "604", "Costa Rica", "Miramar", "Correo", "Tico"));
-	tienda->suscribirCliente(new ClientePersona("Juan", "602", "Costa Rica", "Miramar", "Correo", "Tico"));
-
 	int opcion = 0;
 	std::cout << "\t\tMenu Principal" << std::endl;
 	std::cout << "1. Venta Directa" << std::endl;
