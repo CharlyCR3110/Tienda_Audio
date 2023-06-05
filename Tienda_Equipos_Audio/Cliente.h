@@ -36,5 +36,7 @@ protected:
 	std::string _cedula;
 	std::string _pais;
 	std::string _ciudad;
+
+	char _tipo;	// Cliente Fisico o Persona = 'F', Cliente Empresa = 'E'
 };
 
