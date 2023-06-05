@@ -1,16 +1,5 @@
 #include "MontoTranslado.h"
 
-//c�digo	pa�s	ciudad	costo_traslado
-//010	Argentina	Buenos Aires	175.00
-//020	Brasil	Brasilia	150.00
-//030	Canad�	Ontario	160.00
-//031	EEUU	California	150.00
-//032	EEUU	New York	100.00
-//040	Francia	Paris	200.00
-//050	Inglaterra	Londres	200.00
-//060	Italia	Milan	250.00
-//090	Costa Rica(local)	GAM	50.00
-//091	Costa Rica(local)	fuera de la GAM	80.00
 double MontoTranslado::getMonto(std::string codigo)
 {
 	if (codigo == "010")
@@ -55,7 +44,7 @@ double MontoTranslado::getMonto(std::string codigo)
 	}
 	else
 	{
-		throw new std::exception("C�digo de pa�s no encontrado");
+		throw CodigoDeCiudadNoValidoException(codigo);	// Lanzo una excepcion si el codigo no es valido ( esto no no va a pasar porque ya lo verifico en el metodo disponibilidadDeEnvio() )
 	}
 }
 

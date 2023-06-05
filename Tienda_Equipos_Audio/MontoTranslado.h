@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>	// libreria de C++ para manipular la salida de datos	// solo se usa setw
+#include "CodigoDeCiudadNoValidoException.h"
 
 
 class MontoTranslado	// tiene la lista, recibe el codigo y devuelve el monto
