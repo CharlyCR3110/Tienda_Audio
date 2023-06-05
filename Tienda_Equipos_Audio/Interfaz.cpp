@@ -309,22 +309,48 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 
 	// cedula juridica o cedula normal
 	numeroDeIntento = 0;	// se reinicia el numero de intentos
-
+	bool existeOtroClienteConLaMismaCedula = false;
 	do
 	{
-		if (numeroDeIntento != 0)
+		if (numeroDeIntento != 0 && !existeOtroClienteConLaMismaCedula)	// por si la cedula es invalida y no existe otro cliente con la misma cedula
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una cedula valida" << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::system("pause");
 			clearScreen();
 		}
+
+		if (existeOtroClienteConLaMismaCedula)	// por si la cedula es valida pero ya existe otro cliente con la misma cedula
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Ya existe un cliente con esa cedula" << std::endl;
+			std::cout << "Por favor digite una cedula diferente" << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la cedula: ";
 		std::getline(std::cin, cedula);
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		numeroDeIntento++;
-	} while (!esStringValido(cedula, false, true, false, "numero de cedula"));	// se permite que la cedula tenga numeros
+
+		// validar que no haya otro cliente con la misma cedula
+
+		try
+		{
+			existeOtroClienteConLaMismaCedula = tienda->existeUsuarioRegistrado(cedula);
+		}
+		catch (std::exception& e)
+		{
+			// si se lanza una excepcion es porque la lista esta vacia, lo que significa que no hay otro cliente con la misma cedula
+			existeOtroClienteConLaMismaCedula = false;
+		}
+
+	// mientras el string no sea valido o exista otro cliente con la misma cedula
+	} while (!esStringValido(cedula, false, true, false, "numero de cedula") || existeOtroClienteConLaMismaCedula);	// se permite que la cedula tenga numeros
 
 	// pais
 	numeroDeIntento = 0;	// se reinicia el numero de intentos
