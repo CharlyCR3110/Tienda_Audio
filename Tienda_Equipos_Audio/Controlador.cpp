@@ -205,7 +205,11 @@ void Controlador::controladorVentaEnLinea()
 
 	if (!MontoTranslado::disponibilidadDeEnvio(codigoDeEnvio))	// true si hay envios disponibles false sino
 	{
-		throw std::exception("No hay envios disponibles");	// cambiar por excepcion de envios
+		std::cerr << "Error. No hay cobertura de envio para el codigo ingresado." << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;"
+		std::system("pause");
+		clearScreen();
+		return;
 	}
 	else
 	{
