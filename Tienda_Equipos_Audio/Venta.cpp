@@ -5,7 +5,8 @@ Venta::Venta() :
 	_fecha(new Fecha()),
 	_carritoDeCompras(new ListaEnlazada<Componente>()),
 	_total(0),
-	_subtotal(0)
+	_subtotal(0),
+	_tipoDeVenta(' ')
 {
 }
 
@@ -14,7 +15,8 @@ Venta::Venta(Cliente* cliente, Fecha* fecha) :
 	_fecha(fecha),
 	_carritoDeCompras(new ListaEnlazada<Componente>()),
 	_total(0),
-	_subtotal(0)
+	_subtotal(0),
+	_tipoDeVenta(' ')
 {
 }
 
@@ -23,7 +25,8 @@ Venta::Venta(const Venta& venta) :
 	_fecha(venta._fecha),
 	_carritoDeCompras(venta._carritoDeCompras),
 	_total(venta._total),
-	_subtotal(venta._subtotal)
+	_subtotal(venta._subtotal),
+	_tipoDeVenta(venta._tipoDeVenta)
 {
 }
 

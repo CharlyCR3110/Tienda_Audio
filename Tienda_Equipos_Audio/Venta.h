@@ -41,5 +41,7 @@ protected:
 
 	double _total;
 	double _subtotal;
+
+	char _tipoDeVenta;	// D = directa, O = online
 };
 
