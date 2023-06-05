@@ -14,6 +14,8 @@ public:
 	virtual Cliente* getCliente() const;
 	virtual Fecha* getFecha() const;
 	virtual ListaEnlazada<Componente>* getCarritoDeCompras();
+	virtual char getTipoDeVenta() const;
+
 	// setters
 	virtual void setCliente(Cliente* cliente);
 	virtual void setFecha(Fecha* fecha);

@@ -52,6 +52,11 @@ ListaEnlazada<Componente>* Venta::getCarritoDeCompras()
 	return _carritoDeCompras;	// tal vez se deba retornar una copia
 }
 
+char Venta::getTipoDeVenta() const
+{
+	return _tipoDeVenta;
+}
+
 
 void Venta::setCliente(Cliente* cliente)
 {
