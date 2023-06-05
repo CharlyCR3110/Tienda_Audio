@@ -669,7 +669,24 @@ void Interfaz::salir()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::system("pause");
 	clearScreen();
-	tienda->guardarClientes();
+
+	try
+	{
+		tienda->guardarClientes();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		tienda->guardarVentas();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 void Interfaz::opcionInvalida()
