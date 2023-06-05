@@ -18,4 +18,6 @@ public:
 	std::string mostrarCategoriaDelCatalogo(std::string categoria);
 
 	Componente* buscarComponentePorCodigo(std::string codigo);
+	bool existeOtroSistemaPreconfigurado(std::string codigo);
+
 };

@@ -107,3 +107,15 @@ Componente* Catalogo::buscarComponentePorCodigo(std::string codigo)
 		throw std::exception(e.what());
 	}
 }
+
+bool Catalogo::existeOtroSistemaPreconfigurado(std::string codigo)
+{
+	try
+	{
+		return componentes->existeDatoPorCodigo(codigo);
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
