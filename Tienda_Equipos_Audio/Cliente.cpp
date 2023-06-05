@@ -23,7 +23,7 @@ Cliente::Cliente(const Cliente& other):
 	_cedula(other._cedula),
 	_pais(other._pais),
 	_ciudad(other._ciudad),
-	_tipo(other.tipo)
+	_tipo(other._tipo)
 {
 }
 
