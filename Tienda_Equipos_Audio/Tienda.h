@@ -33,6 +33,8 @@ public:
 	std::string mostrarCatalogo();
 	Componente* escogerComponenteDelCatalogo(std::string codigo);
 
+	bool existeOtroSistemaPreconfigurado(std::string codigo);
+
 	bool existeUsuarioRegistrado(std::string codigo);
 	Cliente* buscarCliente(std::string codigo);
 

@@ -96,6 +96,18 @@ Componente* Tienda::escogerComponenteDelCatalogo(std::string codigo)
 	}
 }
 
+bool Tienda::existeOtroSistemaPreconfigurado(std::string codigo)
+{
+	try
+	{
+		return _catalogo->existeOtroSistemaPreconfigurado(codigo);
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
 bool Tienda::existeUsuarioRegistrado(std::string codigo)
 {
 	try
