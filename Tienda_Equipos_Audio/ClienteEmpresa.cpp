@@ -4,18 +4,21 @@ ClienteEmpresa::ClienteEmpresa():
 	Cliente(),
 	_razonSocial("0")
 {
+	this->_tipo = 'E';
 }
 
 ClienteEmpresa::ClienteEmpresa(std::string nombre, std::string cedula, std::string pais, std::string ciudad, std::string razonSocial):
 	Cliente(nombre, cedula, pais, ciudad),
 	_razonSocial(razonSocial)
 {
+	this->_tipo = 'E';
 }
 
 ClienteEmpresa::ClienteEmpresa(const ClienteEmpresa& empresa):
 	Cliente(empresa),
 	_razonSocial(empresa._razonSocial)
 {
+	this->_tipo = 'E';
 }
 
 void ClienteEmpresa::Update()
