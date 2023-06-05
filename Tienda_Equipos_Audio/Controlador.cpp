@@ -206,7 +206,7 @@ void Controlador::controladorVentaEnLinea()
 	if (!MontoTranslado::disponibilidadDeEnvio(codigoDeEnvio))	// true si hay envios disponibles false sino
 	{
 		std::cerr << "Error. No hay cobertura de envio para el codigo ingresado." << std::endl;
-		std::cout << "Regresando al menu principal..." << std::endl;"
+		std::cout << "Regresando al menu principal..." << std::endl;
 		std::system("pause");
 		clearScreen();
 		return;
