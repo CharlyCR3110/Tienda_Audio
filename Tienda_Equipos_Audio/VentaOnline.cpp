@@ -57,7 +57,14 @@ std::string VentaOnline::generarFactura()
 	ss << "------------------------------------------" << std::endl;
 	for (int i = 0; i < _carritoDeCompras->getCantidad(); i++)
 	{
-		ss << "( " << i + 1 << " )   " << _carritoDeCompras->get(i)->toString() << std::endl;
+		if (_carritoDeCompras->get(i)->getCategoria() != "Sistema Personalizado" && _carritoDeCompras->get(i)->getCategoria() != "Sistema Pre-Configurado")
+		{
+			ss << "( " << i + 1 << " )   " << "Componente Simple\t" << _carritoDeCompras->get(i)->toString() << std::endl;
+		}
+		else
+		{
+			ss << "( " << i + 1 << " )   " << _carritoDeCompras->get(i)->toString() << std::endl;
+		}
 	}
 	ss << "------------------------------------------" << std::endl;
 	ss << "Subtotal: " << _subtotal << std::endl;
@@ -70,7 +77,8 @@ std::string VentaOnline::generarFactura()
 std::string VentaOnline::toString() const
 {
 	std::stringstream ss;
-	ss << "Factura de venta online" << std::endl;
+	ss << "------------------------------------------" << std::endl;
+	ss << "Venta online" << std::endl;
 	ss << "------------------------------------------" << std::endl;
 	ss << "Cliente: " << _cliente->getNombre() << std::endl;
 	ss << "------------------------------------------" << std::endl;
@@ -92,9 +100,10 @@ std::string VentaOnline::toString() const
 		}
 	}
 	ss << "------------------------------------------" << std::endl;
-	ss << "Subtotal: " << _subtotal << std::endl;
+	ss << "Precio del envio: " << MontoTranslado::getMonto(_codigoLugarEntrega) << std::endl;
 	ss << "------------------------------------------" << std::endl;
 	ss << "Total: " << _total << std::endl;
+	ss << "------------------------------------------" << std::endl;
 	return ss.str();
 }
 
