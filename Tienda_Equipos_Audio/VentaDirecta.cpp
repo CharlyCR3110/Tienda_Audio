@@ -3,16 +3,19 @@
 VentaDirecta::VentaDirecta():
 	Venta()
 {
+	this->_tipoDeVenta = 'D';
 }
 
 VentaDirecta::VentaDirecta(Cliente* cliente, Fecha* fecha):
 	Venta(cliente, fecha)
 {
+	this->_tipoDeVenta = 'D';
 }
 
 VentaDirecta::VentaDirecta(const VentaDirecta& other):
 	Venta(other)
 {
+	this->_tipoDeVenta = 'D';
 }
 
 VentaDirecta::~VentaDirecta()

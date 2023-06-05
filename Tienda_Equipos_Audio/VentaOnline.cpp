@@ -4,6 +4,7 @@ VentaOnline::VentaOnline() :
 	Venta(),
 	_codigoLugarEntrega("")
 {
+	this->_tipoDeVenta = 'O';
 }
 
 VentaOnline::VentaOnline(Cliente* cliente, Fecha* fecha, std::string codigoLugarEntrega)
@@ -11,12 +12,14 @@ VentaOnline::VentaOnline(Cliente* cliente, Fecha* fecha, std::string codigoLugar
 	_codigoLugarEntrega(codigoLugarEntrega)
 {
 	_total = MontoTranslado::getMonto(_codigoLugarEntrega);
+	this->_tipoDeVenta = 'O';
 }
 
 VentaOnline::VentaOnline(const VentaOnline& other) :
 	Venta(other),
 	_codigoLugarEntrega(other._codigoLugarEntrega)
 {
+	this->_tipoDeVenta = 'O';
 }
 
 VentaOnline::~VentaOnline()
