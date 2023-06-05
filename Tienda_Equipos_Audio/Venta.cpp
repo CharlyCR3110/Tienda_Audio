@@ -57,6 +57,16 @@ char Venta::getTipoDeVenta() const
 	return _tipoDeVenta;
 }
 
+double Venta::getTotal() const
+{
+	return _total;
+}
+
+double Venta::getSubtotal() const
+{
+	return _subtotal;
+}
+
 
 void Venta::setCliente(Cliente* cliente)
 {

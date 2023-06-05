@@ -16,6 +16,9 @@ public:
 	virtual ListaEnlazada<Componente>* getCarritoDeCompras();
 	virtual char getTipoDeVenta() const;
 
+	virtual double getTotal() const;
+	virtual double getSubtotal() const;
+
 	// setters
 	virtual void setCliente(Cliente* cliente);
 	virtual void setFecha(Fecha* fecha);
