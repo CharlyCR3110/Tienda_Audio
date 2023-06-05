@@ -471,13 +471,61 @@ void Interfaz::menuMantenimientoVerCatalogoComponentes()	// unicamente muestra e
 void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear los sistemas preconfigurados
 {
 	AbstractFactory* fabrica = new SistemaPreConfiguradoFactory();
-	Componente* componentePreConfigurador = nullptr;
-	componentePreConfigurador = fabrica->crearSistemaDeAudio();
+	Componente* componentePreConfigurado = nullptr;
+	componentePreConfigurado = fabrica->crearSistemaDeAudio();
+
+	// verificar que no exita otro sistema de audio con ese codigo
+	std::string codigo;
+	
+	std::cout << "El codigo actual es: " << componentePreConfigurado->getCodigo() << std::endl;
+	bool seModificoElCodigo = false;
+
+	while (true) {
+		try 
+		{
+			if (tienda->existeOtroSistemaPreconfigurado(componentePreConfigurado->getCodigo())) 
+			{
+				seModificoElCodigo = true;
+				clearInputBuffer();
+				std::cout << "----------------------------------------------------------------------------" << std::endl;
+				std::cout << "Ups... parece que ya existe un sistema de audio con ese codigo" << std::endl;
+				std::cout << "----------------------------------------------------------------------------" << std::endl;
+				int numeroDeIntento = 0;
+				do 
+				{
+					if (numeroDeIntento != 0) 
+					{
+						std::cout << "----------------------------------------------------------------------------" << std::endl;
+						std::cout << "Por favor digite un codigo valido" << std::endl;
+						std::system("pause");
+						clearScreen();
+					}
+					std::cout << "----------------------------------------------------------------------------" << std::endl;
+					std::cout << "Por favor digite otro codigo: ";
+					std::getline(std::cin, codigo);
+					std::cout << "----------------------------------------------------------------------------" << std::endl;
+					numeroDeIntento++;
+				} while (!esStringValido(codigo, false, true, false, "codigo"));    // se permite que el codigo tenga numeros
+				componentePreConfigurado->setCodigo(codigo);
+
+				std::cout << "----------------------------------------------------------------------------" << std::endl;
+			}
+			else 
+			{
+				break;  // Sale del bucle while si no existe otro sistema con el mismo código
+			}
+		}
+		catch (const std::exception& e) 
+		{
+			break;  // Sale del bucle while si la lista está vacía
+		}
+	}
+
 
 	try
 	{
-		componentePreConfigurador->setPrecio(componentePreConfigurador->getPrecio() * 0.35 + componentePreConfigurador->getPrecio() * 0.35);	// se le agrega el 35% de ganancia
-		tienda->agregarComponente(componentePreConfigurador);
+		componentePreConfigurado->setPrecio(componentePreConfigurado->getPrecio() * 0.35 + componentePreConfigurado->getPrecio() * 0.35);	// se le agrega el 35% de ganancia
+		tienda->agregarComponente(componentePreConfigurado);
 	}
 	catch (std::exception& e)
 	{
@@ -485,7 +533,7 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 	}
 
 	delete fabrica;
-	delete componentePreConfigurador;
+	delete componentePreConfigurado;
 }
 
 void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
