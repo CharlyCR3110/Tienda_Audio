@@ -44,29 +44,23 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 {
 	//validar que no exista otro curso con el mismo codigo
 	std::string codigo;
-	bool esCodigoValido = false;
-	while (!esCodigoValido)
+	int numeroDeIntento = 0;
+	// solicitar y comprobar que sea valida (no puede ser vacia ni tener caracteres especiales, solo letras y numeros)
+	do
 	{
-		clearInputBuffer();
-		std::cout << "Digite el codigo del sistema: ";
-		std::getline(std::cin, codigo);
-		if (codigo.empty())
+		if (numeroDeIntento != 0)
 		{
-			std::cerr << "Error: El codigo del sistema no puede estar vacio." << std::endl;
-			clearInputBuffer();
-			continue;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un codigo valido" << std::endl;
+			std::system("pause");
+			clearScreen();
 		}
-
-		//TO-DO validar que no exista otro curso con el mismo codigo
-		//if (catalogo->existeCursoConCodigo(codigo))
-		//{
-		//	std::cerr << "Error: Ya existe un curso con ese codigo." << std::endl;
-		//	clearInputBuffer();
-		//	continue;
-		//}
-
-		esCodigoValido = true;
-	}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el codigo del sistema de audio que desea agregar: ";
+		std::getline(std::cin, codigo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(codigo, false, true, false, "codigo"));	// se permite que el codigo tenga numeros
 
 	return codigo;
 }
@@ -75,7 +69,7 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 {
 	const std::string mensaje = "Seleccione el tipo de fuente de audio que desea comprar:";
-	const std::string opciones[] = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micrófono" };
+	const std::string opciones[] = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micrï¿½fono" };
 	FuenteDeAudio* (*funciones[])() = { crearUnidadCD, crearTornamesa, crearRadio, crearUnidadBluetooth, crearMicrofono };
 
 	return crearCategoria<FuenteDeAudio>(mensaje, opciones, funciones, sizeof(opciones) / sizeof(opciones[0]));
@@ -83,7 +77,7 @@ FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 
 FuenteDeAudio* ICrearProductos::crearUnidadCD()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{ "DF531", "Unidad basica", "100.00" },
@@ -97,7 +91,7 @@ FuenteDeAudio* ICrearProductos::crearUnidadCD()
 
 FuenteDeAudio* ICrearProductos::crearTornamesa()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"FF211", "Unidad basica 33 / 45 RPM", "180.00"},
@@ -110,7 +104,7 @@ FuenteDeAudio* ICrearProductos::crearTornamesa()
 
 FuenteDeAudio* ICrearProductos::crearRadio()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"NW671", "Basico AM / FM", "90.00"},
@@ -124,7 +118,7 @@ FuenteDeAudio* ICrearProductos::crearRadio()
 
 FuenteDeAudio* ICrearProductos::crearUnidadBluetooth()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"YM396", "Basico", "70.00"},
@@ -137,7 +131,7 @@ FuenteDeAudio* ICrearProductos::crearUnidadBluetooth()
 
 FuenteDeAudio* ICrearProductos::crearMicrofono()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"GX610", "Alambrico", "90.00"},
@@ -152,10 +146,10 @@ FuenteDeAudio* ICrearProductos::crearMicrofono()
 
 // PROCESADORES DE SENAL
 
-// metodo para crear un procesador de señal de cualquier tipo
+// metodo para crear un procesador de seï¿½al de cualquier tipo
 ProcesadorDeSenal* ICrearProductos::crearProcesadorDeSenal()
 {
-	const std::string mensaje = "Seleccione el tipo de procesador de señal que desea comprar:";
+	const std::string mensaje = "Seleccione el tipo de procesador de seï¿½al que desea comprar:";
 	const std::string opciones[] = { "Amplificador", "Mezclador" };
 	ProcesadorDeSenal* (*funciones[])() = { crearAmplificador, crearMezclador };
 
@@ -165,7 +159,7 @@ ProcesadorDeSenal* ICrearProductos::crearProcesadorDeSenal()
 
 ProcesadorDeSenal* ICrearProductos::crearAmplificador()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"CA188", "80W", "90.00"},
@@ -180,7 +174,7 @@ ProcesadorDeSenal* ICrearProductos::crearAmplificador()
 
 ProcesadorDeSenal* ICrearProductos::crearMezclador()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"JC327", "2 canales analogicos", "70.00"},
@@ -208,7 +202,7 @@ ParlanteCat* ICrearProductos::crearParlanteCat()
 
 ParlanteCat* ICrearProductos::crearParlante()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"MK537", "200W", "235.00"},
@@ -224,7 +218,7 @@ ParlanteCat* ICrearProductos::crearParlante()
 
 ParlanteCat* ICrearProductos::crearAudifono()
 {
-	// Arreglo que contiene el modelo, característica y precio de cada producto
+	// Arreglo que contiene el modelo, caracterï¿½stica y precio de cada producto
 	const std::string productos[][3] =
 	{
 		{"UK930", "Basico(intraural)", "20.00"},
