@@ -22,7 +22,7 @@ void Controlador::controladorPrincipal(int opcion)
 		std::system("pause");
 		break;
 	case 2:
-		Interfaz::menuVentaEnLinea();
+		controladorVentaEnLinea();
 		break;
 	case 3:
 		controladorMantenimiento();
@@ -74,8 +74,22 @@ void Controlador::controladorVentaDirecta()
 			componenteActual = controladorMenuVentaDirectaComprar();
 			do
 			{
-				std::cout << "Cuantas unidades desea" << std::endl;
+				std::cout << "Cuantas unidades desea: ";
 				std::cin >> unidades;
+
+				// Verificar si la entrada es un número
+				if (std::cin.fail())
+				{
+					std::cerr << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+
+					// Restablecer el estado de std::cin
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					unidades = -1;	// para que se repita el ciclo
+					std::system("pause");
+					clearScreen();
+				}
+
 			} while (unidades < 0);
 			venta->agregarComponente(componenteActual, unidades);
 		}
@@ -133,6 +147,142 @@ Componente* Controlador::controladorMenuVentaDirectaComprar()
 		break;
 	default:
 		throw std::exception("Menu Venta Directa: Opcion invalida");
+		break;
+	}
+
+	return componente;
+}
+
+void Controlador::controladorVentaEnLinea()
+{
+	// se verifica que el usuario este registrado
+	std::cout << "\t\tMenu Venta Online" << std::endl;
+	Cliente* cliente = nullptr;
+	try
+	{
+		cliente = Interfaz::buscarCliente();
+		std::cout << "Bienvenido " << cliente->getNombre() << std::endl;
+		std::system("pause");	// esto muestra "Presione cualquier tecla para continuar..."
+		clearScreen();
+	}
+	catch (std::exception& e)
+	{
+		std::stringstream mensajeDeError;
+		mensajeDeError << "Error. El cliente parece no estar subscrito. Motivo: " << e.what() << std::endl;
+		mensajeDeError << "Por favor, registre al cliente antes de continuar." << std::endl;
+		std::cerr << mensajeDeError.str() << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
+	}
+
+	std::string codigoDeEnvio;
+
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Lista de envios disponibles" << std::endl;
+	std::cout << MontoTranslado::mostrarLista() << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+	int numeroDeIntento = 0;	// se reinicia el numero de intentos
+
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un codigo de envio valido" << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el codigo de envio: ";
+		std::cin >> codigoDeEnvio;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(codigoDeEnvio, false, true, false, "codigo de envio"));	// el codigo de envio solo puede contener numeros
+
+	if (!MontoTranslado::disponibilidadDeEnvio(codigoDeEnvio))	// true si hay envios disponibles false sino
+	{
+		throw std::exception("No hay envios disponibles");	// cambiar por excepcion de envios
+	}
+	else
+	{
+		std::cout << "Perfecto! Tenemos cobertura de envio. El envio tiene un costo de: " << MontoTranslado::getMonto(codigoDeEnvio) << std::endl;
+	}
+
+	Venta* venta = new VentaOnline(cliente, Interfaz::tienda->getFechaActual(), codigoDeEnvio);
+	// unidades de un un producto
+	int unidades = 0;
+	Componente* componenteActual = nullptr;
+	char seguirComprando = 's'; // acepta 's' 'S' 'n' 'N'
+	do
+	{
+		try
+		{
+			componenteActual = controladorMenuVentaEnLineaComprar();
+			do
+			{
+				std::cout << "Cuantas unidades desea: ";
+				std::cin >> unidades;
+
+				// Verificar si la entrada es un número
+				if (std::cin.fail()) {
+					std::cerr << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+
+					// Restablecer el estado de std::cin
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					unidades = -1;	// para que se repita el ciclo
+				}
+
+			} while (unidades < 0);
+			venta->agregarComponente(componenteActual, unidades);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+
+		// preguntar si desea seguir comprando y obligarlo a introducir s o n
+		do
+		{
+			std::cout << "Desea seguir comprando? (s/n): ";
+			std::cin >> seguirComprando;
+		} while (seguirComprando != 's' && seguirComprando != 'S' && seguirComprando != 'n' && seguirComprando != 'N');
+	} while (seguirComprando == 's' || seguirComprando == 'S');;
+
+	clearScreen();
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << venta->generarFactura() << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::system("pause");
+
+	// se agrega la venta a la tienda
+	try
+	{
+		Interfaz::tienda->agregarVenta(venta);
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		std::system("pause");
+	}
+}
+
+Componente* Controlador::controladorMenuVentaEnLineaComprar()
+{
+	int opcionMenuVentaEnLinea = Interfaz::obtenerOpcionMenuVentaEnLinea();
+	Componente* componente = nullptr;
+
+	switch (opcionMenuVentaEnLinea)
+	{
+	case 1:
+		componente = Interfaz::escogerSistemaPreconfigurado();
+	case 2:
+		componente = Interfaz::escogerComponenteSeparado();
+		break;
+	default:
+		throw std::exception("Menu Venta En Linea: Opcion invalida");
 		break;
 	}
 

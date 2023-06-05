@@ -8,16 +8,21 @@ public:
 
 	void controladorPrincipal(int opcion);
 
-	// Separando el menuVentaDirecta en partes
+	// venta directa
 	void controladorVentaDirecta();
 
 	Componente* controladorMenuVentaDirectaComprar();
 
+	//	venta en linea
+	void controladorVentaEnLinea();
 
+	Componente* controladorMenuVentaEnLineaComprar();
 
+	// mantenimiento
 	void controladorMantenimiento();
 
-	void controladorReportes(); // en construccion
+	// reportes
+	void controladorReportes();
 
 };
 
