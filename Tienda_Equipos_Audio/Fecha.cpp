@@ -66,6 +66,13 @@ std::string Fecha::toString() const
 	return ss.str();
 }
 
+std::string Fecha::guardarFecha() const
+{
+	std::stringstream ss;
+	ss << _dia << "|" << _mes << "|" << _anio;
+	return ss.str();
+}
+
 Fecha& Fecha::operator=(const Fecha& other)
 {
 	if (this != &other)
