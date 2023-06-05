@@ -248,3 +248,16 @@ void Tienda::guardarClientes()
 		throw std::exception(e.what());
 	}
 }
+
+void Tienda::guardarVentas()
+{
+	try
+	{
+		GestorArchivos::guardarListaDeVentas(_ventas);
+		std::cout << "Se ha guardado la lista de ventas." << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}

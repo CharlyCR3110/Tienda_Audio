@@ -55,6 +55,8 @@ public:
 
 	void guardarClientes();
 
+	void guardarVentas();
+
 private:
 	Catalogo* _catalogo;	// Catalogo de productos de la tienda
 	ListaEnlazada<Cliente>* _clientes;
