@@ -15,18 +15,19 @@ public:
 	//// MENU DE VENTA DIRECTA DE SISTEMAS (PERSONALIZADOS, PRECONFIGURADOS Y COMPONENTES SEPARADOS)
 	static int obtenerOpcionMenuVentaDirecta();
 
-	static Componente* crearSistemaPersonalizado();
+	static Componente* crearSistemaPersonalizado();	// unicamente se llama desde el menu de venta directa
 
-	static Componente* escogerSistemaPreconfigurado();
+	static Componente* escogerSistemaPreconfigurado();	// venta direca y venta en linea
 
-	static Componente* escogerComponenteSeparado();
+	static Componente* escogerComponenteSeparado();	// venta directa y venta en linea
 
-	static int obtenerCategoriaComponente();
+	static int obtenerCategoriaComponente();	// venta directa y venta en linea (escogerComponenteSeparado() )
 
 	// MENU DE VENTA EN LINEA (PRECONFIGURADOS Y COMPONENTES SEPARADOS)
-	static void menuVentaEnLinea();
 
-	static Componente* menuVentaEnLineaComprar();	// aqui se puede comprar PRECONFIGURADOS Y COMPONENTES SEPARADOS
+	static int obtenerOpcionMenuVentaEnLinea();
+
+	static int cuantasUnidadesDesea();
 
 
 	// MENU DE MANTENIMIENTO

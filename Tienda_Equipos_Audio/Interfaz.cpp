@@ -5,6 +5,8 @@ Tienda* Interfaz::tienda = new Tienda();	// Inicializacion de variable estatica
 int Interfaz::menuPrincipal()
 {
 	tienda->suscribirCliente(new ClientePersona("Carlos", "604", "Costa Rica", "Miramar", "Correo", "Tico"));
+	tienda->suscribirCliente(new ClientePersona("Juan", "602", "Costa Rica", "Miramar", "Correo", "Tico"));
+
 	int opcion = 0;
 	std::cout << "\t\tMenu Principal" << std::endl;
 	std::cout << "1. Venta Directa" << std::endl;
@@ -116,176 +118,43 @@ int Interfaz::obtenerCategoriaComponente()
 	return categoriaComponente;
 }
 
-void Interfaz::menuVentaEnLinea()
+// online
+
+int Interfaz::obtenerOpcionMenuVentaEnLinea()
 {
-	// se verifica que el usuario este registrado
-	std::cout << "\t\tMenu Venta Online" << std::endl;
-	Cliente* cliente = nullptr;
-	try
-	{
-		cliente = buscarCliente();
-		std::cout << "Bienvenido " << cliente->getNombre() << std::endl;
-		std::system("pause");	// esto muestra "Presione cualquier tecla para continuar..."
-		clearScreen();
-	}
-	catch (std::exception& e)
-	{
-		std::stringstream mensajeDeError;
-		mensajeDeError << "Error. El cliente parece no estar subscrito. Motivo: " << e.what() << std::endl;
-		mensajeDeError << "Por favor, registre al cliente antes de continuar." << std::endl;
-		std::cerr << mensajeDeError.str() << std::endl;
-		std::system("pause");
-		clearScreen();
-		return;
-	}
+	int opcionMenuVentaEnLinea = 0;
 
-	std::string codigoDeEnvio;
-
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "Lista de envios disponibles" << std::endl;
-	std::cout << MontoTranslado::mostrarLista() << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-
-	int numeroDeIntento = 0;	// se reinicia el numero de intentos
-
-	do
-	{
-		if (numeroDeIntento != 0)
-		{
-			std::cout << "----------------------------------------------------------------------------" << std::endl;
-			std::cout << "Por favor digite un codigo de envio valido" << std::endl;
-			std::system("pause");
-			clearScreen();
-		}
-		std::cout << "----------------------------------------------------------------------------" << std::endl;
-		std::cout << "Digite el codigo de envio: ";
-		std::cin >> codigoDeEnvio;
-		std::cout << "----------------------------------------------------------------------------" << std::endl;
-		numeroDeIntento++;
-	} while (!esStringValido(codigoDeEnvio, false, true, false, "codigo de envio"));	// el codigo de envio solo puede contener numeros
-
-	if (!MontoTranslado::disponibilidadDeEnvio(codigoDeEnvio))	// true si hay envios disponibles false sino
-	{
-		throw std::exception("No hay envios disponibles");	// cambiar por excepcion de envios
-	}
-	else
-	{
-		std::cout << "Perfecto! Tenemos cobertura de envio. El envio tiene un costo de: " << MontoTranslado::getMonto(codigoDeEnvio) << std::endl;
-	}
-
-	Venta* venta = new VentaOnline(cliente, tienda->getFechaActual(), codigoDeEnvio);
-	// unidades de un un producto
-	int unidades = 0;
-	Componente* componenteActual = nullptr;
-	char seguirComprando = 's'; // acepta 's' 'S' 'n' 'N'
-	do
-	{
-		try
-		{
-			componenteActual = menuVentaEnLineaComprar();	// cambiar por menuVentaOnlineComprar
-			do
-			{
-				std::cout << "Cuantas unidades desea" << std::endl;
-				std::cin >> unidades;
-			} while (unidades < 0);
-			venta->agregarComponente(componenteActual, unidades);
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
-
-		// preguntar si desea seguir comprando y obligarlo a introducir s o n
-		do
-		{
-			std::cout << "Desea seguir comprando? (s/n): ";
-			std::cin >> seguirComprando;
-		} while (seguirComprando != 's' && seguirComprando != 'S' && seguirComprando != 'n' && seguirComprando != 'N');
-	} while (seguirComprando == 's' || seguirComprando == 'S');;
-
-	clearScreen();
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << venta->generarFactura() << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-}
-
-Componente* Interfaz::menuVentaEnLineaComprar()
-{
-	int opcionMenuVentaOnline = 0;
-	Componente* componente = nullptr;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "\tQue desea agregar al carrito" << std::endl;
 	std::cout << "1. Sistema Preconfigurado" << std::endl;
 	std::cout << "2. Componente Separado" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
-	std::cin >> opcionMenuVentaOnline;
+	std::cin >> opcionMenuVentaEnLinea;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 
-	switch (opcionMenuVentaOnline)
-	{
-	case 1:
-	{
-		std::string codigo;
-		try
-		{
-			std::cout << "-------------------------------CATALOGO-------------------------------------" << std::endl;
-			tienda->mostrarCatalogo();
-			std::cout << "----------------------------------------------------------------------------" << std::endl;
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << "Error. " << e.what() << std::endl;
-			throw std::exception(e.what());	// se tira el en caso de que el catalogo este vacio
-		}
-		std::cout << "Digite el codigo del sistema preconfigurado: ";
-		std::cin >> codigo;
-		try
-		{
-			componente = tienda->escogerComponenteDelCatalogo(codigo);
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << "Error. " << e.what() << std::endl;
-			throw std::exception(e.what());	// se tira el en caso de que el codigo no exista
-		}
-		break;
-	}
-	case 2:
-	{
-		int categoriaComponente = 0;
-		do
-		{
-			std::cout << "Categorias de componentes disponibles" << std::endl;
-			std::cout << "1. Fuentes de Audio" << std::endl;
-			std::cout << "2. Procesadores de Se�al" << std::endl;
-			std::cout << "3. Parlantes (Reproductores de Sonido)" << std::endl;
-			std::cout << "Seleccione una categoria: ";
-			std::cin >> categoriaComponente;
+	return opcionMenuVentaEnLinea;
+}
 
-			switch (categoriaComponente)
-			{
-			case 1:
-				componente = ICrearProductos::crearFuenteDeAudio();
-				break;
-			case 2:
-				componente = ICrearProductos::crearProcesadorDeSenal();
-				break;
-			case 3:
-				componente = ICrearProductos::crearParlante();
-				break;
-			default:
-				std::cout << "Opcion invalida" << std::endl;
-				break;
-			}
-		} while (categoriaComponente < 1 || categoriaComponente > 3);
-		break;
-	}
-	default:
-		throw std::exception("Menu Venta Online: Opcion invalida");
-		break;
-	}
-	return componente;
+int Interfaz::cuantasUnidadesDesea()
+{
+	int cantidad;
+
+	do {
+		std::cout << "Cuantas unidades desa: ";
+		std::cin >> cantidad;
+
+		// Verificar si la entrada es un número
+		if (std::cin.fail()) {
+			std::cout << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+
+			// Restablecer el estado de std::cin
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+	} while (std::cin.fail());
+
+	return cantidad;
 }
 
 int Interfaz::menuMantenimiento()
