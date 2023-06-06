@@ -110,6 +110,11 @@ std::string VentaOnline::toString() const
 	return ss.str();
 }
 
+std::string VentaOnline::getCodigoLugarEntrega() const
+{
+	return _codigoLugarEntrega;
+}
+
 Venta* VentaOnline::clonar() const
 {
 	return new VentaOnline(*this);

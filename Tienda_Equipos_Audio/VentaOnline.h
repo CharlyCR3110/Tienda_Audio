@@ -15,6 +15,8 @@ public:
 	virtual std::string generarFactura() override;
 	virtual std::string toString() const override;
 
+	std::string getCodigoLugarEntrega() const;
+
 	virtual Venta* clonar() const override;
 private:
 	// codigo del lugar donde se debe entregar el producto
