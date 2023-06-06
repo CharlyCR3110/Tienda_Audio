@@ -22,6 +22,9 @@ public:
 	// setters
 	virtual void setCliente(Cliente* cliente);
 	virtual void setFecha(Fecha* fecha);
+	virtual void setTotal(double total);
+	virtual void setSubtotal(double subtotal);
+
 	// mostrar
 	virtual std::string toString() const = 0;
 	// metodos para la venta

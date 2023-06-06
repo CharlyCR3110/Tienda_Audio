@@ -78,6 +78,16 @@ void Venta::setFecha(Fecha* fecha)
 	_fecha = fecha;
 }
 
+void Venta::setTotal(double total)
+{
+	_total = total;
+}
+
+void Venta::setSubtotal(double subtotal)
+{
+	_subtotal = subtotal;
+}
+
 void Venta::agregarComponente(Componente* componente, int cantidad)
 {
 	// se clona el componente y luego se agrega
