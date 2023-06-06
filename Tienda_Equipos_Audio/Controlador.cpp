@@ -2,8 +2,7 @@
 
 void Controlador::iniciar()
 {
-	Interfaz::tienda->suscribirCliente(new ClientePersona("Carlos", "604", "Costa Rica", "Miramar", "Correo", "Tico"));
-	Interfaz::tienda->suscribirCliente(new ClientePersona("Juan", "602", "Costa Rica", "Miramar", "Correo", "Tico"));
+	Interfaz::tienda->recuperarClientes();
 	int opcion = 0;
 	do
 	{
