@@ -249,15 +249,29 @@ void Tienda::guardarClientes()
 	}
 }
 
-void Tienda::guardarVentas()
+void Tienda::recuperarClientes()
 {
 	try
 	{
-		GestorArchivos::guardarListaDeVentas(_ventas);
-		std::cout << "Se ha guardado la lista de ventas." << std::endl;
+		GestorArchivos::recuperarListaDeClientes(_clientes);
+		std::cout << "Se ha recuperado la lista de clientes." << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		throw std::exception(e.what());
 	}
+}
+
+void Tienda::guardarVentas()
+{
+	//try
+	//{
+	//	GestorArchivos::guardarListaDeVentas(_ventas);
+	//	std::cout << "Se ha guardado la lista de ventas." << std::endl;
+	//}
+	//catch (std::exception& e)
+	//{
+	//	throw std::exception(e.what());
+	//}
+	std::cout << "Se pospuso la implementacion de esta funcion." << std::endl;
 }
