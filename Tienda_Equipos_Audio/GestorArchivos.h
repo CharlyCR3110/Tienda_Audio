@@ -18,5 +18,6 @@ public:
 	static void guardarFecha(std::string fecha);
 
 	static void guardarListaDeClientes(ListaEnlazada<Cliente>* clientes);
-};
 
+	static void recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes);
+};

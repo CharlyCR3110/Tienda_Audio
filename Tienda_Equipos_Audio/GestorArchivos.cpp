@@ -53,3 +53,46 @@ void GestorArchivos::guardarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 
 	archivoClientes.close();
 }
+
+void GestorArchivos::recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes)
+{
+	std::ifstream archivoClientes("../clientes.txt");
+
+	if (archivoClientes.fail())
+	{
+		throw std::runtime_error("Error al abrir el archivo clientes.txt");
+	}
+
+	std::string linea;
+	while (std::getline(archivoClientes, linea))
+	{
+		// separar los datos de la linea
+		std::string datos[7];
+		int indice = 0;
+		for (int i = 0; i < linea.length(); i++)
+		{
+			if (linea[i] == '|')
+			{
+				indice++;
+			}
+			else
+			{
+				datos[indice] += linea[i];
+			}
+		}
+
+		// crear el cliente
+		Cliente* cliente;
+		if (datos[0] == "E")
+		{
+			cliente = new ClienteEmpresa(datos[1], datos[2], datos[3], datos[4], datos[5]);
+		}
+		else
+		{
+			cliente = new ClientePersona(datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
+		}
+
+		// agregar el cliente a la lista
+		clientes->insertarDato(cliente);
+	}
+}
