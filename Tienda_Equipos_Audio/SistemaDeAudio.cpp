@@ -70,15 +70,7 @@ SistemaDeAudio::~SistemaDeAudio()
 
 double SistemaDeAudio::getPrecio() const
 {
-	double precio = 0;
-	for (int i = 0; i < _cantidad; i++)
-	{
-		if (_componentes[i] != nullptr)	// para evitar problemas
-		{
-			precio += _componentes[i]->getPrecio();
-		}
-	}
-	return precio;
+	return _precio * _cantidadEnElCarrito;
 }
 
 std::string SistemaDeAudio::toString() const
