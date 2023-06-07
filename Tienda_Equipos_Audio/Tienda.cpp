@@ -289,14 +289,13 @@ void Tienda::recuperarCatalogo()
 
 void Tienda::guardarVentas()
 {
-	//try
-	//{
-	//	GestorArchivos::guardarListaDeVentas(_ventas);
-	//	std::cout << "Se ha guardado la lista de ventas." << std::endl;
-	//}
-	//catch (std::exception& e)
-	//{
-	//	throw std::exception(e.what());
-	//}
-	std::cout << "Se pospuso la implementacion de esta funcion." << std::endl;
+	try
+	{
+		GestorArchivos::guardarVentas(_ventas);
+		std::cout << "Se ha guardado la lista de ventas." << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
 }
