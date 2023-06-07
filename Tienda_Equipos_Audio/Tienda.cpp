@@ -254,7 +254,6 @@ void Tienda::recuperarClientes()
 	try
 	{
 		GestorArchivos::recuperarListaDeClientes(_clientes);
-		std::cout << "Se ha recuperado la lista de clientes." << std::endl;
 	}
 	catch (std::exception& e)
 	{
