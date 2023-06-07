@@ -96,6 +96,29 @@ std::string Catalogo::mostrarCategoriaDelCatalogo(std::string categoria)
 	}
 }
 
+std::string Catalogo::guardarCatalogo()
+{
+	std::stringstream ss;
+	Componente* componenteActual = nullptr;
+	for (int i = 0; i < componentes->getCantidad(); i++)
+	{
+		// se obtiene el componente actual
+		componenteActual = componentes->get(i);
+		// se agrega el codigo del componnete actual seguido del caracter separador
+		ss << componenteActual->getCodigo() << ";";
+		// se agrega el nombre del componente actual seguido del caracter separador
+		ss << componenteActual->getNombreComponente() << ";";
+		// se agregan los codigos de los 3 componentes que componen el componente actual
+		for (int j = 0; j < 3; j++)
+		{
+			ss << componenteActual->getChild(j)->getCodigo() << ";";
+		}
+		// se agrega un caracter para indicar el final de un componente y el inicio de otro
+		ss << "\n";
+	}
+	return ss.str();
+}
+
 Componente* Catalogo::buscarComponentePorCodigo(std::string codigo)
 {
 	try

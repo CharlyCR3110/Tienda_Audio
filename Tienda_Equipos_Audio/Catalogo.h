@@ -17,6 +17,8 @@ public:
 	std::string mostrarCatalogo();
 	std::string mostrarCategoriaDelCatalogo(std::string categoria);
 
+	std::string guardarCatalogo();	// archivos
+
 	Componente* buscarComponentePorCodigo(std::string codigo);
 	bool existeOtroSistemaPreconfigurado(std::string codigo);
 
