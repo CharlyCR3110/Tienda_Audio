@@ -687,6 +687,15 @@ void Interfaz::salir()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	try
+	{
+		tienda->guardarCatalogo();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 void Interfaz::opcionInvalida()
