@@ -41,7 +41,7 @@ public:
 	// operadores
 	//Venta& operator=(const Venta& other);
 	//bool operator==(const Venta& other) const;
-	friend std::ostream& operator<<(std::ostream& out, const Venta& other);
+	friend std::ostream& operator<<(std::ostream& out, Venta& other);
 protected:
 	Cliente* _cliente;	// cliente que realiza la venta
 	Fecha* _fecha;	// fecha de la venta

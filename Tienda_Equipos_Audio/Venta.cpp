@@ -138,7 +138,7 @@ void Venta::vaciarCarrito()
 	_carritoDeCompras->vaciar();
 }
 
-std::ostream& operator<<(std::ostream& out, const Venta& other)
+std::ostream& operator<<(std::ostream& out, Venta& other)
 {
 	out << other.toString();
 	return out;
