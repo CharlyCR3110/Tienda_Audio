@@ -50,4 +50,6 @@ public:
 	static void guardarVentas(ListaEnlazada<Venta>* ventas);
 
 	static Componente* recuperarComponenteEspecifico(std::string codigo);
+
+	static Cliente* recuperarClienteEspecifico(std::string cedula, ListaEnlazada<Cliente>* clientes);
 };

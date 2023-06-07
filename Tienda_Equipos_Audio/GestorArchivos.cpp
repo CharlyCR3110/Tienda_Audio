@@ -300,3 +300,15 @@ Componente* GestorArchivos::recuperarComponenteEspecifico(std::string codigo)
 	else if (codigo == "OC829") { return new Audifono("OC829", "Circumaural bajos profundos", 90.00); }
 	else if (codigo == "YG838") { return new Audifono("YG838", "Inalambrico bajos profundos", 120.00); }
 }
+
+Cliente* GestorArchivos::recuperarClienteEspecifico(std::string cedula, ListaEnlazada<Cliente>* clientes)
+{
+	try
+	{
+		return clientes->buscarPorCodigo(cedula);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+}
