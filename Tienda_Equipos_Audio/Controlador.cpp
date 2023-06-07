@@ -4,6 +4,16 @@ void Controlador::iniciar()
 {
 	Interfaz::tienda->recuperarClientes();
 	Interfaz::tienda->recuperarCatalogo();
+	try
+	{
+		Interfaz::tienda->recuperarVentas();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::system("pause");
+
 	int opcion = 0;
 	do
 	{
