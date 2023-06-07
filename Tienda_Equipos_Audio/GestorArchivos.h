@@ -30,6 +30,10 @@
 
 #include "SistemaDeAudio.h"
 
+#include "Venta.h"
+#include "VentaDirecta.h"
+#include "VentaOnline.h"
+
 class GestorArchivos
 {
 public:
@@ -42,6 +46,8 @@ public:
 	static void guardarCatalogo(Catalogo* catalogo);
 
 	static void recuperarCatalogo(Catalogo* catalogo);
+
+	static void guardarVentas(ListaEnlazada<Venta>* ventas);
 
 	static Componente* recuperarComponenteEspecifico(std::string codigo);
 };

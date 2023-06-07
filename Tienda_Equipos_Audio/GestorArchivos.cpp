@@ -156,6 +156,80 @@ void GestorArchivos::recuperarCatalogo(Catalogo* catalogo)
 
 }
 
+void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
+{
+	std::ofstream archivoVentas("../ventas.txt");
+
+	if (archivoVentas.fail())
+	{
+		throw std::runtime_error("Error al abrir el archivo ventas.txt");
+	}
+
+	Nodo<Venta>* nodoVenta = ventas->getPrimero();
+	while (nodoVenta != nullptr)
+	{
+		Venta* venta = nodoVenta->getDato();
+
+		// guardar la cedula del cliente
+		archivoVentas << venta->getCliente()->getCedula() << '|';
+
+		// guardar la fecha de la venta
+		archivoVentas << *venta->getFecha() << '|';	// obtiene la fecha con el formato dd/mm/aaaa
+
+		// guardar el tipo de venta (Online (O) o Directa (D))
+		archivoVentas << venta->getTipoDeVenta() << '|';
+
+		// guardar los componentes de la venta
+		Nodo<Componente>* nodoComponente = venta->getCarritoDeCompras()->getPrimero();
+		while (nodoComponente != nullptr)
+		{
+			Componente* componente = nodoComponente->getDato();
+
+			if (componente == nullptr)
+			{
+				throw std::runtime_error("Error al guardar la venta. El componente es nulo");
+			}
+
+			// si NO es un sistema de audio
+			if (!dynamic_cast<SistemaDeAudio*>(componente))
+			{
+				// significa que es un componente especifico
+				archivoVentas << componente->getCodigo() << '|';	// codigo del componente
+				// obtener la cantidad de componentes que se vendieron
+				archivoVentas << componente->getCantidadEnCarrito() << '|';
+			}
+			else
+			{
+				SistemaDeAudio* sistema = dynamic_cast<SistemaDeAudio*>(componente);
+				// si es un sistema de audio (componente compuesto)
+				// guardar el nombre y categoria
+				archivoVentas << sistema->getNombreComponente() << '|';	// nombre del componente
+				archivoVentas << sistema->getCategoria() << '|';	// categoria del componente
+
+				// guardar el codigo de los 3 componentes que forman parte del sistema de audio
+
+				// obtener los 3 componentes del sistema de audio
+				for (int i = 0; i < 3; i++)
+				{
+					Componente* sistema = componente->getChild(i);
+					archivoVentas << sistema->getCodigo() << '|';	// codigo del componente
+				}
+
+				// obtener la cantidad de sistemas de audio que se vendieron
+				archivoVentas << componente->getCantidadEnCarrito() << '|';
+			}
+
+			nodoComponente = nodoComponente->getSiguiente();
+		}
+
+		archivoVentas << std::endl;	// salto de linea, para la siguiente venta
+
+		nodoVenta = nodoVenta->getSiguiente();
+	}
+
+	archivoVentas.close();
+}
+
 Componente* GestorArchivos::recuperarComponenteEspecifico(std::string codigo)
 {
 	// unidades CD 
