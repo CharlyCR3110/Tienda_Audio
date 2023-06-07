@@ -12,7 +12,7 @@ public:
 	virtual void calcularTotal() override;
 	virtual void calcularSubtotal() override;
 	virtual std::string generarFactura() override;
-	virtual std::string toString() const override;
+	virtual std::string toString() override;
 
 	virtual Venta* clonar() const override;
 };

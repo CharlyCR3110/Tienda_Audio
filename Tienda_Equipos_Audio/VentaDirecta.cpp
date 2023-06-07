@@ -74,11 +74,13 @@ std::string VentaDirecta::generarFactura()
 	return ss.str();
 }
 
-std::string VentaDirecta::toString() const
+std::string VentaDirecta::toString()
 {
+	calcularTotal();
+	calcularSubtotal();
 	std::stringstream ss;
 	ss << "------------------------------------------" << std::endl;
-	ss << "Venta DIrecta" << std::endl;
+	ss << "Venta Directa" << std::endl;
 	ss << "------------------------------------------" << std::endl;
 	ss << "Cliente: " << _cliente->getNombre() << std::endl;
 	ss << "------------------------------------------" << std::endl;
