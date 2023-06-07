@@ -95,4 +95,20 @@ void GestorArchivos::recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 		// agregar el cliente a la lista
 		clientes->insertarDato(cliente);
 	}
+
+	archivoClientes.close();
+}
+
+void GestorArchivos::guardarCatalogo(Catalogo* catalogo)
+{
+	std::ofstream archivoCatalogo("../catalogo.txt");
+
+	if (archivoCatalogo.fail())
+	{
+		throw std::runtime_error("Error al abrir el archivo clientes.txt");
+	}
+		
+	archivoCatalogo << catalogo->guardarCatalogo();
+
+	archivoCatalogo.close();
 }

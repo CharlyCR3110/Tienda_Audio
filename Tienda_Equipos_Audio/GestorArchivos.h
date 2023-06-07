@@ -12,6 +12,8 @@
 #include "ClienteEmpresa.h"
 #include "ClientePersona.h"
 
+#include "Catalogo.h"
+
 class GestorArchivos
 {
 public:
@@ -20,4 +22,6 @@ public:
 	static void guardarListaDeClientes(ListaEnlazada<Cliente>* clientes);
 
 	static void recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes);
+
+	static void guardarCatalogo(Catalogo* catalogo);
 };
