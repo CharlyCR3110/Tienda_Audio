@@ -179,6 +179,14 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 		// guardar el tipo de venta (Online (O) o Directa (D))
 		archivoVentas << venta->getTipoDeVenta() << '|';
 
+		// en caso de que la venta sea Online se debe de guardar el codigo de envio
+		if (venta->getTipoDeVenta() == 'O')
+		{
+			// se hace un dynamic cast para obtener el codigo de envio
+			VentaOnline* ventaOnline = dynamic_cast<VentaOnline*>(venta);
+			archivoVentas << ventaOnline->getCodigoLugarEntrega() << '|';
+		}
+
 		// guardar los componentes de la venta
 		Nodo<Componente>* nodoComponente = venta->getCarritoDeCompras()->getPrimero();
 		while (nodoComponente != nullptr)
@@ -202,9 +210,10 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 			{
 				SistemaDeAudio* sistema = dynamic_cast<SistemaDeAudio*>(componente);
 				// si es un sistema de audio (componente compuesto)
-				// guardar el nombre y categoria
-				archivoVentas << sistema->getNombreComponente() << '|';	// nombre del componente
+				// guardar el nombre, categoria y codigo del sistema de audio
 				archivoVentas << sistema->getCategoria() << '|';	// categoria del componente
+				archivoVentas << sistema->getNombreComponente() << '|';	// nombre del componente
+				archivoVentas << sistema->getCodigo() << '|';	// codigo del componente
 
 				// guardar el codigo de los 3 componentes que forman parte del sistema de audio
 
@@ -228,6 +237,178 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 	}
 
 	archivoVentas.close();
+}
+
+void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada<Cliente>* clientes)
+{
+	std::ifstream archivoVentas("../ventas.txt");
+
+	if (archivoVentas.fail())
+	{
+		throw std::runtime_error("Error al abrir el archivo ventas.txt");
+	}
+
+	std::string linea;
+	while (std::getline(archivoVentas, linea))
+	{
+		// separar los datos de la linea
+		std::string datos[100];
+		int indice = 0;
+
+		for (int i = 0; i < linea.length(); i++)
+		{
+			if (linea[i] == '|')
+			{
+				indice++;
+			}
+			else
+			{
+				datos[indice] += linea[i];
+			}
+		}
+
+		// crear la venta
+		Venta* venta = nullptr;
+
+		// recuperar el cliente
+		Cliente* cliente = recuperarClienteEspecifico(datos[0],clientes);	//  datos[0] = cedula del cliente
+		//venta->setCliente(cliente);
+
+		// recuperar la fecha
+		Fecha* fecha = nullptr;
+		try
+		{ 
+			fecha = stringToFecha(datos[1]);	// datos[1] = fecha de la venta
+		}
+		catch (std::exception& e)
+		{
+			throw std::runtime_error("Error al recuperar la fecha de la venta");
+		}
+
+		if (fecha == nullptr)
+		{
+			throw std::runtime_error("Error al recuperar la fecha de la venta: La fecha fue null");
+		}
+
+		std::system("pause");
+		// recuperar el tipo de venta
+		std::string tipoDeVenta = datos[2];	 // datos[2] = tipo de venta (O o D) // se usa c_str() para convertir de string a char*
+
+		std::cout << "Test" << std::endl;
+		std::cout << fecha->toString() << std::endl;
+		std::cout << "Tipo: " << tipoDeVenta << std::endl;
+
+		if (cliente != nullptr)
+		{
+			std::cout << *cliente << std::endl;
+		}
+		else
+		{
+			std::cout << "Cliente nulo" << std::endl;
+		}
+
+		std::system("pause");
+		// recuperar los componentes de la venta con un while
+		int indiceComponente = 0;
+		if (tipoDeVenta == "O")
+		{
+			indiceComponente = 4;	// si es una venta online, el indice del primer componente es 4
+		}
+		else
+		{
+			indiceComponente = 3;
+		}
+
+			// se construye la venta
+		if (tipoDeVenta == "O")
+		{
+				// obtener el codigo de envio
+			std::string codigoEnvio = datos[3];	// datos[3] = codigo de envio
+			venta = new VentaOnline(cliente, fecha, codigoEnvio);
+
+		}
+			else if (tipoDeVenta == "D")
+		{
+			venta = new VentaDirecta(cliente, fecha);
+		}
+		else
+		{
+			throw std::runtime_error("Error al recuperar la venta: Tipo de venta invalido");
+		}
+		while (indiceComponente < indice)
+		{
+
+
+
+
+			std::cout << "--------------------------------------------" << std::endl;
+			std::cout << "Antes del if: " << datos[indiceComponente] << std::endl;
+			if (datos[indiceComponente] != "Sistema Personalizado" && datos[indiceComponente] != "Sistema Pre-Configurado")
+			{
+				std::cout << "--------------------------------------------" << std::endl;
+				std::cout << "Es un componente especifico" << std::endl; // debug
+				std::cout << "Codigo: " << datos[indiceComponente] << std::endl; // debug	// muestra el componente
+				std::cout << "Cantidad: " << datos[indiceComponente + 1] << std::endl; // debug	// esto muestra la cantdiad
+
+				venta->agregarComponente(recuperarComponenteEspecifico(datos[indiceComponente].c_str()), stoi(datos[indiceComponente+1]));
+
+				indiceComponente += 2;
+				std::cout << "--------------------------------------------" << std::endl;
+				std::system("pause");
+
+			}
+			else
+			{
+				std::cout << "--------------------------------------------" << std::endl;
+				std::cout << "Es un sistema" << std::endl; // debug
+				std::cout << "categoria: " << datos[indiceComponente] << std::endl; // debug	// muestra la categoria del sistema
+				std::cout << "Nombre: " << datos[indiceComponente + 1] << std::endl; // debug	// muestra el nombre del sistema
+				std::cout << "Codigo: " << datos[indiceComponente + 2] << std::endl; // debug	// muestra el codigo del sistema
+				std::cout << "Codigo producto 1: " << datos[indiceComponente + 3] << std::endl; // debug	// muestra el ccomponente
+				std::cout << "Codigo producto 2: " << datos[indiceComponente + 4] << std::endl; // debug	// muestra el componente
+				std::cout << "Codigo producto 3: " << datos[indiceComponente + 5] << std::endl; // debug	// muestra el componente
+				std::cout << "Cantidad de sistemas: " << datos[indiceComponente + 6] << std::endl; // debug	// muestra el componente
+
+				// se crea el sistema
+				Componente* sistemaTemp = new SistemaDeAudio(datos[indiceComponente + 2], datos[indiceComponente + 1], datos[indiceComponente]);
+
+				sistemaTemp->add(recuperarComponenteEspecifico(datos[indiceComponente + 3]));	// recupera el componente 1
+				sistemaTemp->add(recuperarComponenteEspecifico(datos[indiceComponente + 4]));	// recupera el componente 2
+				sistemaTemp->add(recuperarComponenteEspecifico(datos[indiceComponente + 5]));	// recupera el componente 3
+
+				std::cout << "--------------------------------------------" << std::endl;
+				std::cout << "Sistema creado" << std::endl; // debug
+				std::cout << sistemaTemp->toString() << std::endl; // debug	// muestra el componente
+
+				venta->agregarComponente(sistemaTemp, stoi(datos[indiceComponente + 6]));	// agrega el sistema a la venta
+				std::cout << "--------------------------------------------" << std::endl;
+				indiceComponente += 7;
+				std::system("pause");
+			}
+
+			std::system("clear");
+			std::cout << "********************************************" << std::endl;
+			std::cout << "********************************************" << std::endl;
+			std::cout << venta->generarFactura() << std::endl;
+			std::cout << "********************************************" << std::endl;
+			std::cout << "********************************************" << std::endl;
+
+
+			//ventas->insertarDato(venta);
+
+		}
+
+		std::cout << "++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+		std::cout << "++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+		std::cout << venta->generarFactura() << std::endl;
+		std::cout << "++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+		std::cout << "++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+		ventas->insertarDato(venta);
+		std::system("pause");
+	}
+
+	archivoVentas.close();
+
 }
 
 Componente* GestorArchivos::recuperarComponenteEspecifico(std::string codigo)
@@ -311,4 +492,22 @@ Cliente* GestorArchivos::recuperarClienteEspecifico(std::string cedula, ListaEnl
 	{
 		std::cout << e.what() << std::endl;
 	}
+}
+
+Fecha* GestorArchivos::stringToFecha(std::string fechaStr)
+{
+	//convierte una fecha en formato dd/mm/aaaa a un objeto de tipo Fecha
+
+	// dia y mes pueden ser un numero d o dd y m o mm, entonces se debe tener en cuenta
+
+	std::istringstream iss(fechaStr);
+	std::string token;
+	std::getline(iss, token, '/');  // Obtener el día
+	int dia = std::stoi(token);
+	std::getline(iss, token, '/');  // Obtener el mes
+	int mes = std::stoi(token);
+	std::getline(iss, token);       // Obtener el año
+	int anio = std::stoi(token);
+
+	return new Fecha(dia, mes, anio);
 }

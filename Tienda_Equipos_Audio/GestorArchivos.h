@@ -49,7 +49,11 @@ public:
 
 	static void guardarVentas(ListaEnlazada<Venta>* ventas);
 
+	static void recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada<Cliente>* clientes);
+
 	static Componente* recuperarComponenteEspecifico(std::string codigo);
 
 	static Cliente* recuperarClienteEspecifico(std::string cedula, ListaEnlazada<Cliente>* clientes);
+
+	static Fecha* stringToFecha(std::string fecha);
 };
