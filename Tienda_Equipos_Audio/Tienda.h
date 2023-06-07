@@ -56,6 +56,8 @@ public:
 	void guardarClientes();
 	void recuperarClientes();
 
+	void guardarCatalogo();
+
 	void guardarVentas();
 
 private:
