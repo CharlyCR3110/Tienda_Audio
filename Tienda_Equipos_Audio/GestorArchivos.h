@@ -14,6 +14,22 @@
 
 #include "Catalogo.h"
 
+
+// fuentes de audio
+#include "UnidadCD.h"
+#include "Tornamesa.h"
+#include "Radio.h"
+#include "UnidadBluetooth.h"
+#include "Microfono.h"
+//procesador de senal
+#include "Amplificador.h"
+#include "Mezclador.h"
+// parlantes 
+#include "Parlante.h"
+#include "Audifono.h"
+
+#include "SistemaDeAudio.h"
+
 class GestorArchivos
 {
 public:
@@ -24,4 +40,8 @@ public:
 	static void recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes);
 
 	static void guardarCatalogo(Catalogo* catalogo);
+
+	static void recuperarCatalogo(Catalogo* catalogo);
+
+	static Componente* recuperarComponenteEspecifico(std::string codigo);
 };
