@@ -26,7 +26,7 @@ public:
 	virtual void setSubtotal(double subtotal);
 
 	// mostrar
-	virtual std::string toString() const = 0;
+	virtual std::string toString() = 0;
 	// metodos para la venta
 	virtual void agregarComponente(Componente* componente, int cantidad);
 	virtual void eliminarComponente(Componente* componente);

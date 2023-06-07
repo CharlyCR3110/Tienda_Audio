@@ -96,12 +96,7 @@ void Venta::agregarComponente(Componente* componente, int cantidad)
 
 	try
 	{
-		std::cout << "Componente precio: " << componenteClonado->getPrecioUnitario() << std::endl;	// "debug
-		std::cout << "cantidad: " << cantidad << std::endl;	// "debug
 		_subtotal += componenteClonado->getPrecioUnitario() * cantidad;
-		std::cout << "subtotal: " << _subtotal << std::endl;	// "debug
-		_total = _subtotal;
-		std::cout << "Componente agregado al carrito de compras" << std::endl;
 
 		// comprobar que el componente no se encuentre en la lista de componentes
 		// si se encuentra, se aumenta la cantidad
@@ -131,7 +126,6 @@ void Venta::eliminarComponente(Componente* componente)
 	try
 	{
 		_carritoDeCompras->eliminarDato(componente);
-		std::cout << "Componente eliminado del carrito de compras" << std::endl;
 	}
 	catch (std::exception& e)
 	{
