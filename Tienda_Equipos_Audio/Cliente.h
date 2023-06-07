@@ -1,5 +1,7 @@
 #pragma once
 #include "IObserver.h"
+#include <fstream>
+
 #include <iostream>
 class Cliente :
 	public IObserver
