@@ -23,7 +23,10 @@ ClienteEmpresa::ClienteEmpresa(const ClienteEmpresa& empresa):
 
 void ClienteEmpresa::Update()
 {
-	std::cout << "Cliente Empresa: " << _nombre << " ha sido notificado." << std::endl;
+	// abre el archivo de texto (LO ABRE, PERO NO BORRA LO QUE YA ESTABA ESCRITO)
+	std::ofstream archivo("../Archivos/notificaciones.txt", std::ios::app);
+	// escribe en el archivo de texto
+	archivo << "Cliente Empresa: " << _nombre << " ha sido notificado." << std::endl;
 }
 
 std::string ClienteEmpresa::getRazonSocial() const
