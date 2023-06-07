@@ -16,7 +16,7 @@ void GestorArchivos::guardarFecha(std::string fecha)
 
 void GestorArchivos::guardarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 {
-	std::ofstream archivoClientes("../clientes.txt");
+	std::ofstream archivoClientes("../Archivos/clientes.txt");
 
 	if (archivoClientes.fail())
 	{
@@ -56,7 +56,7 @@ void GestorArchivos::guardarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 
 void GestorArchivos::recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 {
-	std::ifstream archivoClientes("../clientes.txt");
+	std::ifstream archivoClientes("../Archivos/clientes.txt");
 
 	if (archivoClientes.fail())
 	{
@@ -101,7 +101,7 @@ void GestorArchivos::recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 
 void GestorArchivos::guardarCatalogo(Catalogo* catalogo)
 {
-	std::ofstream archivoCatalogo("../catalogo.txt");
+	std::ofstream archivoCatalogo("../Archivos/catalogo.txt");
 
 	if (archivoCatalogo.fail())
 	{
@@ -115,7 +115,7 @@ void GestorArchivos::guardarCatalogo(Catalogo* catalogo)
 
 void GestorArchivos::recuperarCatalogo(Catalogo* catalogo)
 {
-	std::ifstream archivoCatalogo("../catalogo.txt");
+	std::ifstream archivoCatalogo("../Archivos/catalogo.txt");
  
 	if (archivoCatalogo.fail())
 	{
@@ -158,7 +158,7 @@ void GestorArchivos::recuperarCatalogo(Catalogo* catalogo)
 
 void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 {
-	std::ofstream archivoVentas("../ventas.txt");
+	std::ofstream archivoVentas("../Archivos/ventas.txt");
 
 	if (archivoVentas.fail())
 	{
@@ -241,7 +241,7 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 
 void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada<Cliente>* clientes)
 {
-	std::ifstream archivoVentas("../ventas.txt");
+	std::ifstream archivoVentas("../Archivos/ventas.txt");
 
 	if (archivoVentas.fail())
 	{
