@@ -275,6 +275,18 @@ void Tienda::guardarCatalogo()
 	}
 }
 
+void Tienda::recuperarCatalogo()
+{
+	try
+	{
+		GestorArchivos::recuperarCatalogo(_catalogo);
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
 void Tienda::guardarVentas()
 {
 	//try
