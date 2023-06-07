@@ -299,3 +299,15 @@ void Tienda::guardarVentas()
 		throw std::exception(e.what());
 	}
 }
+
+void Tienda::recuperarVentas()
+{
+	try
+	{
+		GestorArchivos::recuperarVentas(_ventas, _clientes);
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}

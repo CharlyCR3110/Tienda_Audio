@@ -60,6 +60,7 @@ public:
 	void recuperarCatalogo();
 
 	void guardarVentas();
+	void recuperarVentas();
 
 private:
 	Catalogo* _catalogo;	// Catalogo de productos de la tienda
