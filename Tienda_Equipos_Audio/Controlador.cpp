@@ -3,6 +3,7 @@
 void Controlador::iniciar()
 {
 	Interfaz::tienda->recuperarClientes();
+	Interfaz::tienda->recuperarCatalogo();
 	int opcion = 0;
 	do
 	{
