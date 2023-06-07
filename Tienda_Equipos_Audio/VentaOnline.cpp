@@ -28,7 +28,13 @@ VentaOnline::~VentaOnline()
 
 void VentaOnline::calcularTotal()
 {
-	_total += MontoTranslado::getMonto(_codigoLugarEntrega);
+	double total = 0;
+	for (int i = 0; i < _carritoDeCompras->getCantidad(); i++)
+	{
+		total += _carritoDeCompras->get(i)->getPrecio();
+	}
+	total += MontoTranslado::getMonto(_codigoLugarEntrega);
+	_total = total;
 }
 
 void VentaOnline::calcularSubtotal()
@@ -77,8 +83,9 @@ std::string VentaOnline::generarFactura()
 	return ss.str();
 }
 
-std::string VentaOnline::toString() const
+std::string VentaOnline::toString()
 {
+	calcularTotal();
 	std::stringstream ss;
 	ss << "------------------------------------------" << std::endl;
 	ss << "Venta online" << std::endl;
