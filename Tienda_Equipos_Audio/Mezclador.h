@@ -8,7 +8,6 @@ public:
 	Mezclador(std::string codigo, std::string caracteristicas, double precio);
 	Mezclador(const Mezclador& other);
 	virtual ~Mezclador();
-	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;
 	// metodos de composite
