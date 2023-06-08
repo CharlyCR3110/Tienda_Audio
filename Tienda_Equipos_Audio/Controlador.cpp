@@ -272,6 +272,17 @@ void Controlador::controladorVentaEnLinea()
 	} while (seguirComprando == 's' || seguirComprando == 'S');;
 
 	clearScreen();
+	// se verifica que la venta tenga al menos un componente
+	if (venta->getCarritoDeCompras()->estaVacia())
+	{
+		std::cerr << "Error. La venta no tiene ningun componente." << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
+	}
+
+
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << venta->generarFactura() << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
