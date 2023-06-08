@@ -138,15 +138,33 @@ int Interfaz::obtenerCategoriaComponente()
 int Interfaz::obtenerOpcionMenuVentaEnLinea()
 {
 	int opcionMenuVentaEnLinea = 0;
+	bool opcionValida = false;
 
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "\tQue desea agregar al carrito" << std::endl;
-	std::cout << "1. Sistema Preconfigurado" << std::endl;
-	std::cout << "2. Componente Separado" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "Digite una opcion del menu: ";
-	std::cin >> opcionMenuVentaEnLinea;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	while (!opcionValida)
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\tQue desea agregar al carrito" << std::endl;
+		std::cout << "1. Sistema Preconfigurado" << std::endl;
+		std::cout << "2. Componente Separado" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite una opcion del menu: ";
+		std::cin >> opcionMenuVentaEnLinea;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+		if (opcionMenuVentaEnLinea == 1 || opcionMenuVentaEnLinea == 2)
+		{
+			opcionValida = true;
+		}
+		else
+		{
+			std::cout << "Opcion invalida. Por favor, intente nuevamente." << std::endl;
+			system("pause");
+			clearScreen();
+		}
+
+		// Limpiamos el buffer de entrada
+		clearInputBuffer();
+	}
 
 	return opcionMenuVentaEnLinea;
 }
