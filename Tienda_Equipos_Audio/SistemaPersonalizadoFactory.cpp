@@ -1,20 +1,5 @@
 ﻿#include "SistemaPersonalizadoFactory.h"
 
-Componente* SistemaPersonalizadoFactory::crearProcesadorDeSenal()
-{
-    return ICrearProductos::crearProcesadorDeSenal();
-}
-
-Componente* SistemaPersonalizadoFactory::crearFuenteDeAudio()
-{
-    return ICrearProductos::crearFuenteDeAudio();
-}
-
-Componente* SistemaPersonalizadoFactory::crearParlanteCat()
-{
-    return ICrearProductos::crearParlanteCat();
-}
-
 Componente* SistemaPersonalizadoFactory::crearSistemaDeAudio()
 {
     // Un sistema de audio tiene un procesador de senal, una fuente de audio y un parlante

@@ -1,20 +1,5 @@
 #include "SistemaPreConfiguradoFactory.h"
 
-Componente* SistemaPreConfiguradoFactory::crearProcesadorDeSenal()
-{
-    return ICrearProductos::crearProcesadorDeSenal();
-}
-
-Componente* SistemaPreConfiguradoFactory::crearFuenteDeAudio()
-{
-    return ICrearProductos::crearFuenteDeAudio();
-}
-
-Componente* SistemaPreConfiguradoFactory::crearParlanteCat()
-{
-    return ICrearProductos::crearParlanteCat();
-}
-
 Componente* SistemaPreConfiguradoFactory::crearSistemaDeAudio()
 {
     // Un sistema de audio tiene un procesador de se�al, una fuente de audio y un parlante
