@@ -78,7 +78,7 @@ std::string SistemaDeAudio::toString() const
 	std::stringstream ss;
 	ss << _categoria << std::endl;
 	ss << "----------------------------------------------------------------------------" << std::endl;
-	ss << "Codigo: " << _codigo << std::endl
+	ss << "Codigo del sistema: " << _codigo << std::endl
 		<< "Nombre: " << _nombreComponente << std::endl
 		<< "Precio Unitario: " << getPrecioUnitario() << std::endl
 		<< "Cantidad: " << _cantidadEnElCarrito << std::endl;
@@ -90,7 +90,7 @@ std::string SistemaDeAudio::toString() const
 		if (_componentes[i] != nullptr)	// para evitar problemas
 		{
 			// numero del producto 
-			ss << "--------------------------------" << "PRODUCTO " << i + 1 << "-------------------------------" << std::endl;
+			ss << "--------------------------" << "SUBPRODUCTO DEL SISTEMA" << "-------------------------" << std::endl;
 			ss << _componentes[i]->toString() << std::endl;
 			ss << "----------------------------------------------------------------------------" << std::endl;
 		}
