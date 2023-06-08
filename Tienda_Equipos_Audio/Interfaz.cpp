@@ -66,17 +66,8 @@ Componente* Interfaz::crearSistemaPersonalizado()
 Componente* Interfaz::escogerSistemaPreconfigurado()
 {
 	std::string codigo;
-	try
-	{
-		std::cout << "-------------------------------CATALOGO-------------------------------------" << std::endl;
-		tienda->mostrarCatalogo();
-		std::cout << "----------------------------------------------------------------------------" << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error. " << e.what() << std::endl;
-		throw std::exception(e.what());    // se tira el en caso de que el catalogo este vacio
-	}
+
+	Interfaz::menuMantenimientoVerCatalogoComponentes();
 
 	std::cout << "Digite el codigo del sistema preconfigurado: ";
 	std::cin >> codigo;
@@ -95,8 +86,10 @@ Componente* Interfaz::escogerSistemaPreconfigurado()
 Componente* Interfaz::escogerComponenteSeparado()
 {
 	int categoriaComponente = obtenerCategoriaComponente();
-
 	Componente* componente = nullptr;
+	system("pause");
+	clearScreen();
+
 	switch (categoriaComponente)
 	{
 	case 1:

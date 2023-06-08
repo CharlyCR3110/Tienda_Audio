@@ -111,6 +111,8 @@ inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std:
         int opcion;
         std::cin >> opcion;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
+        system("pause");
+        clearScreen();
 
         if (opcion >= 1 && opcion <= numOpciones)
         {

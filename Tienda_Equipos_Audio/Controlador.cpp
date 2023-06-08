@@ -89,10 +89,10 @@ void Controlador::controladorVentaDirecta()
 				std::cout << "Cuantas unidades desea: ";
 				std::cin >> unidades;
 
-				// Verificar si la entrada es un número
+				// Verificar si la entrada es un nï¿½mero
 				if (std::cin.fail())
 				{
-					std::cerr << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+					std::cerr << "Error: entrada no vï¿½lida. Por favor, ingrese un nï¿½mero." << std::endl;
 
 					// Restablecer el estado de std::cin
 					std::cin.clear();
@@ -224,6 +224,8 @@ void Controlador::controladorVentaEnLinea()
 	else
 	{
 		std::cout << "Perfecto! Tenemos cobertura de envio. El envio tiene un costo de: " << MontoTranslado::getMonto(codigoDeEnvio) << std::endl;
+		std::system("pause");
+		clearScreen();
 	}
 
 	Venta* venta = new VentaOnline(cliente, Interfaz::tienda->getFechaActual(), codigoDeEnvio);
@@ -233,6 +235,7 @@ void Controlador::controladorVentaEnLinea()
 	char seguirComprando = 's'; // acepta 's' 'S' 'n' 'N'
 	do
 	{
+		clearScreen();
 		try
 		{
 			componenteActual = controladorMenuVentaEnLineaComprar();
@@ -240,10 +243,11 @@ void Controlador::controladorVentaEnLinea()
 			{
 				std::cout << "Cuantas unidades desea: ";
 				std::cin >> unidades;
+				std::cout << "----------------------------------------------------------------------------" << std::endl;
 
-				// Verificar si la entrada es un número
+				// Verificar si la entrada es un numero
 				if (std::cin.fail()) {
-					std::cerr << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+					std::cerr << "Error: entrada no valida. Por favor, ingrese un numero." << std::endl;
 
 					// Restablecer el estado de std::cin
 					std::cin.clear();
@@ -290,10 +294,13 @@ Componente* Controlador::controladorMenuVentaEnLineaComprar()
 	int opcionMenuVentaEnLinea = Interfaz::obtenerOpcionMenuVentaEnLinea();
 	Componente* componente = nullptr;
 
+	system("pause");
+	clearScreen();
 	switch (opcionMenuVentaEnLinea)
 	{
 	case 1:
 		componente = Interfaz::escogerSistemaPreconfigurado();
+		break;
 	case 2:
 		componente = Interfaz::escogerComponenteSeparado();
 		break;
@@ -301,7 +308,6 @@ Componente* Controlador::controladorMenuVentaEnLineaComprar()
 		throw std::exception("Menu Venta En Linea: Opcion invalida");
 		break;
 	}
-
 	return componente;
 }
 
