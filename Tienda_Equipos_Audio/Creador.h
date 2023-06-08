@@ -5,7 +5,7 @@
 // interfaz para crear los elementos
 #include "ICrearProductos.h"
 
-class AbstractFactory
+class Creador
 {
 public:
     virtual Componente* crearProcesadorDeSenal();
