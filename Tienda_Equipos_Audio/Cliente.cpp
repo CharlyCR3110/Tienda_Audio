@@ -4,7 +4,8 @@ Cliente::Cliente():
 	_nombre(""),
 	_cedula(""),
 	_pais(""),
-	_ciudad("")
+	_ciudad(""),
+	_tipo(' ')
 {
 }
 
@@ -12,7 +13,8 @@ Cliente::Cliente(std::string nombre, std::string cedula, std::string pais, std::
 	_nombre(nombre),
 	_cedula(cedula),
 	_pais(pais),
-	_ciudad(ciudad)
+	_ciudad(ciudad),
+	_tipo(' ')
 {
 }
 
@@ -20,7 +22,8 @@ Cliente::Cliente(const Cliente& other):
 	_nombre(other._nombre),
 	_cedula(other._cedula),
 	_pais(other._pais),
-	_ciudad(other._ciudad)
+	_ciudad(other._ciudad),
+	_tipo(other._tipo)
 {
 }
 
@@ -42,6 +45,16 @@ std::string Cliente::getPais() const
 std::string Cliente::getCiudad() const
 {
 	return _ciudad;
+}
+
+std::string Cliente::getCodigo() const
+{
+	return _cedula;
+}
+
+char Cliente::getTipo() const
+{
+	return _tipo;
 }
 
 void Cliente::setNombre(std::string nombre)

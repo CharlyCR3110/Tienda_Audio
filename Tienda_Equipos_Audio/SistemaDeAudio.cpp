@@ -49,12 +49,9 @@ SistemaDeAudio::SistemaDeAudio(const SistemaDeAudio& other) :
 	_cantidad = other._cantidad;
 	_componentes = new Componente * [_capacidad];
 
-	if (_capacidad > _cantidad)	// para evitar desbordamiento
+	for (int i = 0; i < _cantidad; i++)
 	{
-		for (int i = 0; i < _cantidad; i++) {
-
-			_componentes[i] = other._componentes[i]->clonar();
-		}
+		_componentes[i] = other._componentes[i]->clonar();
 	}
 }
 
@@ -73,29 +70,32 @@ SistemaDeAudio::~SistemaDeAudio()
 
 double SistemaDeAudio::getPrecio() const
 {
-	double precio = 0;
-	for (int i = 0; i < _cantidad; i++)
-	{
-		if (_componentes[i] != nullptr)	// para evitar problemas
-		{
-			precio += _componentes[i]->getPrecio();
-		}
-	}
-	return precio;
+	return _precio * _cantidadEnElCarrito;
 }
 
 std::string SistemaDeAudio::toString() const
 {
 	std::stringstream ss;
-	ss << "Codigo: " << _codigo << "\tNombre: " << _nombreComponente << "\tPrecio: " << getPrecio() << std::endl;
+	ss << _categoria << std::endl;
+	ss << "----------------------------------------------------------------------------" << std::endl;
+	ss << "Codigo: " << _codigo << std::endl
+		<< "Nombre: " << _nombreComponente << std::endl
+		<< "Precio Unitario: " << getPrecioUnitario() << std::endl
+		<< "Cantidad: " << _cantidadEnElCarrito << std::endl;
+	ss << "----------------------------------------------------------------------------" << std::endl;
 	ss << "Sistema de Audio: " << _cantidad << " de " << _capacidad << " componentes" << std::endl;
+	ss << "----------------------------------------------------------------------------" << std::endl;
 	for (int i = 0; i < _cantidad; i++)
 	{
 		if (_componentes[i] != nullptr)	// para evitar problemas
 		{
-			ss << "\t" << _componentes[i]->toString() << std::endl;
+			// numero del producto 
+			ss << "--------------------------------" << "PRODUCTO " << i + 1 << "-------------------------------" << std::endl;
+			ss << _componentes[i]->toString() << std::endl;
+			ss << "----------------------------------------------------------------------------" << std::endl;
 		}
 	}
+	ss << "----------------------------------------------------------------------------" << std::endl;
 	return ss.str();
 }
 
@@ -109,6 +109,7 @@ void SistemaDeAudio::add(Componente* componente)
 	if (_cantidad < _capacidad)
 	{
 		_componentes[_cantidad++] = componente->clonar();
+		_precio += componente->getPrecio();
 	}
 	else
 	{
@@ -124,6 +125,7 @@ void SistemaDeAudio::remove(Componente* componente)
 		if (*_componentes[i] == *componente)
 		{
 			std::cout << "Se ha eliminado el componente " << componente->getCodigo() << " del sistema de audio" << std::endl;
+			_precio -= componente->getPrecio();
 			delete _componentes[i];
 			_componentes[i] = _componentes[--_cantidad];
 			_componentes[_cantidad] = nullptr;

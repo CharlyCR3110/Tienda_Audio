@@ -54,6 +54,20 @@ inline ListaEnlazada<T>::ListaEnlazada()
 }
 
 template<class T>
+inline ListaEnlazada<T>::ListaEnlazada(const ListaEnlazada<T>& lista_)
+{
+	_primero = nullptr;
+	_ultimo = nullptr;
+	_cantidad = 0;
+	Nodo<T>* actual = lista_.getPrimero();
+	while (actual != nullptr)
+	{
+		insertarDato(actual->getDato());
+		actual = actual->getSiguiente();
+	}
+}
+
+template<class T>
 inline ListaEnlazada<T>::~ListaEnlazada()
 {
 	Nodo<T>* actual = _primero;
@@ -330,7 +344,7 @@ inline bool ListaEnlazada<T>::existeDatoPorCodigo(std::string codigo)
 {
 	if (estaVacia())
 	{
-		return false;
+		throw ListaVaciaException();
 	}
 
 	Nodo<T>* actual = _primero;
@@ -428,11 +442,15 @@ inline std::string ListaEnlazada<T>::toString() const
 
 	std::stringstream ss;
 	Nodo<T>* actual = _primero;
+	int contador = 1;
 	while (actual != nullptr)
 	{
 		//ss << *actual->getDato() << std::endl;
+		ss << "----------------------------------------------------------------------------" << std::endl;
+		ss << "(" << contador++ << ")" << std::endl;
 		ss << actual->getDato()->toString() << std::endl;
 		actual = actual->getSiguiente();
+		ss << "----------------------------------------------------------------------------" << std::endl;
 
 	}
 	return ss.str();

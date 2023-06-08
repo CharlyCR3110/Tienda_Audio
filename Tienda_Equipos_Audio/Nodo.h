@@ -40,6 +40,7 @@ Nodo<T>::~Nodo()
 {
 	delete _dato;
 	_dato = nullptr;
+	_siguiente = nullptr;
 }
 
 template<class T>

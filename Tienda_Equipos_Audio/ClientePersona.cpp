@@ -5,6 +5,7 @@ ClientePersona::ClientePersona():
     _correo(""),
     _nacionalidad("")
 {
+    this->_tipo = 'P';
 }
 
 ClientePersona::ClientePersona(std::string nombre, std::string cedula, std::string pais, std::string ciudad, std::string correo, std::string nacionalidad):
@@ -12,6 +13,7 @@ ClientePersona::ClientePersona(std::string nombre, std::string cedula, std::stri
 	_correo(correo),
 	_nacionalidad(nacionalidad)
 {
+    this->_tipo = 'P';
 }
 
 ClientePersona::ClientePersona(const ClientePersona& persona) :
@@ -19,11 +21,15 @@ ClientePersona::ClientePersona(const ClientePersona& persona) :
     _correo(persona._correo),
     _nacionalidad(persona._nacionalidad)
 {
+    this->_tipo = 'P';
 }
 
 void ClientePersona::Update()
 {
-    std::cout << "Cliente Persona: " << _nombre << " ha sido notificado." << std::endl;
+    // abre el archivo de texto (LO ABRE, PERO NO BORRA LO QUE YA ESTABA ESCRITO)
+    std::ofstream archivo("../Archivos/notificaciones.txt", std::ios::app);
+    // escribe en el archivo de texto
+    archivo << "Cliente persona: " << _nombre << " ha sido notificado." << std::endl;
 }
 
 std::string ClientePersona::getCorreo() const

@@ -24,7 +24,12 @@ Mezclador::~Mezclador()
 std::string Mezclador::toString() const
 {
 	std::stringstream ss;
-	ss << "Mezclador: " << _codigo << " " << _caracteristicas << " " << _precio;
+	ss << "Codigo: " << _codigo << std::endl;
+	ss << "Categoria: " << _categoria << std::endl;
+	ss << "Nombre: " << _nombreComponente << std::endl;
+	ss << "Caracteristicas: " << _caracteristicas << std::endl;
+	ss << "Precio Unitario: " << _precio << std::endl;
+	ss << "Cantidad: " << _cantidadEnElCarrito << std::endl;
 	return ss.str();
 }
 
