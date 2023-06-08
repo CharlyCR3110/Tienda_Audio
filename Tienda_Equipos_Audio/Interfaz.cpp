@@ -20,16 +20,34 @@ int Interfaz::menuPrincipal()
 int Interfaz::obtenerOpcionMenuVentaDirecta()
 {
 	int opcionMenuVentaDirecta = 0;
+	bool opcionValida = false;
 
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "\tQue desea agregar al carrito" << std::endl;
-	std::cout << "1. Sistema Personalizado" << std::endl;
-	std::cout << "2. Sistema Preconfigurado" << std::endl;
-	std::cout << "3. Componente Separado" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "Digite una opcion del menu: ";
-	std::cin >> opcionMenuVentaDirecta;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	while (!opcionValida)
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\tQue desea agregar al carrito" << std::endl;
+		std::cout << "1. Sistema Personalizado" << std::endl;
+		std::cout << "2. Sistema Preconfigurado" << std::endl;
+		std::cout << "3. Componente Separado" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite una opcion del menu: ";
+		std::cin >> opcionMenuVentaDirecta;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+		if (opcionMenuVentaDirecta >= 1 && opcionMenuVentaDirecta <= 3)
+		{
+			opcionValida = true;
+		}
+		else
+		{
+			std::cout << "Opcion invalida. Por favor, intente nuevamente." << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+
+		// Limpiamos el buffer de entrada
+		clearInputBuffer();
+	}
 
 	return opcionMenuVentaDirecta;
 }
