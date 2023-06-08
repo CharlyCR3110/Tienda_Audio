@@ -1,6 +1,6 @@
-﻿#include "SistemaPersonalizadoFactory.h"
+﻿#include "CreadorSistemaPersonalizado.h"
 
-Componente* SistemaPersonalizadoFactory::crearSistemaDeAudio()
+Componente* CreadorSistemaPersonalizado::crearSistemaDeAudio()
 {
     // Un sistema de audio tiene un procesador de senal, una fuente de audio y un parlante
 
