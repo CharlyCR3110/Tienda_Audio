@@ -372,7 +372,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 		{
 			existeOtroClienteConLaMismaCedula = tienda->existeUsuarioRegistrado(cedula);
 		}
-		catch (std::exception& e)
+		catch (std::exception&)
 		{
 			// si se lanza una excepcion es porque la lista esta vacia, lo que significa que no hay otro cliente con la misma cedula
 			existeOtroClienteConLaMismaCedula = false;
@@ -544,7 +544,7 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 				break;  // Sale del bucle while si no existe otro sistema con el mismo código
 			}
 		}
-		catch (const std::exception& e) 
+		catch (const std::exception&) 
 		{
 			break;  // Sale del bucle while si la lista está vacía
 		}
