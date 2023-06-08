@@ -1,7 +1,7 @@
 #pragma once
 #include "Tienda.h"
-#include "SistemaPersonalizadoFactory.h"
-#include "SistemaPreConfiguradoFactory.h"
+#include "CreadorSistemaPersonalizado.h"
+#include "CreadorPreConfiguradoFactory.h"
 #include "FuncionesUtiles.h"
 
 class Interfaz

@@ -54,7 +54,7 @@ int Interfaz::obtenerOpcionMenuVentaDirecta()
 
 Componente* Interfaz::crearSistemaPersonalizado()
 {
-	AbstractFactory* factory = new SistemaPersonalizadoFactory();
+	Creador* factory = new CreadorSistemaPersonalizado();
 	std::cout << "-----------------------CREANDO SISTEMA PERSONALIZADO------------------------" << std::endl;
 	Componente* componente = factory->crearSistemaDeAudio();
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -499,7 +499,7 @@ void Interfaz::menuMantenimientoVerCatalogoComponentes()	// unicamente muestra e
 
 void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear los sistemas preconfigurados
 {
-	AbstractFactory* fabrica = new SistemaPreConfiguradoFactory();
+	Creador* fabrica = new CreadorPreConfiguradoFactory();
 	Componente* componentePreConfigurado = nullptr;
 	componentePreConfigurado = fabrica->crearSistemaDeAudio();
 
