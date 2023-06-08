@@ -19,7 +19,7 @@ public:
     // mensaje para solicitar el nombre del sistema de audio al usuario
     static std::string mensajeNombreSistemaDeAudio();
     // mensaje para solicitar el codigo del sistema de audio al usuario
-    static std::string mensajeCodigoSistemaDeAudio();   // esta funcion solo sera utilizada en la clase SistemaPreConfiguradoFactory
+    static std::string mensajeCodigoSistemaDeAudio();   // esta funcion solo sera utilizada en la clase CreadorPreConfiguradoFactory
 
 	// fuentes de audio
 	static FuenteDeAudio* crearFuenteDeAudio();
