@@ -119,17 +119,22 @@ void Controlador::controladorVentaDirecta()
 	} while (seguirComprando == 's' || seguirComprando == 'S');
 
 	clearScreen();
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	try
+
+	// se verifica que la venta tenga al menos un componente
+	if (venta->getCarritoDeCompras()->estaVacia())
 	{
-		std::cout << venta->generarFactura() << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Error. La venta no tiene ningun componente." << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
 		std::system("pause");
+		clearScreen();
+		return;
 	}
+
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << venta->generarFactura() << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+
 	try
 	{
 		Interfaz::tienda->agregarVenta(venta);
