@@ -57,6 +57,7 @@ std::string VentaDirecta::generarFactura()
 	ss << "------------------------------------------" << std::endl;
 	for (int i = 0; i < _carritoDeCompras->getCantidad(); i++)
 	{
+		ss << "******************************************" << std::endl;
 		if (_carritoDeCompras->get(i)->getCategoria() != "Sistema Personalizado" && _carritoDeCompras->get(i)->getCategoria() != "Sistema Pre-Configurado")
 		{
 			ss << "( " << i + 1 << " )   " << "Componente Simple\t" << _carritoDeCompras->get(i)->toString() << std::endl;
@@ -65,6 +66,7 @@ std::string VentaDirecta::generarFactura()
 		{
 			ss << "( " << i + 1 << " )   " << _carritoDeCompras->get(i)->toString() << std::endl;
 		}
+		ss << "******************************************" << std::endl;
 	}
 	ss << "------------------------------------------" << std::endl;
 	ss << "Subtotal: " << _subtotal << std::endl;
