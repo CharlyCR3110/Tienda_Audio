@@ -1,6 +1,6 @@
-#include "SistemaPreConfiguradoFactory.h"
+#include "CreadorPreConfiguradoFactory.h"
 
-Componente* SistemaPreConfiguradoFactory::crearSistemaDeAudio()
+Componente* CreadorPreConfiguradoFactory::crearSistemaDeAudio()
 {
     // Un sistema de audio tiene un procesador de se�al, una fuente de audio y un parlante
     SistemaDeAudio* sistemaDeAudio = new SistemaDeAudio(ICrearProductos::mensajeCodigoSistemaDeAudio(), ICrearProductos::mensajeNombreSistemaDeAudio(), "Sistema Pre-Configurado");
