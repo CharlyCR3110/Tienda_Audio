@@ -574,6 +574,7 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 	menuMantenimientoVerCatalogoComponentes();
 
 	// solicitar y comprobar que sea valida (no puede ser vacia ni tener caracteres especiales, solo letras y numeros)
+	clearInputBuffer();	// se limpia el buffer de entrada
 	do
 	{
 		if (numeroDeIntento != 0)
