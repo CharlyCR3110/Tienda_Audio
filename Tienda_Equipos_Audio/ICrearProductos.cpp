@@ -4,6 +4,7 @@
 
 std::string ICrearProductos::mensajeNombreSistemaDeAudio()
 {
+	clearInputBuffer();
 	std::string nombre;
 	bool esNombreValido = false;
 
