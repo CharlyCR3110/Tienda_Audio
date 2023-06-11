@@ -21,6 +21,10 @@ public:
 	// mantenimiento
 	void controladorMantenimiento();
 
+	void controladorModificarSistemaDeAudio();
+
+	void controladorCambiarUnComponenteDeSistemaDeAudio(Componente* componente);
+
 	// reportes
 	void controladorReportes();
 

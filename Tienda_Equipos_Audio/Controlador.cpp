@@ -353,10 +353,175 @@ void Controlador::controladorMantenimiento()
 			Interfaz::menuMantenimientoEliminarComponenteCatalogo();
 			break;
 		case 6:
+			controladorModificarSistemaDeAudio();
+			break;
+		case 7:
+			Interfaz::regresar();
+			break;
+		default:
+			std::cerr << "Error. Opcion invalida." << std::endl;
+			break;
+		}
+		system("pause");
+	} while (opcion != 7);
+}
+
+void Controlador::controladorModificarSistemaDeAudio()
+{
+	int opcion;
+	bool regresar = false;
+
+	// se verifica que exista al menos un sistema de audio
+	if (Interfaz::tienda->getCatalogo()->estaVacio())
+	{
+		std::cerr << "Error. No hay sistemas de audio en el catalogo." << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
+	}
+
+	// solicitar el codigo del sistema de audio
+	std::string codigoDelSistema = Interfaz::menuMantenimientoModificarSistemaCatalogoSolicitarCodigo();
+
+	std::system("pause");
+	clearScreen();
+
+	// se verifica que el sistema de audio exista
+	if (!Interfaz::tienda->existeOtroSistemaPreconfigurado(codigoDelSistema))
+	{
+		std::cerr << "Error. El sistema de audio no existe." << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
+	}
+
+	// se obtiene el sistema de audio
+	Componente* sistema = nullptr;
+	try
+	{
+		sistema = Interfaz::tienda->obtenerPunteroAComponente(codigoDelSistema);
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
+	}
+
+	// para que el programa no se caiga
+	if (sistema == nullptr)
+	{
+		std::cerr << "Error. El sistema de audio no existe. NULLPTR" << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		std::system("pause");
+		clearScreen();
+		return;
+	}
+
+
+	// se muestra el sistema de audio
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "\t\t\tSISTEMA A MODIFICAR" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	try
+	{
+		std::cout << sistema->toString() << std::endl;	// muestra el toString del sistema preconfigurado
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::system("pause");
+
+
+	std::string nuevoNombre;	// case 1;
+	std::string nuevoCodigo;	// case 2;
+
+	do
+	{
+		clearScreen();
+		opcion = Interfaz::menuMantenimientoModificarSistemaCatalogo();
+		clearScreen();
+		switch (opcion)
+		{
+		case 1:
+			nuevoNombre = Interfaz::menuMantenimientoModificarNombreSistemaPreconfigurado();
+			sistema->setNombreComponente(nuevoNombre);
+			std::cout << "El nombre del sistema de audio ha sido modificado." << std::endl;
+			std::system("pause");
+			clearScreen();
+			//return;
+			break;
+		case 2:
+			nuevoCodigo = Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado();
+			sistema->setCodigo(nuevoCodigo);
+			std::cout << "El codigo del sistema de audio ha sido modificado." << std::endl;
+			std::system("pause");
+			clearScreen();
+			//return;
+			break;
+		case 3:
+			controladorCambiarUnComponenteDeSistemaDeAudio(sistema);
+			std::cout << "El componente del sistema de audio ha sido modificado." << std::endl;
+			return;
+			break;
+		case 4:
 			Interfaz::regresar();
 		}
 		system("pause");
-	} while (opcion != 6);
+	} while (opcion != 4 || regresar);
+}
+
+void Controlador::controladorCambiarUnComponenteDeSistemaDeAudio(Componente* sistemaDeAudio)
+{
+	// recibe un sistema de audio
+	Componente* componenteRemplazo = nullptr;
+	int opcion = Interfaz::menuMantemientoCambiarUnComponenteDelSistema();
+
+	std::system("pause");
+	clearScreen();
+
+	switch (opcion)
+	{
+	case 1:
+		componenteRemplazo = ICrearProductos::crearProcesadorDeSenal();
+		try
+		{
+			sistemaDeAudio->setChild(0, componenteRemplazo);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		break;
+	case 2:
+		componenteRemplazo = ICrearProductos::crearFuenteDeAudio();
+		try
+		{
+			sistemaDeAudio->setChild(1, componenteRemplazo);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		break;
+	case 3:
+		componenteRemplazo = ICrearProductos::crearParlanteCat();
+		try
+		{
+			sistemaDeAudio->setChild(2, componenteRemplazo);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		break;
+	}
 }
 
 void Controlador::controladorReportes()
