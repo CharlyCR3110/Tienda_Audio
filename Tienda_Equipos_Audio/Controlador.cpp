@@ -117,6 +117,8 @@ void Controlador::controladorVentaDirecta()
 				}
 
 			} while (unidades < 0);
+			std::system("pause");
+			clearScreen();
 			venta->agregarComponente(componenteActual, unidades);
 		}
 		catch (std::exception& e)
@@ -130,6 +132,8 @@ void Controlador::controladorVentaDirecta()
 			std::cout << "Desea seguir comprando? (s/n): ";
 			std::cin >> seguirComprando;
 		} while (seguirComprando != 's' && seguirComprando != 'S' && seguirComprando != 'n' && seguirComprando != 'N');
+		std::system("pause");
+		clearScreen();
 	} while (seguirComprando == 's' || seguirComprando == 'S');
 
 	clearScreen();
