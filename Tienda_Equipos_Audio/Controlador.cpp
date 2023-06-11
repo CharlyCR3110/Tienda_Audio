@@ -468,7 +468,6 @@ void Controlador::controladorModificarSistemaDeAudio()
 		case 3:
 			controladorCambiarUnComponenteDeSistemaDeAudio(sistema);
 			std::cout << "El componente del sistema de audio ha sido modificado." << std::endl;
-			return;
 			break;
 		case 4:
 			Interfaz::regresar();
