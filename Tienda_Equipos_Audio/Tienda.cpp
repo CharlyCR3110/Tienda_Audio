@@ -102,6 +102,11 @@ Componente* Tienda::escogerComponenteDelCatalogo(std::string codigo)
 	}
 }
 
+Componente* Tienda::obtenerPunteroAComponente(std::string codigo)
+{
+	return _catalogo->obtenerPunteroAComponente(codigo);
+}
+
 bool Tienda::existeOtroSistemaPreconfigurado(std::string codigo)
 {
 	try
@@ -230,11 +235,41 @@ Fecha* Tienda::getFechaActual() const
 	return _fechaActual;
 }
 
+Catalogo* Tienda::getCatalogo() const
+{
+	return _catalogo;
+}
+
 std::string Tienda::mostrarListaClientes()
 {
 	try
 	{
 		return _clientes->toString();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+std::string Tienda::mostrarComponentesDelCatalagoReducido()
+{
+
+	try
+	{
+		return _catalogo->toStringReducido();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+std::string Tienda::mostrarSistemaPreconfigurado(std::string codigo)
+{
+	try
+	{
+		return _catalogo->buscarComponentePorCodigo(codigo)->toString();
 	}
 	catch (std::exception& e)
 	{
