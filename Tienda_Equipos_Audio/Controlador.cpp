@@ -12,7 +12,6 @@ void Controlador::iniciar()
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	std::system("pause");
 
 	int opcion = 0;
 	do
