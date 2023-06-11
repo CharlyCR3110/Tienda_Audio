@@ -150,6 +150,8 @@ Componente* Controlador::controladorMenuVentaDirectaComprar()
 	int opcionMenuVentaDirecta = Interfaz::obtenerOpcionMenuVentaDirecta();
 	Componente* componente = nullptr;
 
+	std::system("pause");
+	clearScreen();
 	switch (opcionMenuVentaDirecta)
 	{
 	case 1:
