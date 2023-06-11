@@ -604,6 +604,14 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	std::system("pause");
+	clearScreen();
+
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "El componente se ha eliminado exitosamente del catalogo" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+
 }
 
 int Interfaz::menuMantenimientoModificarSistemaCatalogo()
