@@ -193,7 +193,8 @@ int Interfaz::menuMantenimiento()
 	std::cout << "3. Ver lista del catalogo" << std::endl;
 	std::cout << "4. Ingresar productos al catalogo" << std::endl;
 	std::cout << "5. Eliminar productos del cat�logo" << std::endl;
-	std::cout << "6. Salir" << std::endl;
+	std::cout << "6. Modificar producto del catalogo" << std::endl;
+	std::cout << "7. Regresa" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
 	std::cin >> opcion;
@@ -599,7 +600,164 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+}
 
+int Interfaz::menuMantenimientoModificarSistemaCatalogo()
+{
+	int opcionDelMenu = 0;
+	int numeroDeIntento = 0;
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite una opcion valida" << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\t\tMenu de opciones" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "1. Modificar nombre" << std::endl;
+		std::cout << "2. Modificar codigo" << std::endl;
+		std::cout << "3. Modificar componentes" << std::endl;
+		std::cout << "4. Regresar" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite una opcion del menu: ";
+		std::cin >> opcionDelMenu;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+	} while (opcionDelMenu < 1 || opcionDelMenu > 4);
+
+	return opcionDelMenu;
+}
+
+std::string Interfaz::menuMantenimientoModificarSistemaCatalogoSolicitarCodigo()
+{
+	std::string codigo;
+	int numeroDeIntento = 0;
+	clearInputBuffer();	// se limpia el buffer de entrad
+
+	// mostrar los sistemas preconfigurados actuales
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Catalogo de sistemas preconfigurados" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	try
+	{
+		std::cout << tienda->mostrarComponentesDelCatalagoReducido() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un codigo valido" << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el codigo del sistema que desea modificar: ";
+		std::getline(std::cin, codigo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(codigo, false, true, false, "codigo"));	// se permite que el codigo tenga numeros
+
+	return codigo;
+}
+
+std::string Interfaz::menuMantenimientoModificarNombreSistemaPreconfigurado()
+{
+	// solicita el nuevo nombre del sistema preconfigurado y lo retorna
+	std::string nombreNuevo;
+	int numeroDeIntento = 0;
+	clearInputBuffer();	// se limpia el buffer de entrada
+
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un nombre valido" << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el nuevo nombre del sistema preconfigurado: ";
+		std::getline(std::cin, nombreNuevo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(nombreNuevo, true, false, false, "nombre"));	// se permite que el nombre tenga espacios
+
+	return nombreNuevo;
+
+}
+
+std::string Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado()
+{
+	// solicita el nuevo nombre del sistema preconfigurado y lo retorna
+	std::string codigoNuevo;
+	int numeroDeIntento = 0;
+	bool existeOtroSistemaPreconfigurado = false;
+
+	clearInputBuffer();	// se limpia el buffer de entrada
+
+	do
+	{
+		existeOtroSistemaPreconfigurado = false;
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un codigo valido" << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::system("pause");
+			clearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el nuevo codigo del sistema preconfigurado: ";
+		std::getline(std::cin, codigoNuevo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+		// comprobar que el codigo no exista en el catalogo
+		if (tienda->existeOtroSistemaPreconfigurado(codigoNuevo))
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "El codigo ya existe en el catalogo" << std::endl;
+			std::system("pause");
+			clearScreen();
+			existeOtroSistemaPreconfigurado = true;
+		}
+
+
+		numeroDeIntento++;
+	} while (!esStringValido(codigoNuevo, false, true, false, "nombre") || existeOtroSistemaPreconfigurado);	// se permite que el codigo tenga numeros
+
+	return codigoNuevo;
+}
+
+int Interfaz::menuMantemientoCambiarUnComponenteDelSistema()
+{
+	int opcion = 0;
+	int numeroDeIntento = 0;
+	clearInputBuffer();	// se limpia el buffer de entrada
+
+	do
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\t\tMenu de opciones" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "1. Cambiar el procesador de senal" << std::endl;
+		std::cout << "2. Cambiar la fuente de audio" << std::endl;
+		std::cout << "3. Cambiar el tipo de parlante" << std::endl;
+		std::cout << "Ingrese una opcion del menu: ";
+		std::cin >> opcion;
+
+	} while (opcion < 1 || opcion > 3);	// unicamente se aceptan las opciones 1, 2 y 3
+
+	return opcion;
 }
 
 int Interfaz::menuReportes()
