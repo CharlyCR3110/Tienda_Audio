@@ -46,6 +46,7 @@ public:
 	virtual void add(Componente* componente) = 0;
 	virtual void remove(Componente* componente) = 0;
 	virtual Componente* getChild(int i) const = 0;
+	virtual void setChild(int i, Componente* componente);
 	virtual void clear() = 0;
 	// sobrecarga de operadores
 	Componente& operator=(const Componente& other);
