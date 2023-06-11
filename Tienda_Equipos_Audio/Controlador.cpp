@@ -2,8 +2,23 @@
 
 void Controlador::iniciar()
 {
-	Interfaz::tienda->recuperarClientes();
-	Interfaz::tienda->recuperarCatalogo();
+	try
+	{
+		Interfaz::tienda->recuperarClientes();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		Interfaz::tienda->recuperarCatalogo();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	try
 	{
 		Interfaz::tienda->recuperarVentas();
