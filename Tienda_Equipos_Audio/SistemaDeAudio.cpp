@@ -149,6 +149,19 @@ Componente* SistemaDeAudio::getChild(int i) const
 	}
 }
 
+void SistemaDeAudio::setChild(int i, Componente* componente)
+{
+	if (i >= 0 && i < _cantidad)
+	{
+		_componentes[i] = componente->clonar();
+	}
+	else
+	{
+		std::string mensaje = "No se puede establecer el componente " + std::to_string(i) + " porque no está en el sistema de audio";
+		throw ComponenteNoEncontradoException(mensaje);
+	}
+}
+
 void SistemaDeAudio::clear()
 {
 	// elimina los componentes del sistema de audio
