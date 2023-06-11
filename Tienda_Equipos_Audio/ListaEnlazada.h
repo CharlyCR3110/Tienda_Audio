@@ -446,11 +446,11 @@ inline std::string ListaEnlazada<T>::toString() const
 	while (actual != nullptr)
 	{
 		//ss << *actual->getDato() << std::endl;
-		ss << "----------------------------------------------------------------------------" << std::endl;
+		ss << "****************************************************************************" << std::endl << std::endl;
 		ss << "(" << contador++ << ")" << std::endl;
 		ss << actual->getDato()->toString() << std::endl;
 		actual = actual->getSiguiente();
-		ss << "----------------------------------------------------------------------------" << std::endl;
+		ss << "****************************************************************************" << std::endl << std::endl;;
 
 	}
 	return ss.str();
