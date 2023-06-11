@@ -69,7 +69,7 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 // metodo para crear una fuente de audio de cualquier tipo
 FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 {
-	const std::string mensaje = "Seleccione el tipo de fuente de audio que desea comprar:";
+	const std::string mensaje = "Seleccione el tipo de fuente de audio que desea:";
 	const std::string opciones[] = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micr�fono" };
 	FuenteDeAudio* (*funciones[])() = { crearUnidadCD, crearTornamesa, crearRadio, crearUnidadBluetooth, crearMicrofono };
 
@@ -150,7 +150,7 @@ FuenteDeAudio* ICrearProductos::crearMicrofono()
 // metodo para crear un procesador de se�al de cualquier tipo
 ProcesadorDeSenal* ICrearProductos::crearProcesadorDeSenal()
 {
-	const std::string mensaje = "Seleccione el tipo de procesador de se�al que desea comprar:";
+	const std::string mensaje = "Seleccione el tipo de procesador de senal que desea:";
 	const std::string opciones[] = { "Amplificador", "Mezclador" };
 	ProcesadorDeSenal* (*funciones[])() = { crearAmplificador, crearMezclador };
 
@@ -193,7 +193,7 @@ ProcesadorDeSenal* ICrearProductos::crearMezclador()
 // metodo para crear un parlante de cualquier tipo
 ParlanteCat* ICrearProductos::crearParlanteCat()
 {
-	const std::string mensaje = "Seleccione el tipo de parlante que desea comprar:";
+	const std::string mensaje = "Seleccione el tipo de parlante que desea:";
 	const std::string opciones[] = { "Parlante", "Audifono" };
 	ParlanteCat* (*funciones[])() = { crearParlante, crearAudifono };
 
