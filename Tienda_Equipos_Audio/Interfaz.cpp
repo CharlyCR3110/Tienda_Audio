@@ -507,7 +507,6 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 	// verificar que no exita otro sistema de audio con ese codigo
 	std::string codigo;
 	
-	std::cout << "El codigo actual es: " << componentePreConfigurado->getCodigo() << std::endl;
 	bool seModificoElCodigo = false;
 
 	while (true) {
@@ -561,6 +560,11 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	clearScreen();
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "El sistema de audio se ha agregado exitosamente al catalogo" << std::endl;	
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
 
 	delete fabrica;
 	delete componentePreConfigurado;
