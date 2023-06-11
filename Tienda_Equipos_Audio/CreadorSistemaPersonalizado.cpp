@@ -15,6 +15,8 @@ Componente* CreadorSistemaPersonalizado::crearSistemaDeAudio()
     }
 
     Componente* sistemaDeAudio = new SistemaDeAudio(codigo, ICrearProductos::mensajeNombreSistemaDeAudio(), "Sistema Personalizado");
+    std::system("pause");
+    clearScreen();
     sistemaDeAudio->add(crearProcesadorDeSenal());
     std::system("pause");
     clearScreen();
