@@ -96,6 +96,41 @@ std::string Catalogo::mostrarCategoriaDelCatalogo(std::string categoria)
 	}
 }
 
+std::string Catalogo::toStringReducido()
+{
+	std::stringstream ss;
+	Componente* componenteActual = nullptr;
+	Nodo<Componente>* nodoActual = componentes->getPrimero();
+	
+	if (nodoActual == nullptr)
+	{
+		throw ListaVaciaException();
+	}
+
+	while (nodoActual != nullptr)
+	{
+		componenteActual = nodoActual->getDato();
+
+		ss << "----------------------------------------------------------------------------" << std::endl;
+		ss << "Nombre: " << componenteActual->getNombreComponente() << std::endl;
+		ss << " Codigo: " << componenteActual->getCodigo() << std::endl;
+		ss << "Codigo de los componentes del sistema: " << std::endl;
+		ss << "Procesador de senal: " << componenteActual->getChild(0)->getCodigo() << std::endl;
+		ss << "Amplificador: " << componenteActual->getChild(1)->getCodigo() << std::endl;
+		ss << "Parlante: " << componenteActual->getChild(2)->getCodigo() << std::endl;
+		ss << "----------------------------------------------------------------------------" << std::endl;
+		nodoActual = nodoActual->getSiguiente();
+	}
+
+	return ss.str();
+
+}
+
+bool Catalogo::estaVacio()
+{
+	return componentes->estaVacia();
+}
+
 std::string Catalogo::guardarCatalogo()
 {
 	std::stringstream ss;
@@ -124,6 +159,18 @@ Componente* Catalogo::buscarComponentePorCodigo(std::string codigo)
 	try
 	{
 		return componentes->buscarPorCodigo(codigo)->clonar();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+Componente* Catalogo::obtenerPunteroAComponente(std::string codigo)
+{
+	try
+	{
+		return componentes->buscarPorCodigo(codigo);
 	}
 	catch (std::exception& e)
 	{
