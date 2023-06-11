@@ -144,7 +144,7 @@ Componente* SistemaDeAudio::getChild(int i) const
 	}
 	else
 	{
-		std::string mensaje = "No se puede obtener el componente " + std::to_string(i) + " porque no está en el sistema de audio";
+		std::string mensaje = "No se puede obtener el componente " + std::to_string(i) + " porque no esta en el sistema de audio";
 		throw ComponenteNoEncontradoException(mensaje);
 	}
 }
@@ -157,9 +157,17 @@ void SistemaDeAudio::setChild(int i, Componente* componente)
 	}
 	else
 	{
-		std::string mensaje = "No se puede establecer el componente " + std::to_string(i) + " porque no está en el sistema de audio";
+		std::string mensaje = "No se puede establecer el componente " + std::to_string(i) + " porque no esta en el sistema de audio";
 		throw ComponenteNoEncontradoException(mensaje);
 	}
+
+	// se actualiza el precio del sistema de audio
+	_precio = 0;
+	for (int i = 0; i < _cantidad; i++)
+	{
+		_precio += _componentes[i]->getPrecio();
+	}
+
 }
 
 void SistemaDeAudio::clear()
