@@ -42,8 +42,7 @@ int Interfaz::obtenerOpcionMenuVentaDirecta()
 		else
 		{
 			std::cout << "Opcion invalida. Por favor, intente nuevamente." << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 
 		// Limpiamos el buffer de entrada
@@ -248,8 +247,7 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 		{
 			std::cout << "Opcion invalida" << std::endl;
 			std::cout << "Por favor digite una opcion valida" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 
 	} while (opcionTipoCliente < 1 || opcionTipoCliente > 2);
@@ -325,8 +323,7 @@ void Interfaz::solicitarDatosCompartidos(std::string& nombre, std::string& cedul
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un nombre valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el nombre: ";
@@ -346,8 +343,7 @@ void Interfaz::solicitarDatosCompartidos(std::string& nombre, std::string& cedul
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una cedula valida" << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 
 		if (existeOtroClienteConLaMismaCedula)	// por si la cedula es valida pero ya existe otro cliente con la misma cedula
@@ -356,8 +352,7 @@ void Interfaz::solicitarDatosCompartidos(std::string& nombre, std::string& cedul
 			std::cout << "Ya existe un cliente con esa cedula" << std::endl;
 			std::cout << "Por favor digite una cedula diferente" << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -390,8 +385,7 @@ void Interfaz::solicitarDatosCompartidos(std::string& nombre, std::string& cedul
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un pais valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el pais: ";
@@ -408,8 +402,7 @@ void Interfaz::solicitarDatosCompartidos(std::string& nombre, std::string& cedul
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un nombre de ciudad valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la ciudad: ";
@@ -431,8 +424,7 @@ void Interfaz::solicitarDatosEmpresa(std::string& razonSocial)
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una razon social valida" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la razon social: ";
@@ -452,8 +444,7 @@ void Interfaz::solicitarDatosPersona(std::string& correo, std::string& nacionali
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un correo valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el correo: ";
@@ -470,8 +461,7 @@ void Interfaz::solicitarDatosPersona(std::string& correo, std::string& nacionali
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una nacionalidad valida" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la nacionalidad: ";
@@ -525,8 +515,7 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 					{
 						std::cout << "----------------------------------------------------------------------------" << std::endl;
 						std::cout << "Por favor digite un codigo valido" << std::endl;
-						std::system("pause");
-						clearScreen();
+						pauseAndClearScreen();
 					}
 					std::cout << "----------------------------------------------------------------------------" << std::endl;
 					std::cout << "Por favor digite otro codigo: ";
@@ -585,8 +574,7 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un codigo valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el codigo del componente que desea eliminar: ";
@@ -604,8 +592,7 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::system("pause");
-	clearScreen();
+	pauseAndClearScreen();
 
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "El componente se ha eliminado exitosamente del catalogo" << std::endl;
@@ -623,8 +610,7 @@ int Interfaz::menuMantenimientoModificarSistemaCatalogo()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una opcion valida" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "\t\tMenu de opciones" << std::endl;
@@ -667,8 +653,7 @@ std::string Interfaz::menuMantenimientoModificarSistemaCatalogoSolicitarCodigo()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un codigo valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el codigo del sistema que desea modificar: ";
@@ -693,8 +678,7 @@ std::string Interfaz::menuMantenimientoModificarNombreSistemaPreconfigurado()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un nombre valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el nuevo nombre del sistema preconfigurado: ";
@@ -724,8 +708,7 @@ std::string Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado()
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un codigo valido" << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el nuevo codigo del sistema preconfigurado: ";
@@ -737,8 +720,7 @@ std::string Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "El codigo ya existe en el catalogo" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 			existeOtroSistemaPreconfigurado = true;
 		}
 
@@ -829,8 +811,7 @@ Cliente* Interfaz::buscarCliente()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un nombre valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la cedula: ";
@@ -855,17 +836,14 @@ void Interfaz::regresar()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Regresando al menu principal" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::system("pause");
-	clearScreen();
+	pauseAndClearScreen();
 }
 
 void Interfaz::salir()
 {
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Saliendo del programa" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::system("pause");
-	clearScreen();
+	pauseAndClearScreen();
 
 	try
 	{
@@ -900,6 +878,5 @@ void Interfaz::opcionInvalida()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Opcion invalida" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::system("pause");
-	clearScreen();
+	pauseAndClearScreen();
 }
