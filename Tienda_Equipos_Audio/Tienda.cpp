@@ -194,8 +194,8 @@ std::string Tienda::mostrarComponenteMasVendido()
 	std::stringstream ss;
 	if (componenteMasVendido != nullptr) 
 	{
-		ss << "El componente más vendido es: " << componenteMasVendido->toString() << std::endl;
-		ss << "Cantidad vendida: " << cantidadMasVendida << " unidades.";
+		ss << "Informacion del componente mas vendido:" << std::endl;
+		ss << componenteMasVendido->toString() << std::endl;
 	}
 	else 
 	{
