@@ -210,7 +210,7 @@ void Interfaz::menuMantenimientoVerListaClientes()
 		std::cout << tienda->mostrarListaClientes() << std::endl;
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	catch (std::exception& e)
+	catch (std::exception&)
 	{
 		clearScreen();
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -483,12 +483,17 @@ void Interfaz::menuMantenimientoVerCatalogoComponentes()	// unicamente muestra e
 	try
 	{
 		std::cout << tienda->mostrarCatalogo() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	catch (std::exception& e)
+	catch (std::exception&)
 	{
-		std::cerr << e.what() << std::endl;
+		clearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que no hay sistemas registrados en el catalogo" << std::endl;
+		std::cerr << "Por favor registre un sistema para poder ver el catalogi" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	pauseScreen();	// borrar?
 }
 
 void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear los sistemas preconfigurados
