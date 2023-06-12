@@ -789,19 +789,17 @@ int Interfaz::menuReportes()
 
  void Interfaz::menuReportesComponenteMasVendido()
  {
- 	//1, muestre el producto que mas se ha vendido(sea componente o sistema)
- 	std::cout << "----------------------------------------------------------------------------" << std::endl;
- 	std::cout << "El componente mas vendido es: " << std::endl;
- 	std::cout << "----------------------------------------------------------------------------" << std::endl;
- 	try
- 	{
- 		std::cout << tienda->mostrarComponenteMasVendido() << std::endl;
+	//1, muestre el producto que mas se ha vendido(sea componente o sistema)
+	std::cout << "----------- Componente Mas Vendido ------------" << std::endl;
+	try
+	{
+		std::cout << tienda->mostrarComponenteMasVendido() << std::endl;
 		pauseScreen();
- 	}
- 	catch (std::exception& e)
- 	{
- 		std::cerr << e.what() << std::endl;
- 	}
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
  }
 
  void Interfaz::menuReportesTotalVentas()
