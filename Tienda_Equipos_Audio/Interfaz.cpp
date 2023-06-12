@@ -78,7 +78,6 @@ Componente* Interfaz::escogerSistemaPreconfigurado()
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << "Error. " << e.what() << std::endl;
 		throw std::exception(e.what());    // se tira el en caso de que el codigo no exista
 	}
 }
