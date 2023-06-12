@@ -15,16 +15,12 @@ Componente* CreadorSistemaPersonalizado::crearSistemaDeAudio()
     }
 
     Componente* sistemaDeAudio = new SistemaDeAudio(codigo, ICrearProductos::mensajeNombreSistemaDeAudio(), "Sistema Personalizado");
-    std::system("pause");
-    clearScreen();
+    pauseAndClearScreen();
     sistemaDeAudio->add(crearProcesadorDeSenal());
-    std::system("pause");
-    clearScreen();
+    pauseAndClearScreen();
     sistemaDeAudio->add(crearFuenteDeAudio());
-    std::system("pause");
-    clearScreen();
+    pauseAndClearScreen();
     sistemaDeAudio->add(crearParlanteCat());
-    std::system("pause");
-    clearScreen();
+    pauseAndClearScreen();
     return sistemaDeAudio;
 }

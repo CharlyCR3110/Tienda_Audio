@@ -52,8 +52,7 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un codigo valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el codigo del sistema de audio que desea agregar: ";
