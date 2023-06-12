@@ -777,15 +777,14 @@ int Interfaz::menuReportes()
 	// En la opción 1, muestre el producto que mas se ha vendido (sea componente o sistema)
 	//En la opción 2, muestre el total de ventas según todos los productos vendidos, especifique cuantos fueron componente y cuantos fueron sistemas
 	int opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "----------------- Reportes ------------------" << std::endl;
 	std::cout << "\t\tReportes" << std::endl;
 	std::cout << "1. Reporte equipos mas vendidos" << std::endl;
 	std::cout << "2. Reporte ventas" << std::endl;
 	std::cout << "3. Salir" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "----------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
 	std::cin >> opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	return opcion;
 }
 
