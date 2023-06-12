@@ -798,6 +798,7 @@ int Interfaz::menuReportes()
  	try
  	{
  		std::cout << tienda->mostrarComponenteMasVendido() << std::endl;
+		pauseScreen();
  	}
  	catch (std::exception& e)
  	{
@@ -813,7 +814,7 @@ int Interfaz::menuReportes()
 	 try
 	 {
 		 std::cout << tienda->mostrarTotalVentas() << std::endl;
-		 std::system("Pause");
+		 pauseScreen();
 	 }
 	 catch (std::exception& e)
 	 {
