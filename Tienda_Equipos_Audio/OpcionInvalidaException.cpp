@@ -1,11 +1,11 @@
 #include "OpcionInvalidaException.h"
 
-OpcionInvalidaException::OpcionInvalidaException(std::string menu):
-	_menu(menu)
+OpcionInvalidaException::OpcionInvalidaException(std::string mensaje):
+	_mensaje(mensaje)
 {
 }
 
 const char* OpcionInvalidaException::what() const throw()
 {
-	return (_menu + ": Opcion invalida").c_str();
+	return _mensaje.c_str();
 }
