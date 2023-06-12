@@ -39,7 +39,6 @@ void Catalogo::agregarComponente(Componente* componente)
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;	// borrame
 		throw e;
 	}
 }
@@ -52,7 +51,6 @@ void Catalogo::eliminarComponente(Componente* componente)
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << "Catalogo eliminar componente error: " << e.what() << std::endl;	// borrame
 		throw std::exception(e.what());
 	}
 }
@@ -65,7 +63,6 @@ void Catalogo::eliminarComponentePorCodigo(std::string codigo)
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;	// borrame
 		throw std::exception(e.what());
 	}
 }
@@ -78,7 +75,6 @@ std::string Catalogo::mostrarCatalogo()
 	}
 	catch (ListaVaciaException& e)
 	{
-		std::cerr << "Mostrar Catalogo Error: " << e.what() << std::endl;	// borrame
 		throw std::exception(e.what());
 	}
 }
@@ -91,7 +87,6 @@ std::string Catalogo::mostrarCategoriaDelCatalogo(std::string categoria)
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;	// borrame
 		throw e;
 	}
 }
