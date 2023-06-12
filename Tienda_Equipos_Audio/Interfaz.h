@@ -40,7 +40,7 @@ public:
 	static void menuMantenimientoIngresarNuevoCliente();
 
 	// submenus de mantenimiento de clientes
-	static void solicitarDatosComportidos(std::string& nombre, std::string& codigo, std::string& pais, std::string& ciudad);
+	static void solicitarDatosCompartidos(std::string& nombre, std::string& codigo, std::string& pais, std::string& ciudad);
 
 	static void solicitarDatosEmpresa(std::string& razonSocial);
 

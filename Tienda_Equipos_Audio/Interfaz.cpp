@@ -262,7 +262,7 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Por favor digite los siguientes datos" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	solicitarDatosComportidos(nombre, cedula, pais, ciudad);	// se pasan como referencia para que se puedan modificar
+	solicitarDatosCompartidos(nombre, cedula, pais, ciudad);	// se pasan como referencia para que se puedan modificar
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	if (opcionTipoCliente == 1)
 	{
@@ -315,7 +315,7 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 	}
 }
 
-void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedula, std::string& pais, std::string& ciudad)
+void Interfaz::solicitarDatosCompartidos(std::string& nombre, std::string& cedula, std::string& pais, std::string& ciudad)
 {
 	int numeroDeIntento = 0;
 
