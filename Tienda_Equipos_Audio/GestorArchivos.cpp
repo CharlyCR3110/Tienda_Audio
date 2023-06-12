@@ -316,7 +316,7 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 			venta = new VentaOnline(cliente, fecha, codigoEnvio);
 
 		}
-			else if (tipoDeVenta == "D")
+		else if (tipoDeVenta == "D")
 		{
 			venta = new VentaDirecta(cliente, fecha);
 		}
@@ -324,6 +324,7 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 		{
 			throw RecuperarVentaException("Tipo de venta invalido");
 		}
+		
 		while (indiceComponente < indice)
 		{
 
@@ -436,7 +437,7 @@ Cliente* GestorArchivos::recuperarClienteEspecifico(std::string cedula, ListaEnl
 	}
 	catch (std::exception& e)
 	{
-		throw std::exception("No se encontro el cliente");
+		throw RecuperarClienteException(e.what());
 	}
 }
 
@@ -445,11 +446,11 @@ Fecha* GestorArchivos::stringToFecha(std::string fechaStr)
 	//convierte una fecha en formato dd/mm/aaaa a un objeto de tipo Fecha
 	std::istringstream iss(fechaStr);
 	std::string token;
-	std::getline(iss, token, '/');  // Obtener el día
+	std::getline(iss, token, '/');  // Obtener el dï¿½a
 	int dia = std::stoi(token);
 	std::getline(iss, token, '/');  // Obtener el mes
 	int mes = std::stoi(token);
-	std::getline(iss, token);       // Obtener el año
+	std::getline(iss, token);       // Obtener el aï¿½o
 	int anio = std::stoi(token);
 
 	return new Fecha(dia, mes, anio);
