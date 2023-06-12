@@ -793,9 +793,14 @@ int Interfaz::menuReportes()
 		 std::cout << tienda->mostrarTotalVentas() << std::endl;
 		 pauseScreen();
 	 }
-	 catch (std::exception& e)
+	 catch (std::exception&)
 	 {
-		 std::cerr << e.what() << std::endl;
+		 clearScreen();
+		 std::cout << "----------------------------------------------------------------------------" << std::endl;
+		 std::cerr << "Parece que no hay ventas registradas" << std::endl;
+		 std::cerr << "Por favor registre una venta para poder ver el reporte" << std::endl;
+		 std::cout << "----------------------------------------------------------------------------" << std::endl;
+		 pauseScreen();
 	 }
  }
 
