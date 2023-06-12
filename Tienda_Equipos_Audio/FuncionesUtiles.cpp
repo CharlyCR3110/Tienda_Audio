@@ -11,6 +11,12 @@ void clearScreen()
 	system("cls");
 }
 
+void pauseAndCleanScreen()
+{
+	std::system("pause");
+	std::system("cls");
+}
+
 bool esCodigoValido(std::string codigo)
 {
 	if (codigo.empty())
@@ -48,9 +54,9 @@ bool esNombreValido(std::string nombre)
 }
 
 bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros, bool permitirCaracteresEspeciales, std::string tipo) {
-    // Validar si el campo es vacío (opcional)
+    // Validar si el campo es vacï¿½o (opcional)
     if (str.empty()) {
-        std::cout << "El campo \"" << tipo << "\" no puede estar vacío." << std::endl;
+        std::cout << "El campo \"" << tipo << "\" no puede estar vacï¿½o." << std::endl;
         return false;
     }
 
@@ -62,9 +68,9 @@ bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros
             return false;
         }
 
-        // Validar números
+        // Validar nï¿½meros
         if (!permitirNumeros && std::isdigit(c)) {
-            std::cout << "El campo \"" << tipo << "\" no puede contener números." << std::endl;
+            std::cout << "El campo \"" << tipo << "\" no puede contener nï¿½meros." << std::endl;
             return false;
         }
 
@@ -76,6 +82,6 @@ bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros
         }
     }
 
-    // El string es válido
+    // El string es vï¿½lido
     return true;
 }
