@@ -5,12 +5,13 @@ Tienda* Interfaz::tienda = new Tienda();	// Inicializacion de variable estatica
 int Interfaz::menuPrincipal()
 {
 	int opcion = 0;
-	std::cout << "\t\tMenu Principal" << std::endl;
+	std::cout << "-------------- Menu Principal ---------------" << std::endl;
 	std::cout << "1. Venta Directa" << std::endl;
 	std::cout << "2. Venta en linea" << std::endl;
 	std::cout << "3. Mantenimiento" << std::endl;
 	std::cout << "4. Reportes" << std::endl;
 	std::cout << "5. Salir" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
 	std::cin >> opcion;
 	return opcion;
