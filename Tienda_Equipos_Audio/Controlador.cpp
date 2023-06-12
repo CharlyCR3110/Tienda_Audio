@@ -366,7 +366,7 @@ void Controlador::controladorMantenimiento()
 			Interfaz::regresar();
 			break;
 		default:
-			std::cerr << "Error. Opcion invalida." << std::endl;
+			std::cerr << OpcionInvalidaException("Menu Mantenimiento").what() << std::endl;
 			break;
 		}
 		system("pause");
