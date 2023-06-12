@@ -55,7 +55,6 @@ void Controlador::controladorPrincipal(int opcion)
 		break;
 	case 4:
 		controladorReportes();
-		std::system("pause");
 		break;
 	case 5:
 		Interfaz::salir();
@@ -562,6 +561,5 @@ void Controlador::controladorReportes()
 		case 3:
 			Interfaz::regresar();
 		}
-		system("pause");
 	} while (opcion != 3);
 }
