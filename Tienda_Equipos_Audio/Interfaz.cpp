@@ -187,7 +187,7 @@ int Interfaz::cuantasUnidadesDesea()
 int Interfaz::menuMantenimiento()
 {
 	int opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "-------------------- Mantenimiento --------------------" << std::endl;
 	std::cout << "\t\tMantenimiento" << std::endl;
 	std::cout << "1. Ver Lista de clientes" << std::endl;
 	std::cout << "2. Ingreso de nuevos clientes" << std::endl;
@@ -196,10 +196,9 @@ int Interfaz::menuMantenimiento()
 	std::cout << "5. Eliminar productos del cat�logo" << std::endl;
 	std::cout << "6. Modificar producto del catalogo" << std::endl;
 	std::cout << "7. Regresa" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "------------------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
 	std::cin >> opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	return opcion;
 }
 
