@@ -40,6 +40,7 @@
 #include "RecuperarClienteVentaException.h"
 #include "RecuperarVentaException.h""
 #include "RecuperarClienteException.h"
+#include "GuardarVentaException.h"
 
 class GestorArchivos
 {

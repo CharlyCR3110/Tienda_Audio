@@ -195,7 +195,7 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 
 			if (componente == nullptr)
 			{
-				throw std::runtime_error("Error al guardar la venta. El componente es nulo");	// cambiar
+				throw GuardarVentaException("El componente es nulo");
 			}
 
 			// si NO es un sistema de audio
