@@ -294,7 +294,7 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 
 		if (cliente == nullptr)
 		{
-			throw std::runtime_error("Error al recuperar el cliente de la venta");
+			throw RecuperarClienteVentaException();
 		}
 
 		// recuperar los componentes de la venta con un while

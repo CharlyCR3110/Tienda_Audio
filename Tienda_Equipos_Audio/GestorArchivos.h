@@ -34,8 +34,10 @@
 #include "VentaDirecta.h"
 #include "VentaOnline.h"
 
+// excepciones
 #include "AbrirArchivoException.h"
 #include "RecuperarFechaVentaException.h"
+#include "RecuperarClienteVentaException.h"
 
 class GestorArchivos
 {
