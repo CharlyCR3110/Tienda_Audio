@@ -208,12 +208,17 @@ void Interfaz::menuMantenimientoVerListaClientes()
 	try
 	{
 		std::cout << tienda->mostrarListaClientes() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << "Error. " << e.what() << std::endl;
+		clearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que no hay clientes registrados." << std::endl;
+		std::cerr << "Por favor registre un cliente para poder ver la lista de clientes." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	pauseScreen();	// borrar?
 }
 
 void Interfaz::menuMantenimientoIngresarNuevoCliente()
