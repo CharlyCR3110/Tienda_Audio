@@ -1,6 +1,9 @@
 #pragma once
 #include "Interfaz.h"
 
+// excepciones
+#include "OpcionInvalidaException.h"
+
 class Controlador
 {
 public:

@@ -175,7 +175,7 @@ Componente* Controlador::controladorMenuVentaDirectaComprar()
 		componente = Interfaz::escogerComponenteSeparado();
 		break;
 	default:
-		throw std::exception("Menu Venta Directa: Opcion invalida");
+		throw OpcionInvalidaException("Menu Venta Directa");	// esta excepcion no se va a lanzar, pero por si acaso
 		break;
 	}
 
@@ -327,7 +327,7 @@ Componente* Controlador::controladorMenuVentaEnLineaComprar()
 		componente = Interfaz::escogerComponenteSeparado();
 		break;
 	default:
-		throw std::exception("Menu Venta En Linea: Opcion invalida");
+		throw OpcionInvalidaException("Menu Venta En Linea");	// esta excepcion no se va a lanzar, pero por si acaso
 		break;
 	}
 	return componente;
