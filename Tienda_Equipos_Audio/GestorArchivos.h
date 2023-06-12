@@ -34,6 +34,8 @@
 #include "VentaDirecta.h"
 #include "VentaOnline.h"
 
+#include "AbrirArchivoException.h"
+
 class GestorArchivos
 {
 public:
