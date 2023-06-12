@@ -35,6 +35,7 @@
 #include "VentaOnline.h"
 
 #include "AbrirArchivoException.h"
+#include "RecuperarFechaVentaException.h"
 
 class GestorArchivos
 {

@@ -281,12 +281,12 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 		}
 		catch (std::exception& e)
 		{
-			throw std::runtime_error("Error al recuperar la fecha de la venta");
+			throw RecuperarFechaVentaException();
 		}
 
 		if (fecha == nullptr)
 		{
-			throw std::runtime_error("Error al recuperar la fecha de la venta: La fecha fue null");
+			throw RecuperarFechaVentaException();
 		}
 
 		// recuperar el tipo de venta
