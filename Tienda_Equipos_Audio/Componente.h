@@ -22,7 +22,7 @@ public:
 	virtual std::string getNombreComponente() const;
 
 	// nombre del paquete de componentes
-	virtual std::string getNombre() const;	// cambiar por getNombreComponente
+	virtual std::string getNombre() const;
 
 	// cantidad de componentes que se van a comprar
 	virtual int getCantidadEnCarrito() const;
