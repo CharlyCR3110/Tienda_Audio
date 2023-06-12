@@ -8,7 +8,12 @@ void clearInputBuffer()
 
 void clearScreen()
 {
-	system("cls");
+	std::system("cls");
+}
+
+void pauseScreen()
+{
+	std::system("pause");
 }
 
 void pauseAndCleanScreen()

@@ -1,10 +1,11 @@
 #include <iostream>
-#include <limits>
 
 // funcion para limpiar los errores de entrada
 void clearInputBuffer();
 // funcion para limpiar la pantalla
 void clearScreen();
+// funcion para pausar
+void pauseScreen();
 // funcion para pausar la pantalla y luego limpiarla
 void pauseAndCleanScreen();
 
