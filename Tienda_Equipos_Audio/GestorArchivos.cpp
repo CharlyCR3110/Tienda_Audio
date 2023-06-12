@@ -322,7 +322,7 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 		}
 		else
 		{
-			throw std::runtime_error("Error al recuperar la venta: Tipo de venta invalido");
+			throw RecuperarVentaException("Tipo de venta invalido");
 		}
 		while (indiceComponente < indice)
 		{
