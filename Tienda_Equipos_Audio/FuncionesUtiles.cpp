@@ -16,7 +16,7 @@ void pauseScreen()
 	std::system("pause");
 }
 
-void pauseAndCleanScreen()
+void pauseAndClearScreen()
 {
 	std::system("pause");
 	std::system("cls");
