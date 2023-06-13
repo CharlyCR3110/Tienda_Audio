@@ -38,7 +38,7 @@
 #include "AbrirArchivoException.h"
 #include "RecuperarFechaVentaException.h"
 #include "RecuperarClienteVentaException.h"
-#include "RecuperarVentaException.h""
+#include "RecuperarVentaException.h"
 #include "RecuperarClienteException.h"
 #include "GuardarVentaException.h"
 
