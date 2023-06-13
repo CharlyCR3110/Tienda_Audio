@@ -7,7 +7,7 @@ void GestorArchivos::guardarFecha(std::string fecha)
 
 	if (archivo.fail())
 	{
-		throw AbrirArchivoException("fecha.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: fecha.txt");
 	}
 
 	archivo << fecha;
@@ -20,7 +20,7 @@ void GestorArchivos::guardarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 
 	if (archivoClientes.fail())
 	{
-		throw AbrirArchivoException("clientes.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: clientes.txt");
 	}
 
 	// recorrer la lista de clientes
@@ -60,7 +60,7 @@ void GestorArchivos::recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 
 	if (archivoClientes.fail())
 	{
-		throw AbrirArchivoException("clientes.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: clientes.txt");
 	}
 
 	std::string linea;
@@ -105,7 +105,7 @@ void GestorArchivos::guardarCatalogo(Catalogo* catalogo)
 
 	if (archivoCatalogo.fail())
 	{
-		throw AbrirArchivoException("catalogo.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: catalogo.txt");
 	}	
 		
 	archivoCatalogo << catalogo->guardarCatalogo();
@@ -119,7 +119,7 @@ void GestorArchivos::recuperarCatalogo(Catalogo* catalogo)
  
 	if (archivoCatalogo.fail())
 	{
-		throw AbrirArchivoException("catalogo.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: catalogo.txt");
 	}
 
 	std::string linea;
@@ -162,7 +162,7 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 
 	if (archivoVentas.fail())
 	{
-		throw AbrirArchivoException("ventas.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: ventas.txt");
 	}
 
 	Nodo<Venta>* nodoVenta = ventas->getPrimero();
@@ -245,7 +245,7 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 
 	if (archivoVentas.fail())
 	{
-		throw AbrirArchivoException("ventas.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: ventas.txt");
 	}
 
 	std::string linea;
