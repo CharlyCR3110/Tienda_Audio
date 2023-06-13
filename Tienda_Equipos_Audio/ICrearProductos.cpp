@@ -5,38 +5,22 @@
 std::string ICrearProductos::mensajeNombreSistemaDeAudio()
 {
 	std::string nombre;
-	bool esNombreValido = false;
-
-	while (!esNombreValido)
+	int numeroDeIntento = 0;
+	do
 	{
-		std::cout << "Digite el nombre que tendra sus sistema de audio: ";
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un nombre valido" << std::endl;
+			pauseAndClearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el nombre del sistema de audio que desea agregar: ";
 		std::getline(std::cin, nombre);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(nombre, true, false, false, "nombre"));	// se permite que el nombre tenga espacios
 
-		if (nombre.empty())
-		{
-			std::cerr << "Error: El nombre del sistema no puede estar vacio." << std::endl;
-			clearInputBuffer();
-			continue;
-		}
-
-		bool esCadenaValida = true;
-		for (char c : nombre)
-		{
-			if (!isalpha(c) && c != ' ')
-			{
-				esCadenaValida = false;
-				break;
-			}
-		}
-
-		if (!esCadenaValida)
-		{
-			std::cerr << "Error: El nombre del sistema solo puede contener letras y espacios." << std::endl;
-			clearInputBuffer();
-			continue;
-		}
-		esNombreValido = true;
-	}
 	return nombre;
 }
 
