@@ -381,9 +381,12 @@ void Controlador::controladorModificarSistemaDeAudio()
 	// se verifica que exista al menos un sistema de audio
 	if (Interfaz::tienda->getCatalogo()->estaVacio())
 	{
-		std::cerr << "Error. No hay sistemas de audio en el catalogo." << std::endl;
-		std::cout << "Regresando al menu principal..." << std::endl;
-		pauseAndClearScreen();
+		//clearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que no hay sistemas registrados en el catalogo." << std::endl;
+		std::cerr << "Por favor registre un sistema para utilizar esta opcion." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu anterior..." << std::endl;
 		return;
 	}
 
