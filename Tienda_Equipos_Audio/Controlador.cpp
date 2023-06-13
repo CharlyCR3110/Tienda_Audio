@@ -479,7 +479,7 @@ void Controlador::controladorModificarSistemaDeAudio()
 			std::cout << "El nuevo nombre del sistema de audio es: " << sistema->getNombreComponente() << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			pauseAndClearScreen();
-			//return;
+			Interfaz::tienda->notificarModificacionComponente("El nombre del sistema de audio codigo " + codigoDelSistema + " ha sido modificado.");
 			break;
 		case 2:
 			nuevoCodigo = Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado();
@@ -490,7 +490,7 @@ void Controlador::controladorModificarSistemaDeAudio()
 			std::cout << "El nuevo codigo del sistema de audio es: " << sistema->getCodigo() << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			pauseAndClearScreen();
-			//return;
+			Interfaz::tienda->notificarModificacionComponente("Se ha modificado el codigo de un sistema de audio, su nuevo codigo es: " + sistema->getCodigo());	  // podria utilizar nuevoCodigo, pero para evitar
 			break;
 		case 3:
 			controladorCambiarUnComponenteDeSistemaDeAudio(sistema);
@@ -499,6 +499,7 @@ void Controlador::controladorModificarSistemaDeAudio()
 			std::cout << "El componente del sistema de audio ha sido modificado." << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			pauseAndClearScreen();
+			Interfaz::tienda->notificarModificacionComponente("Se ha modificado un componente del sistema de audio con codigo: " + sistema->getCodigo());
 			break;
 		case 4:
 			Interfaz::regresar();
