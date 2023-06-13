@@ -437,7 +437,8 @@ Cliente* GestorArchivos::recuperarClienteEspecifico(std::string cedula, ListaEnl
 	}
 	catch (std::exception& e)
 	{
-		throw RecuperarClienteException(e.what());
+		std::string mensaje = "No se pudo recuperar el cliente: " + std::string(e.what());
+		throw RecuperarClienteException(mensaje);
 	}
 }
 
