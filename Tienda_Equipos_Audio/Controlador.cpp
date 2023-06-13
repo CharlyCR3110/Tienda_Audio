@@ -387,6 +387,7 @@ void Controlador::controladorModificarSistemaDeAudio()
 		std::cerr << "Por favor registre un sistema para utilizar esta opcion." << std::endl;
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Regresando al menu anterior..." << std::endl;
+		pauseScreen();
 		return;
 	}
 
@@ -398,9 +399,12 @@ void Controlador::controladorModificarSistemaDeAudio()
 	// se verifica que el sistema de audio exista
 	if (!Interfaz::tienda->existeOtroSistemaPreconfigurado(codigoDelSistema))
 	{
-		std::cerr << "Error. El sistema de audio no existe." << std::endl;
-		std::cout << "Regresando al menu principal..." << std::endl;
-		pauseAndClearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que el sistema de audio con el codigo " << codigoDelSistema << " no existe." << std::endl;
+		std::cerr << "La modificacion no se puede realizar." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu anterior..." << std::endl;
+		pauseScreen();
 		return;
 	}
 
@@ -412,16 +416,21 @@ void Controlador::controladorModificarSistemaDeAudio()
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Ocurrio un error al obtener el sistema de audio." << std::endl;
+		std::cerr << "Motivo: " << e.what() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Regresando al menu principal..." << std::endl;
 		pauseAndClearScreen();
 		return;
 	}
 
 	// para que el programa no se caiga
-	if (sistema == nullptr)
+	if (sistema == nullptr)	// debug
 	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cerr << "Error. El sistema de audio no existe. NULLPTR" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Regresando al menu principal..." << std::endl;
 		pauseAndClearScreen();
 		return;
@@ -429,6 +438,12 @@ void Controlador::controladorModificarSistemaDeAudio()
 
 
 	// se muestra el sistema de audio
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Perfecto. El sistema de audio con el codigo " << codigoDelSistema << " ha sido encontrado." << std::endl;
+	std::cout << "A continuacion se mostraran las caracteristicas actuales del sistema de audio." << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	pauseAndClearScreen();
+
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "\t\t\tSISTEMA A MODIFICAR" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -451,32 +466,46 @@ void Controlador::controladorModificarSistemaDeAudio()
 	{
 		clearScreen();
 		opcion = Interfaz::menuMantenimientoModificarSistemaCatalogo();
-		clearScreen();
+		pauseAndClearScreen();
 		switch (opcion)
 		{
 		case 1:
 			nuevoNombre = Interfaz::menuMantenimientoModificarNombreSistemaPreconfigurado();
 			sistema->setNombreComponente(nuevoNombre);
+			pauseAndClearScreen();
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "El nombre del sistema de audio ha sido modificado." << std::endl;
+			std::cout << "El nuevo nombre del sistema de audio es: " << sistema->getNombreComponente() << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			pauseAndClearScreen();
 			//return;
 			break;
 		case 2:
 			nuevoCodigo = Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado();
 			sistema->setCodigo(nuevoCodigo);
+			pauseAndClearScreen();
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "El codigo del sistema de audio ha sido modificado." << std::endl;
+			std::cout << "El nuevo codigo del sistema de audio es: " << sistema->getCodigo() << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			pauseAndClearScreen();
 			//return;
 			break;
 		case 3:
 			controladorCambiarUnComponenteDeSistemaDeAudio(sistema);
+			pauseAndClearScreen();
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "El componente del sistema de audio ha sido modificado." << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			pauseAndClearScreen();
 			break;
 		case 4:
 			Interfaz::regresar();
+			break;
+		default:
+			std::cerr << OpcionInvalidaException("Opción inválida seleccionada en el menú: Modificar Sistema del Catalogo").what() << std::endl;	 // aqui se podria hacer un throw o mostrarla, al fin de cuenta NUNCA se va a ejecutar porque menuMantenimientoModificarSistemaCatalogo() solo retorna 1, 2, 3 o 4
+			break;
 		}
-		system("pause");
 	} while (opcion != 4 || regresar);
 }
 
