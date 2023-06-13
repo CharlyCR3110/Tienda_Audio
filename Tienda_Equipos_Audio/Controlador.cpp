@@ -105,9 +105,8 @@ void Controlador::controladorVentaDirecta()
 				{
 					std::cerr << "Error: entrada no v�lida. Por favor, ingrese un n�mero." << std::endl;
 
-					// Restablecer el estado de std::cin
-					std::cin.clear();
-					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					clearInputBuffer();	// limpiar el buffer de entrada
+
 					unidades = -1;	// para que se repita el ciclo
 					pauseAndClearScreen();
 				}
@@ -261,9 +260,8 @@ void Controlador::controladorVentaEnLinea()
 				if (std::cin.fail()) {
 					std::cerr << "Error: entrada no valida. Por favor, ingrese un numero." << std::endl;
 
-					// Restablecer el estado de std::cin
-					std::cin.clear();
-					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					clearInputBuffer();	// limpiar el buffer de entrada
+					
 					unidades = -1;	// para que se repita el ciclo
 				}
 
