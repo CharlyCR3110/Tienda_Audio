@@ -3,6 +3,7 @@
 
 // excepciones
 #include "OpcionInvalidaException.h"
+#include "VentaVaciaException.h"
 
 class Controlador
 {

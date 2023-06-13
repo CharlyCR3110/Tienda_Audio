@@ -135,7 +135,10 @@ void Controlador::controladorVentaDirecta()
 	// se verifica que la venta tenga al menos un componente
 	if (venta->getCarritoDeCompras()->estaVacia())
 	{
-		std::cerr << "Error. La venta no tiene ningun componente." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << VentaVaciaException().what() << std::endl;
+		std::cout << "No se puede generar la factura." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Regresando al menu principal..." << std::endl;
 		pauseAndClearScreen();
 		return;
