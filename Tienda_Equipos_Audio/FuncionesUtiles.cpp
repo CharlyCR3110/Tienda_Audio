@@ -61,7 +61,7 @@ bool esNombreValido(std::string nombre)
 bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros, bool permitirCaracteresEspeciales, std::string tipo) {
     // Validar si el campo es vac�o (opcional)
     if (str.empty()) {
-        std::cout << "El campo \"" << tipo << "\" no puede estar vac�o." << std::endl;
+        std::cout << "El campo \"" << tipo << "\" no puede estar vacio." << std::endl;
         return false;
     }
 
@@ -75,7 +75,7 @@ bool esStringValido(std::string str, bool permitirEspacios, bool permitirNumeros
 
         // Validar n�meros
         if (!permitirNumeros && std::isdigit(c)) {
-            std::cout << "El campo \"" << tipo << "\" no puede contener n�meros." << std::endl;
+            std::cout << "El campo \"" << tipo << "\" no puede contener numeros." << std::endl;
             return false;
         }
 
