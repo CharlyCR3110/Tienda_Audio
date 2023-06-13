@@ -46,6 +46,14 @@ void Tienda::eliminarComponetePorCodigo(std::string codigo)
 	}
 }
 
+void Tienda::notificarModificacionComponente(std::string mensaje)
+{
+	// abre el archivo de texto (LO ABRE, PERO NO BORRA LO QUE YA ESTABA ESCRITO)
+	std::ofstream archivo("../Archivos/notificaciones.txt", std::ios::app); // solo para que muestre que se elimino el componente
+	archivo << mensaje << std::endl;
+	notificarClientes();
+}
+
 void Tienda::suscribirCliente(Cliente* cliente)
 {
 	try

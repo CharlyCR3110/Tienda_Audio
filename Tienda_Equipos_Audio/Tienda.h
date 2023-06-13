@@ -26,6 +26,7 @@ public:
 	void agregarComponente(Componente* producto);
 	void eliminarComponente (Componente* producto);
 	void eliminarComponetePorCodigo(std::string codigo);
+	void notificarModificacionComponente(std::string mensaje);	// la modificacion se hace en Interfaz y controlador, entonces este metodo es para notificar a los observadores
 
 	void suscribirCliente(Cliente* cliente);
 	void desuscribirCliente(Cliente* cliente);
