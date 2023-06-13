@@ -644,6 +644,7 @@ int Interfaz::menuMantenimientoModificarSistemaCatalogo()
 		std::cout << "Digite una opcion del menu: ";
 		std::cin >> opcionDelMenu;
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
 	} while (opcionDelMenu < 1 || opcionDelMenu > 4);
 
 	return opcionDelMenu;
