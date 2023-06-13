@@ -1,11 +1,11 @@
 #include "GuardarVentaException.h"
 
-GuardarVentaException::GuardarVentaException(std::string motivo):
-	_motivo(motivo)
+GuardarVentaException::GuardarVentaException(std::string mensaje):
+	_mensaje(mensaje)
 {
 }
 
 const char* GuardarVentaException::what() const throw()
 {
-	return ("Error al guardar la venta: " + _motivo).c_str();
+	return _mensaje.c_str();
 }
