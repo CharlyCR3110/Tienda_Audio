@@ -195,7 +195,7 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 
 			if (componente == nullptr)
 			{
-				throw GuardarVentaException("El componente es nulo");
+				throw GuardarVentaException("Error al guardar la venta: El componente es nulo");
 			}
 
 			// si NO es un sistema de audio
