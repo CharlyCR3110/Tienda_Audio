@@ -286,14 +286,8 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 
 		// recuperar la fecha
 		Fecha* fecha = nullptr;
-		try
-		{ 
-			fecha = stringToFecha(datos[1]);	// datos[1] = fecha de la venta
-		}
-		catch (std::exception& e)
-		{
-			throw RecuperarFechaVentaException();
-		}
+		
+		fecha = stringToFecha(datos[1]);	// datos[1] = fecha de la venta
 
 		if (fecha == nullptr)
 		{
