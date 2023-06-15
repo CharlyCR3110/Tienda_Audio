@@ -122,8 +122,9 @@ inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std:
         if (opcion >= 1 && opcion <= numOpciones)
         {
             std::cout << "----------------------------------------------------------------------------" << std::endl;
-            std::cout << "Ha seleccionado la opción: " << opciones[opcion - 1] << std::endl;
+            std::cout << "A continuacion se le mostraran los modelos disponibles para la categoria: " << opciones[opcion - 1] << std::endl;
             std::cout << "----------------------------------------------------------------------------" << std::endl;
+            pauseAndClearScreen();
             return funciones[opcion - 1]();
         }
         else
