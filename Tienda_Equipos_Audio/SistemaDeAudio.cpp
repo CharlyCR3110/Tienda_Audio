@@ -113,7 +113,7 @@ void SistemaDeAudio::add(Componente* componente)
 	}
 	else
 	{
-		std::string mensaje = "No se puede agregar el componente " + componente->getCodigo() + " porque el sistema de audio está lleno";
+		std::string mensaje = "No se puede agregar el componente " + componente->getCodigo() + " porque el sistema de audio esta lleno";
 		throw SistemaDeAudioLlenoException(mensaje);
 	}
 }
@@ -132,7 +132,7 @@ void SistemaDeAudio::remove(Componente* componente)
 			return;
 		}
 	}
-	std::string mensaje = "No se puede eliminar el componente " + componente->getCodigo() + " porque no está en el sistema de audio";
+	std::string mensaje = "No se puede eliminar el componente " + componente->getCodigo() + " porque no esta en el sistema de audio";
 	throw ComponenteNoEncontradoException(mensaje);
 }
 

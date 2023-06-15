@@ -26,12 +26,12 @@ public:
 
     bool encontrar(const KeyType& clave);
 
-    // Método begin() para iterar sobre los elementos del Mapa
+    // Metodo begin() para iterar sobre los elementos del Mapa
     Nodo* begin() const {
         return primero;
     }
 
-    // Método end() para marcar el final de la iteración
+    // Metodo end() para marcar el final de la iteracion
     Nodo* end() const {
         return nullptr;
     }

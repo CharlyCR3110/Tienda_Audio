@@ -231,7 +231,7 @@ void Controlador::controladorVentaEnLinea()
 
 	if (!MontoTranslado::disponibilidadDeEnvio(codigoDeEnvio))	// true si hay envios disponibles false sino
 	{
-		std::cerr << "Error. No hay cobertura de envio para el codigo ingresado." << std::endl;
+		std::cerr << "Actualmente no hay cobertura de envio para el codigo ingresado." << std::endl;
 		std::cout << "Regresando al menu principal..." << std::endl;
 		pauseAndClearScreen();
 		return;
@@ -505,7 +505,7 @@ void Controlador::controladorModificarSistemaDeAudio()
 			Interfaz::regresar();
 			break;
 		default:
-			std::cerr << OpcionInvalidaException("Opción inválida seleccionada en el menú: Modificar Sistema del Catalogo").what() << std::endl;	 // aqui se podria hacer un throw o mostrarla, al fin de cuenta NUNCA se va a ejecutar porque menuMantenimientoModificarSistemaCatalogo() solo retorna 1, 2, 3 o 4
+			std::cerr << OpcionInvalidaException("Opcion invalida seleccionada en el menu: Modificar Sistema del Catalogo").what() << std::endl;	 // aqui se podria hacer un throw o mostrarla, al fin de cuenta NUNCA se va a ejecutar porque menuMantenimientoModificarSistemaCatalogo() solo retorna 1, 2, 3 o 4
 			break;
 		}
 	} while (opcion != 4 || regresar);

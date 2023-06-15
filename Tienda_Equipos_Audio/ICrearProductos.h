@@ -113,7 +113,7 @@ inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std:
         }
 
         std::cout << "----------------------------------------------------------------------------" << std::endl;
-        std::cout << "Ingrese el número de la opción que desea: ";
+        std::cout << "Ingrese el numero de la opcion que desea: ";
         int opcion;
         std::cin >> opcion;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -130,7 +130,7 @@ inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std:
         else
         {
             std::cout << "----------------------------------------------------------------------------" << std::endl;
-            std::cout << "Opción inválida. Por favor, ingrese un número de opción válido." << std::endl;
+            std::cout << "Opcion invalida. Por favor, ingrese un numero de opcion valido." << std::endl;
             std::cout << "----------------------------------------------------------------------------" << std::endl;
             pauseAndClearScreen();
             clearInputBuffer(); // Limpiar los errores de entrada
