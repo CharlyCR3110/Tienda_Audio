@@ -1,5 +1,16 @@
 ﻿#include "CreadorSistemaPersonalizado.h"
 
+/* -------------------------------------------------------------------------------------------------
+
+    EIF204 Programación II
+    Proyecto 2
+
+    5-0452-0687 Andres Ureña Guido			Grupo 02
+    6-0489-0217 Carlos Gonzalez Garita		Grupo 02
+    1-1886-0401 Sebastian Fuentes Jimenez	Grupo 03
+
+------------------------------------------------------------------------------------------------- */
+
 Componente* CreadorSistemaPersonalizado::crearSistemaDeAudio()
 {
     // Un sistema de audio tiene un procesador de senal, una fuente de audio y un parlante
