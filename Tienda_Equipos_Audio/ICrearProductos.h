@@ -19,7 +19,7 @@ public:
     // mensaje para solicitar el nombre del sistema de audio al usuario
     static std::string mensajeNombreSistemaDeAudio();
     // mensaje para solicitar el codigo del sistema de audio al usuario
-    static std::string mensajeCodigoSistemaDeAudio();   // esta funcion solo sera utilizada en la clase SistemaPreConfiguradoFactory
+    static std::string mensajeCodigoSistemaDeAudio();   // esta funcion solo sera utilizada en la clase CreadorPreConfiguradoFactory
 
 	// fuentes de audio
 	static FuenteDeAudio* crearFuenteDeAudio();
@@ -55,7 +55,7 @@ inline T* ICrearProductos::crearProducto(const std::string productos[][3], int n
     {
         // Mostrar las opciones de productos disponibles
         std::cout << "----------------------------------------------------------------------------" << std::endl;
-        std::cout << "Seleccione una opcion:" << std::endl;
+        std::cout << "Seleccione un modelo:" << std::endl;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
 
         for (int i = 0; i < numProductos; i++)
@@ -70,6 +70,7 @@ inline T* ICrearProductos::crearProducto(const std::string productos[][3], int n
         std::cout << "Ingrese el numero de opcion: ";
         std::cin >> opcion;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
+        pauseAndClearScreen();
 
         // Validar la entrada del usuario
         if (opcion >= 1 && opcion <= numProductos)
@@ -79,6 +80,10 @@ inline T* ICrearProductos::crearProducto(const std::string productos[][3], int n
             double precio = std::strtod(productos[opcion - 1][2].c_str(), nullptr);
 
             // Crear un nuevo producto con los detalles del producto seleccionado
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
+            // Mostrar mensaje de confirmacion, mostrando el nombre del producto seleccionado
+            std::cout << "Ha seleccionado el producto modelo: " << modelo << std::endl;
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
             return new T(modelo, caracteristica, precio);
         }
         else
@@ -87,6 +92,7 @@ inline T* ICrearProductos::crearProducto(const std::string productos[][3], int n
             std::cout << "----------------------------------------------------------------------------" << std::endl;
             std::cout << "Opcion invalida. Por favor, ingrese un numero de opcion valido." << std::endl;
             std::cout << "----------------------------------------------------------------------------" << std::endl;
+            pauseAndClearScreen();
             clearInputBuffer(); // Limpiar los errores de entrada
         }
     }
@@ -111,9 +117,14 @@ inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std:
         int opcion;
         std::cin >> opcion;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
+        pauseAndClearScreen();
 
         if (opcion >= 1 && opcion <= numOpciones)
         {
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
+            std::cout << "A continuacion se le mostraran los modelos disponibles para la categoria: " << opciones[opcion - 1] << std::endl;
+            std::cout << "----------------------------------------------------------------------------" << std::endl;
+            pauseAndClearScreen();
             return funciones[opcion - 1]();
         }
         else
@@ -121,6 +132,7 @@ inline T* ICrearProductos::crearCategoria(const std::string& mensaje, const std:
             std::cout << "----------------------------------------------------------------------------" << std::endl;
             std::cout << "Opción inválida. Por favor, ingrese un número de opción válido." << std::endl;
             std::cout << "----------------------------------------------------------------------------" << std::endl;
+            pauseAndClearScreen();
             clearInputBuffer(); // Limpiar los errores de entrada
         }
     }

@@ -5,38 +5,22 @@
 std::string ICrearProductos::mensajeNombreSistemaDeAudio()
 {
 	std::string nombre;
-	bool esNombreValido = false;
-
-	while (!esNombreValido)
+	int numeroDeIntento = 0;
+	do
 	{
-		std::cout << "Digite el nombre que tendra sus sistema de audio: ";
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un nombre valido" << std::endl;
+			pauseAndClearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el nombre del sistema de audio que desea agregar: ";
 		std::getline(std::cin, nombre);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(nombre, true, false, false, "nombre"));	// se permite que el nombre tenga espacios
 
-		if (nombre.empty())
-		{
-			std::cerr << "Error: El nombre del sistema no puede estar vacio." << std::endl;
-			clearInputBuffer();
-			continue;
-		}
-
-		bool esCadenaValida = true;
-		for (char c : nombre)
-		{
-			if (!isalpha(c) && c != ' ')
-			{
-				esCadenaValida = false;
-				break;
-			}
-		}
-
-		if (!esCadenaValida)
-		{
-			std::cerr << "Error: El nombre del sistema solo puede contener letras y espacios." << std::endl;
-			clearInputBuffer();
-			continue;
-		}
-		esNombreValido = true;
-	}
 	return nombre;
 }
 
@@ -52,8 +36,7 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un codigo valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el codigo del sistema de audio que desea agregar: ";
@@ -68,7 +51,7 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 // metodo para crear una fuente de audio de cualquier tipo
 FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 {
-	const std::string mensaje = "Seleccione el tipo de fuente de audio que desea comprar:";
+	const std::string mensaje = "Seleccione el tipo de fuente de audio que desea:";
 	const std::string opciones[] = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micr�fono" };
 	FuenteDeAudio* (*funciones[])() = { crearUnidadCD, crearTornamesa, crearRadio, crearUnidadBluetooth, crearMicrofono };
 
@@ -149,7 +132,7 @@ FuenteDeAudio* ICrearProductos::crearMicrofono()
 // metodo para crear un procesador de se�al de cualquier tipo
 ProcesadorDeSenal* ICrearProductos::crearProcesadorDeSenal()
 {
-	const std::string mensaje = "Seleccione el tipo de procesador de se�al que desea comprar:";
+	const std::string mensaje = "Seleccione el tipo de procesador de senal que desea:";
 	const std::string opciones[] = { "Amplificador", "Mezclador" };
 	ProcesadorDeSenal* (*funciones[])() = { crearAmplificador, crearMezclador };
 
@@ -192,7 +175,7 @@ ProcesadorDeSenal* ICrearProductos::crearMezclador()
 // metodo para crear un parlante de cualquier tipo
 ParlanteCat* ICrearProductos::crearParlanteCat()
 {
-	const std::string mensaje = "Seleccione el tipo de parlante que desea comprar:";
+	const std::string mensaje = "Seleccione el tipo de parlante que desea:";
 	const std::string opciones[] = { "Parlante", "Audifono" };
 	ParlanteCat* (*funciones[])() = { crearParlante, crearAudifono };
 

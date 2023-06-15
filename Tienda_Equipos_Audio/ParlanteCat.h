@@ -8,7 +8,7 @@ public:
 	ParlanteCat(std::string codigo, std::string caracteristicas, double precio);
 	ParlanteCat(const ParlanteCat& other);
 	virtual ~ParlanteCat();
-	virtual std::string toString() const = 0;
+	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const = 0;
 	// metodos de composite

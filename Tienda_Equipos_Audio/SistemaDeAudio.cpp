@@ -78,7 +78,7 @@ std::string SistemaDeAudio::toString() const
 	std::stringstream ss;
 	ss << _categoria << std::endl;
 	ss << "----------------------------------------------------------------------------" << std::endl;
-	ss << "Codigo: " << _codigo << std::endl
+	ss << "Codigo del sistema: " << _codigo << std::endl
 		<< "Nombre: " << _nombreComponente << std::endl
 		<< "Precio Unitario: " << getPrecioUnitario() << std::endl
 		<< "Cantidad: " << _cantidadEnElCarrito << std::endl;
@@ -90,7 +90,7 @@ std::string SistemaDeAudio::toString() const
 		if (_componentes[i] != nullptr)	// para evitar problemas
 		{
 			// numero del producto 
-			ss << "--------------------------------" << "PRODUCTO " << i + 1 << "-------------------------------" << std::endl;
+			ss << "--------------------------" << "SUBPRODUCTO DEL SISTEMA" << "-------------------------" << std::endl;
 			ss << _componentes[i]->toString() << std::endl;
 			ss << "----------------------------------------------------------------------------" << std::endl;
 		}
@@ -144,9 +144,30 @@ Componente* SistemaDeAudio::getChild(int i) const
 	}
 	else
 	{
-		std::string mensaje = "No se puede obtener el componente " + std::to_string(i) + " porque no está en el sistema de audio";
+		std::string mensaje = "No se puede obtener el componente " + std::to_string(i) + " porque no esta en el sistema de audio";
 		throw ComponenteNoEncontradoException(mensaje);
 	}
+}
+
+void SistemaDeAudio::setChild(int i, Componente* componente)
+{
+	if (i >= 0 && i < _cantidad)
+	{
+		_componentes[i] = componente->clonar();
+	}
+	else
+	{
+		std::string mensaje = "No se puede establecer el componente " + std::to_string(i) + " porque no esta en el sistema de audio";
+		throw ComponenteNoEncontradoException(mensaje);
+	}
+
+	// se actualiza el precio del sistema de audio
+	_precio = 0;
+	for (int i = 0; i < _cantidad; i++)
+	{
+		_precio += _componentes[i]->getPrecio();
+	}
+
 }
 
 void SistemaDeAudio::clear()

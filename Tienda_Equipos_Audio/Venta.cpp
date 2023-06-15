@@ -97,7 +97,7 @@ void Venta::agregarComponente(Componente* componente, int cantidad)
 	try
 	{
 		_subtotal += componenteClonado->getPrecioUnitario() * cantidad;
-
+		_total += componenteClonado->getPrecioUnitario() * cantidad;
 		// comprobar que el componente no se encuentre en la lista de componentes
 		// si se encuentra, se aumenta la cantidad
 		// si no se encuentra, se agrega a la lista

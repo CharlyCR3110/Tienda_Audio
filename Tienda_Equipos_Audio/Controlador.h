@@ -1,6 +1,10 @@
 #pragma once
 #include "Interfaz.h"
 
+// excepciones
+#include "OpcionInvalidaException.h"
+#include "VentaVaciaException.h"
+
 class Controlador
 {
 public:
@@ -20,6 +24,10 @@ public:
 
 	// mantenimiento
 	void controladorMantenimiento();
+
+	void controladorModificarSistemaDeAudio();
+
+	void controladorCambiarUnComponenteDeSistemaDeAudio(Componente* componente);
 
 	// reportes
 	void controladorReportes();

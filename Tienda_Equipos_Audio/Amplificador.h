@@ -9,7 +9,6 @@ public:
 	Amplificador(std::string codigo, std::string caracteristicas, double precio);
 	Amplificador(const Amplificador& other);
 	virtual ~Amplificador();
-	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;
 	// metodos de composite

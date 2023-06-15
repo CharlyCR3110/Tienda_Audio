@@ -2,8 +2,23 @@
 
 void Controlador::iniciar()
 {
-	Interfaz::tienda->recuperarClientes();
-	Interfaz::tienda->recuperarCatalogo();
+	try
+	{
+		Interfaz::tienda->recuperarClientes();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		Interfaz::tienda->recuperarCatalogo();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	try
 	{
 		Interfaz::tienda->recuperarVentas();
@@ -12,7 +27,6 @@ void Controlador::iniciar()
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	std::system("pause");
 
 	int opcion = 0;
 	do
@@ -31,7 +45,7 @@ void Controlador::controladorPrincipal(int opcion)
 	{
 	case 1:
 		controladorVentaDirecta();
-		std::system("pause");
+		pauseScreen();
 		break;
 	case 2:
 		controladorVentaEnLinea();
@@ -41,7 +55,6 @@ void Controlador::controladorPrincipal(int opcion)
 		break;
 	case 4:
 		controladorReportes();
-		std::system("pause");
 		break;
 	case 5:
 		Interfaz::salir();
@@ -59,8 +72,7 @@ void Controlador::controladorVentaDirecta()
 	{
 		cliente = Interfaz::buscarCliente();
 		std::cout << "Bienvenido " << cliente->getNombre() << std::endl;
-		std::system("pause");
-		clearScreen();
+		pauseAndClearScreen();
 	}
 	catch (std::exception& e)
 	{
@@ -68,8 +80,7 @@ void Controlador::controladorVentaDirecta()
 		mensajeDeError << "Error. El cliente parece no estar suscrito. Motivo: " << e.what() << std::endl;
 		mensajeDeError << "Por favor, registre al cliente antes de continuar." << std::endl;
 		std::cerr << mensajeDeError.str() << std::endl;
-		std::system("pause");
-		clearScreen();
+		pauseAndClearScreen();
 		return;
 	}
 
@@ -89,26 +100,26 @@ void Controlador::controladorVentaDirecta()
 				std::cout << "Cuantas unidades desea: ";
 				std::cin >> unidades;
 
-				// Verificar si la entrada es un número
+				// Verificar si la entrada es un nï¿½mero
 				if (std::cin.fail())
 				{
-					std::cerr << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+					std::cerr << "Error: entrada no vï¿½lida. Por favor, ingrese un nï¿½mero." << std::endl;
 
-					// Restablecer el estado de std::cin
-					std::cin.clear();
-					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					clearInputBuffer();	// limpiar el buffer de entrada
+
 					unidades = -1;	// para que se repita el ciclo
-					std::system("pause");
-					clearScreen();
+					pauseAndClearScreen();
 				}
 
 			} while (unidades < 0);
+			pauseScreen();
+			clearScreen();
 			venta->agregarComponente(componenteActual, unidades);
 		}
 		catch (std::exception& e)
 		{
-			std::cerr << e.what() << std::endl;
-			std::system("pause");
+			std::cerr << e.what() << std::endl;	// REVISAR
+			pauseScreen();
 		}
 
 		do
@@ -116,28 +127,35 @@ void Controlador::controladorVentaDirecta()
 			std::cout << "Desea seguir comprando? (s/n): ";
 			std::cin >> seguirComprando;
 		} while (seguirComprando != 's' && seguirComprando != 'S' && seguirComprando != 'n' && seguirComprando != 'N');
+		pauseAndClearScreen();
 	} while (seguirComprando == 's' || seguirComprando == 'S');
 
 	clearScreen();
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	try
+
+	// se verifica que la venta tenga al menos un componente
+	if (venta->getCarritoDeCompras()->estaVacia())
 	{
-		std::cout << venta->generarFactura() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << VentaVaciaException().what() << std::endl;
+		std::cout << "No se puede generar la factura." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		pauseAndClearScreen();
+		return;
 	}
-	catch (std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-		std::system("pause");
-	}
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+	std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+	std::cout << venta->generarFactura() << std::endl;
+	std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+
 	try
 	{
 		Interfaz::tienda->agregarVenta(venta);
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
-		std::system("pause");
+		std::cerr << e.what() << std::endl;	// revisar
+		pauseScreen();
 	}
 }
 
@@ -146,6 +164,7 @@ Componente* Controlador::controladorMenuVentaDirectaComprar()
 	int opcionMenuVentaDirecta = Interfaz::obtenerOpcionMenuVentaDirecta();
 	Componente* componente = nullptr;
 
+	pauseAndClearScreen();
 	switch (opcionMenuVentaDirecta)
 	{
 	case 1:
@@ -158,7 +177,7 @@ Componente* Controlador::controladorMenuVentaDirectaComprar()
 		componente = Interfaz::escogerComponenteSeparado();
 		break;
 	default:
-		throw std::exception("Menu Venta Directa: Opcion invalida");
+		throw OpcionInvalidaException("Menu Venta Directa");	// esta excepcion no se va a lanzar, pero por si acaso
 		break;
 	}
 
@@ -174,8 +193,7 @@ void Controlador::controladorVentaEnLinea()
 	{
 		cliente = Interfaz::buscarCliente();
 		std::cout << "Bienvenido " << cliente->getNombre() << std::endl;
-		std::system("pause");	// esto muestra "Presione cualquier tecla para continuar..."
-		clearScreen();
+		pauseAndClearScreen();
 	}
 	catch (std::exception& e)
 	{
@@ -183,8 +201,7 @@ void Controlador::controladorVentaEnLinea()
 		mensajeDeError << "Error. El cliente parece no estar subscrito. Motivo: " << e.what() << std::endl;
 		mensajeDeError << "Por favor, registre al cliente antes de continuar." << std::endl;
 		std::cerr << mensajeDeError.str() << std::endl;
-		std::system("pause");
-		clearScreen();
+		pauseAndClearScreen();
 		return;
 	}
 
@@ -203,8 +220,7 @@ void Controlador::controladorVentaEnLinea()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un codigo de envio valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el codigo de envio: ";
@@ -217,13 +233,13 @@ void Controlador::controladorVentaEnLinea()
 	{
 		std::cerr << "Error. No hay cobertura de envio para el codigo ingresado." << std::endl;
 		std::cout << "Regresando al menu principal..." << std::endl;
-		std::system("pause");
-		clearScreen();
+		pauseAndClearScreen();
 		return;
 	}
 	else
 	{
 		std::cout << "Perfecto! Tenemos cobertura de envio. El envio tiene un costo de: " << MontoTranslado::getMonto(codigoDeEnvio) << std::endl;
+		pauseAndClearScreen();
 	}
 
 	Venta* venta = new VentaOnline(cliente, Interfaz::tienda->getFechaActual(), codigoDeEnvio);
@@ -233,6 +249,7 @@ void Controlador::controladorVentaEnLinea()
 	char seguirComprando = 's'; // acepta 's' 'S' 'n' 'N'
 	do
 	{
+		clearScreen();
 		try
 		{
 			componenteActual = controladorMenuVentaEnLineaComprar();
@@ -240,14 +257,14 @@ void Controlador::controladorVentaEnLinea()
 			{
 				std::cout << "Cuantas unidades desea: ";
 				std::cin >> unidades;
+				std::cout << "----------------------------------------------------------------------------" << std::endl;
 
-				// Verificar si la entrada es un número
+				// Verificar si la entrada es un numero
 				if (std::cin.fail()) {
-					std::cerr << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+					std::cerr << "Error: entrada no valida. Por favor, ingrese un numero." << std::endl;
 
-					// Restablecer el estado de std::cin
-					std::cin.clear();
-					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					clearInputBuffer();	// limpiar el buffer de entrada
+					
 					unidades = -1;	// para que se repita el ciclo
 				}
 
@@ -268,10 +285,20 @@ void Controlador::controladorVentaEnLinea()
 	} while (seguirComprando == 's' || seguirComprando == 'S');;
 
 	clearScreen();
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	// se verifica que la venta tenga al menos un componente
+	if (venta->getCarritoDeCompras()->estaVacia())
+	{
+		std::cerr << "Error. La venta no tiene ningun componente." << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		pauseAndClearScreen();
+		return;
+	}
+
+
+	std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 	std::cout << venta->generarFactura() << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::system("pause");
+	std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
+	pauseScreen();
 
 	// se agrega la venta a la tienda
 	try
@@ -281,7 +308,7 @@ void Controlador::controladorVentaEnLinea()
 	catch (std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
-		std::system("pause");
+		pauseScreen();
 	}
 }
 
@@ -290,18 +317,20 @@ Componente* Controlador::controladorMenuVentaEnLineaComprar()
 	int opcionMenuVentaEnLinea = Interfaz::obtenerOpcionMenuVentaEnLinea();
 	Componente* componente = nullptr;
 
+	system("pause");
+	clearScreen();
 	switch (opcionMenuVentaEnLinea)
 	{
 	case 1:
 		componente = Interfaz::escogerSistemaPreconfigurado();
+		break;
 	case 2:
 		componente = Interfaz::escogerComponenteSeparado();
 		break;
 	default:
-		throw std::exception("Menu Venta En Linea: Opcion invalida");
+		throw OpcionInvalidaException("Menu Venta En Linea");	// esta excepcion no se va a lanzar, pero por si acaso
 		break;
 	}
-
 	return componente;
 }
 
@@ -332,10 +361,200 @@ void Controlador::controladorMantenimiento()
 			Interfaz::menuMantenimientoEliminarComponenteCatalogo();
 			break;
 		case 6:
+			controladorModificarSistemaDeAudio();
+			break;
+		case 7:
 			Interfaz::regresar();
+			break;
+		default:
+			std::cerr << OpcionInvalidaException("Menu Mantenimiento").what() << std::endl;
+			break;
 		}
 		system("pause");
-	} while (opcion != 6);
+	} while (opcion != 7);
+}
+
+void Controlador::controladorModificarSistemaDeAudio()
+{
+	int opcion;
+	bool regresar = false;
+
+	// se verifica que exista al menos un sistema de audio
+	if (Interfaz::tienda->getCatalogo()->estaVacio())
+	{
+		//clearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que no hay sistemas registrados en el catalogo." << std::endl;
+		std::cerr << "Por favor registre un sistema para utilizar esta opcion." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu anterior..." << std::endl;
+		pauseScreen();
+		return;
+	}
+
+	// solicitar el codigo del sistema de audio
+	std::string codigoDelSistema = Interfaz::menuMantenimientoModificarSistemaCatalogoSolicitarCodigo();
+
+	pauseAndClearScreen();
+
+	// se verifica que el sistema de audio exista
+	if (!Interfaz::tienda->existeOtroSistemaPreconfigurado(codigoDelSistema))
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que el sistema de audio con el codigo " << codigoDelSistema << " no existe." << std::endl;
+		std::cerr << "La modificacion no se puede realizar." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu anterior..." << std::endl;
+		pauseScreen();
+		return;
+	}
+
+	// se obtiene el sistema de audio
+	Componente* sistema = nullptr;
+	try
+	{
+		sistema = Interfaz::tienda->obtenerPunteroAComponente(codigoDelSistema);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Ocurrio un error al obtener el sistema de audio." << std::endl;
+		std::cerr << "Motivo: " << e.what() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		pauseAndClearScreen();
+		return;
+	}
+
+	// para que el programa no se caiga
+	if (sistema == nullptr)	// debug
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Error. El sistema de audio no existe. NULLPTR" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu principal..." << std::endl;
+		pauseAndClearScreen();
+		return;
+	}
+
+
+	// se muestra el sistema de audio
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Perfecto. El sistema de audio con el codigo " << codigoDelSistema << " ha sido encontrado." << std::endl;
+	std::cout << "A continuacion se mostraran las caracteristicas actuales del sistema de audio." << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	pauseAndClearScreen();
+
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "\t\t\tSISTEMA A MODIFICAR" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	try
+	{
+		std::cout << sistema->toString() << std::endl;	// muestra el toString del sistema preconfigurado
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	pauseScreen();
+
+
+	std::string nuevoNombre;	// case 1;
+	std::string nuevoCodigo;	// case 2;
+
+	do
+	{
+		clearScreen();
+		opcion = Interfaz::menuMantenimientoModificarSistemaCatalogo();
+		pauseAndClearScreen();
+		switch (opcion)
+		{
+		case 1:
+			nuevoNombre = Interfaz::menuMantenimientoModificarNombreSistemaPreconfigurado();
+			sistema->setNombreComponente(nuevoNombre);
+			pauseAndClearScreen();
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "El nombre del sistema de audio ha sido modificado." << std::endl;
+			std::cout << "El nuevo nombre del sistema de audio es: " << sistema->getNombreComponente() << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			pauseAndClearScreen();
+			Interfaz::tienda->notificarModificacionComponente("El nombre del sistema de audio codigo " + codigoDelSistema + " ha sido modificado.");
+			break;
+		case 2:
+			nuevoCodigo = Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado();
+			sistema->setCodigo(nuevoCodigo);
+			pauseAndClearScreen();
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "El codigo del sistema de audio ha sido modificado." << std::endl;
+			std::cout << "El nuevo codigo del sistema de audio es: " << sistema->getCodigo() << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			pauseAndClearScreen();
+			Interfaz::tienda->notificarModificacionComponente("Se ha modificado el codigo de un sistema de audio, su nuevo codigo es: " + sistema->getCodigo());	  // podria utilizar nuevoCodigo, pero para evitar
+			break;
+		case 3:
+			controladorCambiarUnComponenteDeSistemaDeAudio(sistema);
+			pauseAndClearScreen();
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "El componente del sistema de audio ha sido modificado." << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			pauseAndClearScreen();
+			Interfaz::tienda->notificarModificacionComponente("Se ha modificado un componente del sistema de audio con codigo: " + sistema->getCodigo());
+			break;
+		case 4:
+			Interfaz::regresar();
+			break;
+		default:
+			std::cerr << OpcionInvalidaException("OpciÃ³n invÃ¡lida seleccionada en el menÃº: Modificar Sistema del Catalogo").what() << std::endl;	 // aqui se podria hacer un throw o mostrarla, al fin de cuenta NUNCA se va a ejecutar porque menuMantenimientoModificarSistemaCatalogo() solo retorna 1, 2, 3 o 4
+			break;
+		}
+	} while (opcion != 4 || regresar);
+}
+
+void Controlador::controladorCambiarUnComponenteDeSistemaDeAudio(Componente* sistemaDeAudio)
+{
+	// recibe un sistema de audio
+	Componente* componenteRemplazo = nullptr;
+	int opcion = Interfaz::menuMantemientoCambiarUnComponenteDelSistema();
+
+	pauseAndClearScreen();
+
+	switch (opcion)
+	{
+	case 1:
+		componenteRemplazo = ICrearProductos::crearProcesadorDeSenal();
+		try
+		{
+			sistemaDeAudio->setChild(0, componenteRemplazo);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		break;
+	case 2:
+		componenteRemplazo = ICrearProductos::crearFuenteDeAudio();
+		try
+		{
+			sistemaDeAudio->setChild(1, componenteRemplazo);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		break;
+	case 3:
+		componenteRemplazo = ICrearProductos::crearParlanteCat();
+		try
+		{
+			sistemaDeAudio->setChild(2, componenteRemplazo);
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		break;
+	}
 }
 
 void Controlador::controladorReportes()
@@ -357,6 +576,5 @@ void Controlador::controladorReportes()
 		case 3:
 			Interfaz::regresar();
 		}
-		system("pause");
 	} while (opcion != 3);
 }

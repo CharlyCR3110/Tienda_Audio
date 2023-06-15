@@ -1,7 +1,7 @@
 #pragma once
 #include "Tienda.h"
-#include "SistemaPersonalizadoFactory.h"
-#include "SistemaPreConfiguradoFactory.h"
+#include "CreadorSistemaPersonalizado.h"
+#include "CreadorPreConfiguradoFactory.h"
 #include "FuncionesUtiles.h"
 
 class Interfaz
@@ -40,7 +40,7 @@ public:
 	static void menuMantenimientoIngresarNuevoCliente();
 
 	// submenus de mantenimiento de clientes
-	static void solicitarDatosComportidos(std::string& nombre, std::string& codigo, std::string& pais, std::string& ciudad);
+	static void solicitarDatosCompartidos(std::string& nombre, std::string& codigo, std::string& pais, std::string& ciudad);
 
 	static void solicitarDatosEmpresa(std::string& razonSocial);
 
@@ -52,6 +52,18 @@ public:
 	static void menuMantenimientoIngresarNuevoComponente();
 	// 5. Eliminar componente del catalogo
 	static void menuMantenimientoEliminarComponenteCatalogo();
+
+	// 6. Modificar un componente del catalogo
+	static int menuMantenimientoModificarSistemaCatalogo();
+	// metodo utilizado para solicitar el codigo del componente que se desea modificar
+	static std::string menuMantenimientoModificarSistemaCatalogoSolicitarCodigo();
+
+	// 6.1 modificar nombre del sistema preconfigurado
+	static std::string menuMantenimientoModificarNombreSistemaPreconfigurado();
+	// 6.2 modificar codigo del sistema preconfigurado
+	static std::string menuMantenimientoModificarCodigoSistemaPreconfigurado();
+	// 6.3 menu para escoger cual componente del sistema desea modificar ( procesador, amplificador o parlante)
+	static int menuMantemientoCambiarUnComponenteDelSistema();
 
 	// MENU REPORTES
 	static int menuReportes();

@@ -5,11 +5,11 @@
 // interfaz para crear los elementos
 #include "ICrearProductos.h"
 
-class AbstractFactory
+class Creador
 {
 public:
-    virtual Componente* crearProcesadorDeSenal() = 0;
-    virtual Componente* crearFuenteDeAudio() = 0;
-    virtual Componente* crearParlanteCat() = 0;
+    virtual Componente* crearProcesadorDeSenal();
+    virtual Componente* crearFuenteDeAudio();
+    virtual Componente* crearParlanteCat();
     virtual Componente* crearSistemaDeAudio() = 0;
 };

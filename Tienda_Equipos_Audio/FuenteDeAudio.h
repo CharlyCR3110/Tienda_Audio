@@ -8,7 +8,8 @@ public:
 	FuenteDeAudio(std::string codigo, std::string caracteristicas, double precio);
 	FuenteDeAudio(const FuenteDeAudio& other);
 	virtual ~FuenteDeAudio();
-	virtual std::string toString() const = 0;
+
+	virtual std::string toString() const override;	// el toString es igual para todas las fuentes de audio (no es virtual)
 	// metodo clonar
 	virtual Componente* clonar() const = 0;
 	// metodos de composite

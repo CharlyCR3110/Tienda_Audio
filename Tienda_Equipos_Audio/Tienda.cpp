@@ -46,6 +46,14 @@ void Tienda::eliminarComponetePorCodigo(std::string codigo)
 	}
 }
 
+void Tienda::notificarModificacionComponente(std::string mensaje)
+{
+	// abre el archivo de texto (LO ABRE, PERO NO BORRA LO QUE YA ESTABA ESCRITO)
+	std::ofstream archivo("../Archivos/notificaciones.txt", std::ios::app); // solo para que muestre que se elimino el componente
+	archivo << mensaje << std::endl;
+	notificarClientes();
+}
+
 void Tienda::suscribirCliente(Cliente* cliente)
 {
 	try
@@ -100,6 +108,11 @@ Componente* Tienda::escogerComponenteDelCatalogo(std::string codigo)
 	{
 		throw std::exception(e.what());
 	}
+}
+
+Componente* Tienda::obtenerPunteroAComponente(std::string codigo)
+{
+	return _catalogo->obtenerPunteroAComponente(codigo);
 }
 
 bool Tienda::existeOtroSistemaPreconfigurado(std::string codigo)
@@ -189,8 +202,8 @@ std::string Tienda::mostrarComponenteMasVendido()
 	std::stringstream ss;
 	if (componenteMasVendido != nullptr) 
 	{
-		ss << "El componente más vendido es: " << componenteMasVendido->toString() << std::endl;
-		ss << "Cantidad vendida: " << cantidadMasVendida << " unidades.";
+		ss << "Informacion del componente mas vendido:" << std::endl;
+		ss << componenteMasVendido->toString() << std::endl;
 	}
 	else 
 	{
@@ -230,11 +243,41 @@ Fecha* Tienda::getFechaActual() const
 	return _fechaActual;
 }
 
+Catalogo* Tienda::getCatalogo() const
+{
+	return _catalogo;
+}
+
 std::string Tienda::mostrarListaClientes()
 {
 	try
 	{
 		return _clientes->toString();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+std::string Tienda::mostrarComponentesDelCatalagoReducido()
+{
+
+	try
+	{
+		return _catalogo->toStringReducido();
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception(e.what());
+	}
+}
+
+std::string Tienda::mostrarSistemaPreconfigurado(std::string codigo)
+{
+	try
+	{
+		return _catalogo->buscarComponentePorCodigo(codigo)->toString();
 	}
 	catch (std::exception& e)
 	{

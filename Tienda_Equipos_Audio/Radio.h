@@ -9,7 +9,6 @@ public:
 	Radio(std::string codigo, std::string caracteristicas, double precio);
 	Radio(const Radio& other);
 	virtual ~Radio();
-	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;
 	// metodos de composite

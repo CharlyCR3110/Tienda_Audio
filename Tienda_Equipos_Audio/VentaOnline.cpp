@@ -28,13 +28,13 @@ VentaOnline::~VentaOnline()
 
 void VentaOnline::calcularTotal()
 {
-	double total = 0;
-	for (int i = 0; i < _carritoDeCompras->getCantidad(); i++)
-	{
-		total += _carritoDeCompras->get(i)->getPrecio();
-	}
-	total += MontoTranslado::getMonto(_codigoLugarEntrega);
-	_total = total;
+	//double total = 0;
+	//for (int i = 0; i < _carritoDeCompras->getCantidad(); i++)
+	//{
+	//	total += _carritoDeCompras->get(i)->getPrecio();
+	//}
+	//total += MontoTranslado::getMonto(_codigoLugarEntrega);
+	_total += MontoTranslado::getMonto(_codigoLugarEntrega);
 }
 
 void VentaOnline::calcularSubtotal()

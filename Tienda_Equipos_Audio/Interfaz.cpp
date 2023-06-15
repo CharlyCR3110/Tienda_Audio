@@ -5,12 +5,13 @@ Tienda* Interfaz::tienda = new Tienda();	// Inicializacion de variable estatica
 int Interfaz::menuPrincipal()
 {
 	int opcion = 0;
-	std::cout << "\t\tMenu Principal" << std::endl;
+	std::cout << "-------------- Menu Principal ---------------" << std::endl;
 	std::cout << "1. Venta Directa" << std::endl;
 	std::cout << "2. Venta en linea" << std::endl;
 	std::cout << "3. Mantenimiento" << std::endl;
 	std::cout << "4. Reportes" << std::endl;
 	std::cout << "5. Salir" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
 	std::cin >> opcion;
 	return opcion;
@@ -20,23 +21,40 @@ int Interfaz::menuPrincipal()
 int Interfaz::obtenerOpcionMenuVentaDirecta()
 {
 	int opcionMenuVentaDirecta = 0;
+	bool opcionValida = false;
 
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "\tQue desea agregar al carrito" << std::endl;
-	std::cout << "1. Sistema Personalizado" << std::endl;
-	std::cout << "2. Sistema Preconfigurado" << std::endl;
-	std::cout << "3. Componente Separado" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "Digite una opcion del menu: ";
-	std::cin >> opcionMenuVentaDirecta;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	while (!opcionValida)
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\tQue desea agregar al carrito" << std::endl;
+		std::cout << "1. Sistema Personalizado" << std::endl;
+		std::cout << "2. Sistema Preconfigurado" << std::endl;
+		std::cout << "3. Componente Separado" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite una opcion del menu: ";
+		std::cin >> opcionMenuVentaDirecta;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+		if (opcionMenuVentaDirecta >= 1 && opcionMenuVentaDirecta <= 3)
+		{
+			opcionValida = true;
+		}
+		else
+		{
+			std::cout << "Opcion invalida. Por favor, intente nuevamente." << std::endl;
+			pauseAndClearScreen();
+		}
+
+		// Limpiamos el buffer de entrada
+		clearInputBuffer();
+	}
 
 	return opcionMenuVentaDirecta;
 }
 
 Componente* Interfaz::crearSistemaPersonalizado()
 {
-	AbstractFactory* factory = new SistemaPersonalizadoFactory();
+	Creador* factory = new CreadorSistemaPersonalizado();
 	std::cout << "-----------------------CREANDO SISTEMA PERSONALIZADO------------------------" << std::endl;
 	Componente* componente = factory->crearSistemaDeAudio();
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -48,17 +66,8 @@ Componente* Interfaz::crearSistemaPersonalizado()
 Componente* Interfaz::escogerSistemaPreconfigurado()
 {
 	std::string codigo;
-	try
-	{
-		std::cout << "-------------------------------CATALOGO-------------------------------------" << std::endl;
-		tienda->mostrarCatalogo();
-		std::cout << "----------------------------------------------------------------------------" << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error. " << e.what() << std::endl;
-		throw std::exception(e.what());    // se tira el en caso de que el catalogo este vacio
-	}
+
+	Interfaz::menuMantenimientoVerCatalogoComponentes();
 
 	std::cout << "Digite el codigo del sistema preconfigurado: ";
 	std::cin >> codigo;
@@ -69,7 +78,6 @@ Componente* Interfaz::escogerSistemaPreconfigurado()
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << "Error. " << e.what() << std::endl;
 		throw std::exception(e.what());    // se tira el en caso de que el codigo no exista
 	}
 }
@@ -77,8 +85,10 @@ Componente* Interfaz::escogerSistemaPreconfigurado()
 Componente* Interfaz::escogerComponenteSeparado()
 {
 	int categoriaComponente = obtenerCategoriaComponente();
-
 	Componente* componente = nullptr;
+	system("pause");
+	clearScreen();
+
 	switch (categoriaComponente)
 	{
 	case 1:
@@ -120,15 +130,33 @@ int Interfaz::obtenerCategoriaComponente()
 int Interfaz::obtenerOpcionMenuVentaEnLinea()
 {
 	int opcionMenuVentaEnLinea = 0;
+	bool opcionValida = false;
 
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "\tQue desea agregar al carrito" << std::endl;
-	std::cout << "1. Sistema Preconfigurado" << std::endl;
-	std::cout << "2. Componente Separado" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "Digite una opcion del menu: ";
-	std::cin >> opcionMenuVentaEnLinea;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	while (!opcionValida)
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\tQue desea agregar al carrito" << std::endl;
+		std::cout << "1. Sistema Preconfigurado" << std::endl;
+		std::cout << "2. Componente Separado" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite una opcion del menu: ";
+		std::cin >> opcionMenuVentaEnLinea;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+		if (opcionMenuVentaEnLinea == 1 || opcionMenuVentaEnLinea == 2)
+		{
+			opcionValida = true;
+		}
+		else
+		{
+			std::cout << "Opcion invalida. Por favor, intente nuevamente." << std::endl;
+			system("pause");
+			clearScreen();
+		}
+
+		// Limpiamos el buffer de entrada
+		clearInputBuffer();
+	}
 
 	return opcionMenuVentaEnLinea;
 }
@@ -157,18 +185,17 @@ int Interfaz::cuantasUnidadesDesea()
 int Interfaz::menuMantenimiento()
 {
 	int opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::cout << "\t\tMantenimiento" << std::endl;
+	std::cout << "--------------- Mantenimiento ---------------" << std::endl;
 	std::cout << "1. Ver Lista de clientes" << std::endl;
-	std::cout << "2. Ingreso de nuevos clientes" << std::endl;
-	std::cout << "3. Ver lista del catalogo" << std::endl;
-	std::cout << "4. Ingresar productos al catalogo" << std::endl;
-	std::cout << "5. Eliminar productos del cat�logo" << std::endl;
-	std::cout << "6. Salir" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "2. Ingresar un nuevo cliente" << std::endl;
+	std::cout << "3. Ver el catalogo" << std::endl;
+	std::cout << "4. Ingresar un sistema al catalogo" << std::endl;
+	std::cout << "5. Eliminar un sistema del catalogo" << std::endl;
+	std::cout << "6. Modificar un sistema del catalogo" << std::endl;
+	std::cout << "7. Regresar" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
 	std::cin >> opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	return opcion;
 }
 
@@ -181,12 +208,17 @@ void Interfaz::menuMantenimientoVerListaClientes()
 	try
 	{
 		std::cout << tienda->mostrarListaClientes() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	catch (std::exception& e)
+	catch (std::exception&)
 	{
-		std::cerr << "Error. " << e.what() << std::endl;
+		clearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que no hay clientes registrados." << std::endl;
+		std::cerr << "Por favor registre un cliente para poder ver la lista de clientes." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	pauseScreen();	// borrar?
 }
 
 void Interfaz::menuMantenimientoIngresarNuevoCliente()
@@ -219,8 +251,7 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 		{
 			std::cout << "Opcion invalida" << std::endl;
 			std::cout << "Por favor digite una opcion valida" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 
 	} while (opcionTipoCliente < 1 || opcionTipoCliente > 2);
@@ -232,7 +263,7 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Por favor digite los siguientes datos" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	solicitarDatosComportidos(nombre, cedula, pais, ciudad);	// se pasan como referencia para que se puedan modificar
+	solicitarDatosCompartidos(nombre, cedula, pais, ciudad);	// se pasan como referencia para que se puedan modificar
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	if (opcionTipoCliente == 1)
 	{
@@ -285,7 +316,7 @@ void Interfaz::menuMantenimientoIngresarNuevoCliente()
 	}
 }
 
-void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedula, std::string& pais, std::string& ciudad)
+void Interfaz::solicitarDatosCompartidos(std::string& nombre, std::string& cedula, std::string& pais, std::string& ciudad)
 {
 	int numeroDeIntento = 0;
 
@@ -296,8 +327,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un nombre valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el nombre: ";
@@ -317,8 +347,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una cedula valida" << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 
 		if (existeOtroClienteConLaMismaCedula)	// por si la cedula es valida pero ya existe otro cliente con la misma cedula
@@ -327,8 +356,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 			std::cout << "Ya existe un cliente con esa cedula" << std::endl;
 			std::cout << "Por favor digite una cedula diferente" << std::endl;
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
@@ -343,7 +371,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 		{
 			existeOtroClienteConLaMismaCedula = tienda->existeUsuarioRegistrado(cedula);
 		}
-		catch (std::exception& e)
+		catch (std::exception&)
 		{
 			// si se lanza una excepcion es porque la lista esta vacia, lo que significa que no hay otro cliente con la misma cedula
 			existeOtroClienteConLaMismaCedula = false;
@@ -361,8 +389,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un pais valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el pais: ";
@@ -379,8 +406,7 @@ void Interfaz::solicitarDatosComportidos(std::string& nombre, std::string& cedul
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un nombre de ciudad valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la ciudad: ";
@@ -402,8 +428,7 @@ void Interfaz::solicitarDatosEmpresa(std::string& razonSocial)
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una razon social valida" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la razon social: ";
@@ -423,8 +448,7 @@ void Interfaz::solicitarDatosPersona(std::string& correo, std::string& nacionali
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un correo valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el correo: ";
@@ -441,8 +465,7 @@ void Interfaz::solicitarDatosPersona(std::string& correo, std::string& nacionali
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite una nacionalidad valida" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la nacionalidad: ";
@@ -460,24 +483,28 @@ void Interfaz::menuMantenimientoVerCatalogoComponentes()	// unicamente muestra e
 	try
 	{
 		std::cout << tienda->mostrarCatalogo() << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	catch (std::exception& e)
+	catch (std::exception&)
 	{
-		std::cerr << e.what() << std::endl;
+		clearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que no hay sistemas registrados en el catalogo" << std::endl;
+		std::cerr << "Por favor registre un sistema para poder ver el catalogi" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
 	}
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	pauseScreen();	// borrar?
 }
 
 void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear los sistemas preconfigurados
 {
-	AbstractFactory* fabrica = new SistemaPreConfiguradoFactory();
+	Creador* fabrica = new CreadorPreConfiguradoFactory();
 	Componente* componentePreConfigurado = nullptr;
 	componentePreConfigurado = fabrica->crearSistemaDeAudio();
 
 	// verificar que no exita otro sistema de audio con ese codigo
 	std::string codigo;
 	
-	std::cout << "El codigo actual es: " << componentePreConfigurado->getCodigo() << std::endl;
 	bool seModificoElCodigo = false;
 
 	while (true) {
@@ -497,8 +524,7 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 					{
 						std::cout << "----------------------------------------------------------------------------" << std::endl;
 						std::cout << "Por favor digite un codigo valido" << std::endl;
-						std::system("pause");
-						clearScreen();
+						pauseAndClearScreen();
 					}
 					std::cout << "----------------------------------------------------------------------------" << std::endl;
 					std::cout << "Por favor digite otro codigo: ";
@@ -515,7 +541,7 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 				break;  // Sale del bucle while si no existe otro sistema con el mismo código
 			}
 		}
-		catch (const std::exception& e) 
+		catch (const std::exception&) 
 		{
 			break;  // Sale del bucle while si la lista está vacía
 		}
@@ -532,6 +558,11 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 		std::cerr << e.what() << std::endl;
 	}
 
+	clearScreen();
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "El sistema de audio se ha agregado exitosamente al catalogo" << std::endl;	
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+
 	delete fabrica;
 	delete componentePreConfigurado;
 }
@@ -541,18 +572,30 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 	std::string codigo;
 	int numeroDeIntento = 0;
 	
+	// se verifica que exista al menos un sistema de audio
+	if (Interfaz::tienda->getCatalogo()->estaVacio())
+	{
+		//clearScreen();
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cerr << "Parece que no hay sistemas registrados en el catalogo." << std::endl;
+		std::cerr << "Por favor registre un sistema para utilizar esta opcion." << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Regresando al menu anterior..." << std::endl;
+		return;
+	}
+
 	// Se muestra el catalogo
 	menuMantenimientoVerCatalogoComponentes();
 
 	// solicitar y comprobar que sea valida (no puede ser vacia ni tener caracteres especiales, solo letras y numeros)
+	clearInputBuffer();	// se limpia el buffer de entrada
 	do
 	{
 		if (numeroDeIntento != 0)
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un codigo valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite el codigo del componente que desea eliminar: ";
@@ -570,6 +613,166 @@ void Interfaz::menuMantenimientoEliminarComponenteCatalogo()
 		std::cerr << e.what() << std::endl;
 	}
 
+	pauseAndClearScreen();
+
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "El componente se ha eliminado exitosamente del catalogo" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+}
+
+int Interfaz::menuMantenimientoModificarSistemaCatalogo()
+{
+	int opcionDelMenu = 0;
+	int numeroDeIntento = 0;
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite una opcion valida" << std::endl;
+			pauseAndClearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\t\tMenu de opciones" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "1. Modificar nombre" << std::endl;
+		std::cout << "2. Modificar codigo" << std::endl;
+		std::cout << "3. Modificar componentes" << std::endl;
+		std::cout << "4. Regresar" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite una opcion del menu: ";
+		std::cin >> opcionDelMenu;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (opcionDelMenu < 1 || opcionDelMenu > 4);
+
+	return opcionDelMenu;
+}
+
+std::string Interfaz::menuMantenimientoModificarSistemaCatalogoSolicitarCodigo()
+{
+	std::string codigo;
+	int numeroDeIntento = 0;
+	clearInputBuffer();	// se limpia el buffer de entrad
+
+	// mostrar los sistemas preconfigurados actuales
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "Catalogo de sistemas preconfigurados" << std::endl;
+	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	try
+	{
+		std::cout << tienda->mostrarComponentesDelCatalagoReducido() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un codigo valido" << std::endl;
+			pauseAndClearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el codigo del sistema que desea modificar: ";
+		std::getline(std::cin, codigo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(codigo, false, true, false, "codigo"));	// se permite que el codigo tenga numeros
+
+	return codigo;
+}
+
+std::string Interfaz::menuMantenimientoModificarNombreSistemaPreconfigurado()
+{
+	// solicita el nuevo nombre del sistema preconfigurado y lo retorna
+	std::string nombreNuevo;
+	int numeroDeIntento = 0;
+	clearInputBuffer();	// se limpia el buffer de entrada
+
+	do
+	{
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un nombre valido" << std::endl;
+			pauseAndClearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el nuevo nombre del sistema preconfigurado: ";
+		std::getline(std::cin, nombreNuevo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		numeroDeIntento++;
+	} while (!esStringValido(nombreNuevo, true, false, false, "nombre"));	// se permite que el nombre tenga espacios
+
+	return nombreNuevo;
+
+}
+
+std::string Interfaz::menuMantenimientoModificarCodigoSistemaPreconfigurado()
+{
+	// solicita el nuevo nombre del sistema preconfigurado y lo retorna
+	std::string codigoNuevo;
+	int numeroDeIntento = 0;
+	bool existeOtroSistemaPreconfigurado = false;
+
+	clearInputBuffer();	// se limpia el buffer de entrada
+
+	do
+	{
+		existeOtroSistemaPreconfigurado = false;
+		if (numeroDeIntento != 0)
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "Por favor digite un codigo valido" << std::endl;
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			pauseAndClearScreen();
+		}
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "Digite el nuevo codigo del sistema preconfigurado: ";
+		std::getline(std::cin, codigoNuevo);
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+
+		// comprobar que el codigo no exista en el catalogo
+		if (tienda->existeOtroSistemaPreconfigurado(codigoNuevo))
+		{
+			std::cout << "----------------------------------------------------------------------------" << std::endl;
+			std::cout << "El codigo ya existe en el catalogo" << std::endl;
+			pauseAndClearScreen();
+			existeOtroSistemaPreconfigurado = true;
+		}
+
+
+		numeroDeIntento++;
+	} while (!esStringValido(codigoNuevo, false, true, false, "nombre") || existeOtroSistemaPreconfigurado);	// se permite que el codigo tenga numeros
+
+	return codigoNuevo;
+}
+
+int Interfaz::menuMantemientoCambiarUnComponenteDelSistema()
+{
+	int opcion = 0;
+	int numeroDeIntento = 0;
+	clearInputBuffer();	// se limpia el buffer de entrada
+
+	do
+	{
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "\t\tMenu de opciones" << std::endl;
+		std::cout << "----------------------------------------------------------------------------" << std::endl;
+		std::cout << "1. Cambiar el procesador de senal" << std::endl;
+		std::cout << "2. Cambiar la fuente de audio" << std::endl;
+		std::cout << "3. Cambiar el tipo de parlante" << std::endl;
+		std::cout << "Ingrese una opcion del menu: ";
+		std::cin >> opcion;
+
+	} while (opcion < 1 || opcion > 3);	// unicamente se aceptan las opciones 1, 2 y 3
+
+	return opcion;
 }
 
 int Interfaz::menuReportes()
@@ -577,32 +780,30 @@ int Interfaz::menuReportes()
 	// En la opción 1, muestre el producto que mas se ha vendido (sea componente o sistema)
 	//En la opción 2, muestre el total de ventas según todos los productos vendidos, especifique cuantos fueron componente y cuantos fueron sistemas
 	int opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "----------------- Reportes ------------------" << std::endl;
 	std::cout << "\t\tReportes" << std::endl;
 	std::cout << "1. Reporte equipos mas vendidos" << std::endl;
 	std::cout << "2. Reporte ventas" << std::endl;
 	std::cout << "3. Salir" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
+	std::cout << "----------------------------------------------" << std::endl;
 	std::cout << "Digite una opcion del menu: ";
 	std::cin >> opcion;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	return opcion;
 }
 
  void Interfaz::menuReportesComponenteMasVendido()
  {
- 	//1, muestre el producto que mas se ha vendido(sea componente o sistema)
- 	std::cout << "----------------------------------------------------------------------------" << std::endl;
- 	std::cout << "El componente mas vendido es: " << std::endl;
- 	std::cout << "----------------------------------------------------------------------------" << std::endl;
- 	try
- 	{
- 		std::cout << tienda->mostrarComponenteMasVendido() << std::endl;
- 	}
- 	catch (std::exception& e)
- 	{
- 		std::cerr << e.what() << std::endl;
- 	}
+	//1, muestre el producto que mas se ha vendido(sea componente o sistema)
+	std::cout << "----------- Componente Mas Vendido ------------" << std::endl;
+	try
+	{
+		std::cout << tienda->mostrarComponenteMasVendido() << std::endl;
+		pauseScreen();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
  }
 
  void Interfaz::menuReportesTotalVentas()
@@ -613,11 +814,16 @@ int Interfaz::menuReportes()
 	 try
 	 {
 		 std::cout << tienda->mostrarTotalVentas() << std::endl;
-		 std::system("Pause");
+		 pauseScreen();
 	 }
-	 catch (std::exception& e)
+	 catch (std::exception&)
 	 {
-		 std::cerr << e.what() << std::endl;
+		 clearScreen();
+		 std::cout << "----------------------------------------------------------------------------" << std::endl;
+		 std::cerr << "Parece que no hay ventas registradas" << std::endl;
+		 std::cerr << "Por favor registre una venta para poder ver el reporte" << std::endl;
+		 std::cout << "----------------------------------------------------------------------------" << std::endl;
+		 pauseScreen();
 	 }
  }
 
@@ -632,8 +838,7 @@ Cliente* Interfaz::buscarCliente()
 		{
 			std::cout << "----------------------------------------------------------------------------" << std::endl;
 			std::cout << "Por favor digite un nombre valido" << std::endl;
-			std::system("pause");
-			clearScreen();
+			pauseAndClearScreen();
 		}
 		std::cout << "----------------------------------------------------------------------------" << std::endl;
 		std::cout << "Digite la cedula: ";
@@ -658,17 +863,14 @@ void Interfaz::regresar()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Regresando al menu principal" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::system("pause");
-	clearScreen();
+	pauseAndClearScreen();
 }
 
 void Interfaz::salir()
 {
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Saliendo del programa" << std::endl;
-	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::system("pause");
-	clearScreen();
+	pauseAndClearScreen();
 
 	try
 	{
@@ -703,6 +905,5 @@ void Interfaz::opcionInvalida()
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
 	std::cout << "Opcion invalida" << std::endl;
 	std::cout << "----------------------------------------------------------------------------" << std::endl;
-	std::system("pause");
-	clearScreen();
+	pauseAndClearScreen();
 }

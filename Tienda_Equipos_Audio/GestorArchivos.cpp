@@ -7,7 +7,7 @@ void GestorArchivos::guardarFecha(std::string fecha)
 
 	if (archivo.fail())
 	{
-		throw std::runtime_error("Error al abrir el archivo fecha.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: fecha.txt");
 	}
 
 	archivo << fecha;
@@ -20,7 +20,7 @@ void GestorArchivos::guardarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 
 	if (archivoClientes.fail())
 	{
-		throw std::runtime_error("Error al abrir el archivo clientes.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: clientes.txt");
 	}
 
 	// recorrer la lista de clientes
@@ -60,7 +60,7 @@ void GestorArchivos::recuperarListaDeClientes(ListaEnlazada<Cliente>* clientes)
 
 	if (archivoClientes.fail())
 	{
-		throw std::runtime_error("Error al abrir el archivo clientes.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: clientes.txt");
 	}
 
 	std::string linea;
@@ -105,7 +105,7 @@ void GestorArchivos::guardarCatalogo(Catalogo* catalogo)
 
 	if (archivoCatalogo.fail())
 	{
-		throw std::runtime_error("Error al abrir el archivo clientes.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: catalogo.txt");
 	}	
 		
 	archivoCatalogo << catalogo->guardarCatalogo();
@@ -119,7 +119,7 @@ void GestorArchivos::recuperarCatalogo(Catalogo* catalogo)
  
 	if (archivoCatalogo.fail())
 	{
-		throw std::runtime_error("Error al abrir el archivo clientes.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: catalogo.txt");
 	}
 
 	std::string linea;
@@ -162,7 +162,7 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 
 	if (archivoVentas.fail())
 	{
-		throw std::runtime_error("Error al abrir el archivo ventas.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: ventas.txt");
 	}
 
 	Nodo<Venta>* nodoVenta = ventas->getPrimero();
@@ -195,7 +195,7 @@ void GestorArchivos::guardarVentas(ListaEnlazada<Venta>* ventas)
 
 			if (componente == nullptr)
 			{
-				throw std::runtime_error("Error al guardar la venta. El componente es nulo");
+				throw GuardarVentaException("Error al guardar la venta: El componente es nulo");
 			}
 
 			// si NO es un sistema de audio
@@ -245,7 +245,7 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 
 	if (archivoVentas.fail())
 	{
-		throw std::runtime_error("Error al abrir el archivo ventas.txt");
+		throw AbrirArchivoException("Error al abrir el archivo: ventas.txt");
 	}
 
 	std::string linea;
@@ -281,12 +281,12 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 		}
 		catch (std::exception& e)
 		{
-			throw std::runtime_error("Error al recuperar la fecha de la venta");
+			throw RecuperarFechaVentaException();
 		}
 
 		if (fecha == nullptr)
 		{
-			throw std::runtime_error("Error al recuperar la fecha de la venta: La fecha fue null");
+			throw RecuperarFechaVentaException();
 		}
 
 		// recuperar el tipo de venta
@@ -294,7 +294,7 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 
 		if (cliente == nullptr)
 		{
-			throw std::runtime_error("Error al recuperar el cliente de la venta");
+			throw RecuperarClienteVentaException();
 		}
 
 		// recuperar los componentes de la venta con un while
@@ -316,14 +316,15 @@ void GestorArchivos::recuperarVentas(ListaEnlazada<Venta>* ventas, ListaEnlazada
 			venta = new VentaOnline(cliente, fecha, codigoEnvio);
 
 		}
-			else if (tipoDeVenta == "D")
+		else if (tipoDeVenta == "D")
 		{
 			venta = new VentaDirecta(cliente, fecha);
 		}
 		else
 		{
-			throw std::runtime_error("Error al recuperar la venta: Tipo de venta invalido");
+			throw RecuperarVentaException("Error al recuperar la venta: Tipo de venta invalido");
 		}
+		
 		while (indiceComponente < indice)
 		{
 
@@ -436,7 +437,8 @@ Cliente* GestorArchivos::recuperarClienteEspecifico(std::string cedula, ListaEnl
 	}
 	catch (std::exception& e)
 	{
-		throw std::exception("No se encontro el cliente");
+		std::string mensaje = "No se pudo recuperar el cliente: " + std::string(e.what());
+		throw RecuperarClienteException(mensaje);
 	}
 }
 
@@ -445,11 +447,11 @@ Fecha* GestorArchivos::stringToFecha(std::string fechaStr)
 	//convierte una fecha en formato dd/mm/aaaa a un objeto de tipo Fecha
 	std::istringstream iss(fechaStr);
 	std::string token;
-	std::getline(iss, token, '/');  // Obtener el día
+	std::getline(iss, token, '/');  // Obtener el dï¿½a
 	int dia = std::stoi(token);
 	std::getline(iss, token, '/');  // Obtener el mes
 	int mes = std::stoi(token);
-	std::getline(iss, token);       // Obtener el año
+	std::getline(iss, token);       // Obtener el aï¿½o
 	int anio = std::stoi(token);
 
 	return new Fecha(dia, mes, anio);

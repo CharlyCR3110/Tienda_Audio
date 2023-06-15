@@ -26,13 +26,17 @@ public:
 	void agregarComponente(Componente* producto);
 	void eliminarComponente (Componente* producto);
 	void eliminarComponetePorCodigo(std::string codigo);
+	void notificarModificacionComponente(std::string mensaje);	// la modificacion se hace en Interfaz y controlador, entonces este metodo es para notificar a los observadores
 
 	void suscribirCliente(Cliente* cliente);
 	void desuscribirCliente(Cliente* cliente);
 	void notificarClientes();
 
 	std::string mostrarCatalogo();
-	Componente* escogerComponenteDelCatalogo(std::string codigo);
+	Componente* escogerComponenteDelCatalogo(std::string codigo);	// este metodo clona el componente del catalogo y lo devuelve
+
+	// devuelve un puntero al componente del catalogo, o sea, el mismo objeto
+	Componente* obtenerPunteroAComponente(std::string codigo);
 
 	bool existeOtroSistemaPreconfigurado(std::string codigo);
 
@@ -47,9 +51,16 @@ public:
 
 	// getters
 	Fecha* getFechaActual() const;
+
+	Catalogo* getCatalogo() const;
 	
 	// Utilizados en menu mantenimiento
 	std::string mostrarListaClientes();
+
+	// muestra el nombre y el codigo de los componentes del catalogo
+	std::string mostrarComponentesDelCatalagoReducido();
+
+	std::string mostrarSistemaPreconfigurado(std::string codigo);
 
 	// archivos
 

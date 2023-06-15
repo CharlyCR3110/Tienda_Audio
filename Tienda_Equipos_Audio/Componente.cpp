@@ -111,6 +111,11 @@ void Componente::setCantidadEnCarrito(int cantidad)
 	_cantidadEnElCarrito = cantidad;
 }
 
+void Componente::setChild(int i, Componente* componente)
+{
+	// aqui no se hace nada
+}
+
 Componente& Componente::operator=(const Componente& other)
 {
 	if (this != &other)

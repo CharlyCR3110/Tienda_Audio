@@ -20,6 +20,7 @@ public:
 	virtual void add(Componente* componente) override;
 	virtual void remove(Componente* componente) override;
 	virtual Componente* getChild(int i) const override;
+	virtual void setChild(int i, Componente* componente) override;
 	virtual void clear() override;
 	// sobrecarga de operadores
 	SistemaDeAudio& operator=(const SistemaDeAudio& other);

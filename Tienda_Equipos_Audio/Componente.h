@@ -22,7 +22,7 @@ public:
 	virtual std::string getNombreComponente() const;
 
 	// nombre del paquete de componentes
-	virtual std::string getNombre() const;	// cambiar por getNombreComponente
+	virtual std::string getNombre() const;
 
 	// cantidad de componentes que se van a comprar
 	virtual int getCantidadEnCarrito() const;
@@ -46,6 +46,7 @@ public:
 	virtual void add(Componente* componente) = 0;
 	virtual void remove(Componente* componente) = 0;
 	virtual Componente* getChild(int i) const = 0;
+	virtual void setChild(int i, Componente* componente);
 	virtual void clear() = 0;
 	// sobrecarga de operadores
 	Componente& operator=(const Componente& other);

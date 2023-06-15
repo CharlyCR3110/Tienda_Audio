@@ -17,9 +17,17 @@ public:
 	std::string mostrarCatalogo();
 	std::string mostrarCategoriaDelCatalogo(std::string categoria);
 
+	std::string toStringReducido();
+
+	bool estaVacio();
+
 	std::string guardarCatalogo();	// archivos
 
 	Componente* buscarComponentePorCodigo(std::string codigo);
+
+	// retorna un puntero a un componente del catalogo, para poder modificarlo directamente
+	Componente* obtenerPunteroAComponente(std::string codigo);
+
 	bool existeOtroSistemaPreconfigurado(std::string codigo);
 
 };

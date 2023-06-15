@@ -8,7 +8,6 @@ public:
 	UnidadCD(std::string codigo, std::string caracteristicas, double precio);
 	UnidadCD(const UnidadCD& other);
 	virtual ~UnidadCD();
-	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;
 	// metodos de composite

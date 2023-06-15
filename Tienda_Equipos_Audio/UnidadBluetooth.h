@@ -8,7 +8,6 @@ public:
 	UnidadBluetooth(std::string codigo, std::string caracteristicas, double precio);
 	UnidadBluetooth(const UnidadBluetooth& other);
 	virtual ~UnidadBluetooth();
-	virtual std::string toString() const override;
 	// metodo clonar
 	virtual Componente* clonar() const override;
 	// metodos de composite
