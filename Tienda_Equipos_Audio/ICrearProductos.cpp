@@ -52,7 +52,7 @@ std::string ICrearProductos::mensajeCodigoSistemaDeAudio()
 FuenteDeAudio* ICrearProductos::crearFuenteDeAudio()
 {
 	const std::string mensaje = "Seleccione el tipo de fuente de audio que desea:";
-	const std::string opciones[] = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Micr�fono" };
+	const std::string opciones[] = { "Unidad CD", "Tornamesa", "Radio", "Unidad Bluetooth", "Microfono" };
 	FuenteDeAudio* (*funciones[])() = { crearUnidadCD, crearTornamesa, crearRadio, crearUnidadBluetooth, crearMicrofono };
 
 	return crearCategoria<FuenteDeAudio>(mensaje, opciones, funciones, sizeof(opciones) / sizeof(opciones[0]));

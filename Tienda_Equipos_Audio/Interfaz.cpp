@@ -116,7 +116,7 @@ int Interfaz::obtenerCategoriaComponente()
 	{
 		std::cout << "Categorias de componentes disponibles" << std::endl;
 		std::cout << "1. Fuentes de Audio" << std::endl;
-		std::cout << "2. Procesadores de Señal" << std::endl;
+		std::cout << "2. Procesadores de Senal" << std::endl;
 		std::cout << "3. Parlantes (Reproductores de Sonido)" << std::endl;
 		std::cout << "Seleccione una categoria: ";
 		std::cin >> categoriaComponente;
@@ -169,9 +169,9 @@ int Interfaz::cuantasUnidadesDesea()
 		std::cout << "Cuantas unidades desa: ";
 		std::cin >> cantidad;
 
-		// Verificar si la entrada es un número
+		// Verificar si la entrada es un numero
 		if (std::cin.fail()) {
-			std::cout << "Error: entrada no válida. Por favor, ingrese un número." << std::endl;
+			std::cout << "Error: entrada no valida. Por favor, ingrese un numero." << std::endl;
 
 			// Restablecer el estado de std::cin
 			std::cin.clear();
@@ -538,12 +538,12 @@ void Interfaz::menuMantenimientoIngresarNuevoComponente()	// metodo para crear l
 			}
 			else 
 			{
-				break;  // Sale del bucle while si no existe otro sistema con el mismo código
+				break;  // Sale del bucle while si no existe otro sistema con el mismo codigo
 			}
 		}
 		catch (const std::exception&) 
 		{
-			break;  // Sale del bucle while si la lista está vacía
+			break;  // Sale del bucle while si la lista esta vacia
 		}
 	}
 
@@ -777,8 +777,8 @@ int Interfaz::menuMantemientoCambiarUnComponenteDelSistema()
 
 int Interfaz::menuReportes()
 {
-	// En la opción 1, muestre el producto que mas se ha vendido (sea componente o sistema)
-	//En la opción 2, muestre el total de ventas según todos los productos vendidos, especifique cuantos fueron componente y cuantos fueron sistemas
+	// En la opcion 1, muestre el producto que mas se ha vendido (sea componente o sistema)
+	//En la opcion 2, muestre el total de ventas segun todos los productos vendidos, especifique cuantos fueron componente y cuantos fueron sistemas
 	int opcion;
 	std::cout << "----------------- Reportes ------------------" << std::endl;
 	std::cout << "\t\tReportes" << std::endl;
