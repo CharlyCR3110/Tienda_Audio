@@ -55,7 +55,7 @@ inline T* ICrearProductos::crearProducto(const std::string productos[][3], int n
     {
         // Mostrar las opciones de productos disponibles
         std::cout << "----------------------------------------------------------------------------" << std::endl;
-        std::cout << "Seleccione una opcion:" << std::endl;
+        std::cout << "Seleccione un modelo:" << std::endl;
         std::cout << "----------------------------------------------------------------------------" << std::endl;
 
         for (int i = 0; i < numProductos; i++)
