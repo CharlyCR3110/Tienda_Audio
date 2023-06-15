@@ -11,47 +11,26 @@
 
 ------------------------------------------------------------------------------------------------- */
 
+#include "Mapa.h"
 double MontoTranslado::getMonto(std::string codigo)
 {
-	if (codigo == "010")
+	Mapa<std::string, double> montos;
+	montos.insertar("010", 175.00);
+	montos.insertar("020", 150.00);
+	montos.insertar("030", 160.00);
+	montos.insertar("031", 150.00);
+	montos.insertar("032", 100.00);
+	montos.insertar("040", 200.00);
+	montos.insertar("050", 200.00);
+	montos.insertar("060", 250.00);
+	montos.insertar("090", 50.00);
+	montos.insertar("091", 80.00);
+	
+	// si la clave no existe se inserta al mapa con un valor predeterminado entonces se debe de tener en cuenta
+
+	if (montos.encontrar(codigo))
 	{
-		return 175.00;
-	}
-	else if (codigo == "020")
-	{
-		return 150.00;
-	}
-	else if (codigo == "030")
-	{
-		return 160.00;
-	}
-	else if (codigo == "031")
-	{
-		return 150.00;
-	}
-	else if (codigo == "032")
-	{
-		return 100.00;
-	}
-	else if (codigo == "040")
-	{
-		return 200.00;
-	}
-	else if (codigo == "050")
-	{
-		return 200.00;
-	}
-	else if (codigo == "060")
-	{
-		return 250.00;
-	}
-	else if (codigo == "090")
-	{
-		return 50.00;
-	}
-	else if (codigo == "091")
-	{
-		return 80.00;
+		return montos[codigo];
 	}
 	else
 	{
@@ -61,14 +40,7 @@ double MontoTranslado::getMonto(std::string codigo)
 
 bool MontoTranslado::disponibilidadDeEnvio(std::string codigo)
 {
-	if (codigo == "010" || codigo == "020" || codigo == "030" || codigo == "031" || codigo == "032" || codigo == "040" || codigo == "050" || codigo == "060" || codigo == "090" || codigo == "091")
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return codigo == "010" || codigo == "020" || codigo == "030" || codigo == "031" || codigo == "032" || codigo == "040" || codigo == "050" || codigo == "060" || codigo == "090" || codigo == "091";
 }
 
 // setw es para definir el ancho de la columna	(Unicamente lo estoy usando para que se vea bonito en la consola)
