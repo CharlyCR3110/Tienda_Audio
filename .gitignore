@@ -364,8 +364,6 @@ FodyWeavers.xsd
 
 # Visual Studio Code
 Tienda_Equipos_Audio/.vscode/*
-# Temp main
-Tienda_Equipos_Audio/main.cpp
 # ignore .txt
 *.txt
 # ingore sln
