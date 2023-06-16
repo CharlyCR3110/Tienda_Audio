@@ -912,6 +912,7 @@ void Interfaz::salir()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	delete tienda;
 }
 
 void Interfaz::opcionInvalida()
