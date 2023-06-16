@@ -22,7 +22,7 @@ Venta::Venta() :
 }
 
 Venta::Venta(Cliente* cliente, Fecha* fecha) :
-	_cliente(cliente),
+	_cliente(cliente->clonar()),	// se clona el cliente para evitar que se modifique el original
 	_fecha(fecha),
 	_carritoDeCompras(new ListaEnlazada<Componente>()),
 	_total(0),
