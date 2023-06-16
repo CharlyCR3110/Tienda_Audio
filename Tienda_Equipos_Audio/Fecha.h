@@ -20,7 +20,9 @@ public:
 	// mostrar
 	std::string toString() const;
 
-	std::string guardarFecha() const;	// retora un string con la fecha para guardar en un archivo
+	Fecha* clonar() const;
+
+	std::string guardarFecha() const;	// no se usa
 	// operadores
 	Fecha& operator=(const Fecha& other);
 	bool operator==(const Fecha& other) const;

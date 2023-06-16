@@ -76,6 +76,11 @@ std::string Fecha::toString() const
 	return ss.str();
 }
 
+Fecha* Fecha::clonar() const
+{
+	return new Fecha(*this);
+}
+
 std::string Fecha::guardarFecha() const
 {
 	std::stringstream ss;
