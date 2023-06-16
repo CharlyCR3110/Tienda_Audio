@@ -31,7 +31,6 @@ VentaDirecta::VentaDirecta(const VentaDirecta& other):
 
 VentaDirecta::~VentaDirecta()
 {
-	Venta::~Venta();
 }
 
 void VentaDirecta::calcularTotal()
