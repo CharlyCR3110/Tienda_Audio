@@ -301,7 +301,6 @@ void Tienda::guardarClientes()
 	try
 	{
 		GestorArchivos::guardarListaDeClientes(_clientes);
-		std::cout << "Se ha guardado la lista de clientes." << std::endl;
 	}
 	catch (std::exception& e)
 	{
@@ -326,7 +325,6 @@ void Tienda::guardarCatalogo()
 	try
 	{
 		GestorArchivos::guardarCatalogo(_catalogo);
-		std::cout << "Se ha guardado el catalogo." << std::endl;
 	}
 	catch (std::exception& e)
 	{
@@ -351,7 +349,6 @@ void Tienda::guardarVentas()
 	try
 	{
 		GestorArchivos::guardarVentas(_ventas);
-		std::cout << "Se ha guardado la lista de ventas." << std::endl;
 	}
 	catch (std::exception& e)
 	{
