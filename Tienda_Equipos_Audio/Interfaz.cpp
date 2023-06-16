@@ -2,10 +2,10 @@
 
 /* -------------------------------------------------------------------------------------------------
 
-	EIF204 Programación II
+	EIF204 Programaciï¿½n II
 	Proyecto 2
 
-	5-0452-0687 Andres Ureña Guido			Grupo 02
+	5-0452-0687 Andres Ureï¿½a Guido			Grupo 02
 	6-0489-0217 Carlos Gonzalez Garita		Grupo 02
 	1-1886-0401 Sebastian Fuentes Jimenez	Grupo 03
 
@@ -886,6 +886,7 @@ void Interfaz::salir()
 	try
 	{
 		tienda->guardarClientes();
+		std::cout << "Se han guardado los clientes" << std::endl;
 	}
 	catch (std::exception& e)
 	{
@@ -895,6 +896,7 @@ void Interfaz::salir()
 	try
 	{
 		tienda->guardarVentas();
+		std::cout << "Se han guardado las ventas" << std::endl;
 	}
 	catch (std::exception& e)
 	{
@@ -904,6 +906,7 @@ void Interfaz::salir()
 	try
 	{
 		tienda->guardarCatalogo();
+		std::cout << "Se ha guardado el catalogo" << std::endl;
 	}
 	catch (std::exception& e)
 	{
